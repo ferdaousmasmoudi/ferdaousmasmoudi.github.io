@@ -1,65 +1,21 @@
----
-layout: page
-title: projects
-permalink: /projects/
-description: A growing collection of your cool projects.
-nav: true
-nav_order: 3
-display_categories: [work, fun]
-horizontal: false
----
+# Research and Development Projects
 
-<!-- pages/projects.md -->
-<div class="projects">
-{% if site.enable_project_categories and page.display_categories %}
-  <!-- Display categorized projects -->
-  {% for category in page.display_categories %}
-  <a id="{{ category }}" href=".#{{ category }}">
-    <h2 class="category">{{ category }}</h2>
-  </a>
-  {% assign categorized_projects = site.projects | where: "category", category %}
-  {% assign sorted_projects = categorized_projects | sort: "importance" %}
-  <!-- Generate cards for each project -->
-  {% if page.horizontal %}
-  <div class="container">
-    <div class="row row-cols-1 row-cols-md-2">
-    {% for project in sorted_projects %}
-      {% include projects_horizontal.liquid %}
-    {% endfor %}
-    </div>
-  </div>
-  {% else %}
-  <div class="row row-cols-1 row-cols-md-3">
-    {% for project in sorted_projects %}
-      {% include projects.liquid %}
-    {% endfor %}
-  </div>
-  {% endif %}
-  {% endfor %}
+## Photovoltaic Systems
+- Design and implementation of solar panel systems to harness renewable energy.
+- Development of tracking systems to improve efficiency.
 
-{% else %}
+## Battery Management
+- Creation of smart battery management systems for enhanced lifecycle and efficiency.
+- Integration of AI for predictive maintenance.
 
-<!-- Display projects without categories -->
+## AgriTech IoT Platform
+- Development of an IoT platform for agriculture monitoring and automation.
+- Use of sensors and AI for crop management and yield optimization.
 
-{% assign sorted_projects = site.projects | sort: "importance" %}
+## Robotics
+- Engineering robots for various applications such as agriculture, healthcare, and logistics.
+- Focus on machine learning for autonomous navigation and task execution.
 
-  <!-- Generate cards for each project -->
-
-{% if page.horizontal %}
-
-  <div class="container">
-    <div class="row row-cols-1 row-cols-md-2">
-    {% for project in sorted_projects %}
-      {% include projects_horizontal.liquid %}
-    {% endfor %}
-    </div>
-  </div>
-  {% else %}
-  <div class="row row-cols-1 row-cols-md-3">
-    {% for project in sorted_projects %}
-      {% include projects.liquid %}
-    {% endfor %}
-  </div>
-  {% endif %}
-{% endif %}
-</div>
+## Power Electronics
+- Research into efficient power conversion technologies.
+- Development of inverters and converters for renewable energy applications.
