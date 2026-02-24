@@ -1,3 +1,10 @@
+---
+layout: page
+title: Thesis
+permalink: /thesis/
+description: PhD thesis information
+---
+
 # PhD Thesis: Optimization of Standalone Photovoltaic Systems
 
 **Defended on**: December 31, 2016  
@@ -12,4 +19,4 @@ This thesis focuses on the optimization of standalone photovoltaic systems, addr
 3. Implementation of real-world case studies to validate optimization techniques.
 
 ## Download Link  
-[Download Thesis](https://example.com/download-thesis.pdf)  
+[Download Thesis](assets/pdf/these_ferdaous_impression.pdf)  
