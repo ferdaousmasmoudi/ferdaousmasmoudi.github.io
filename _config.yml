@@ -8,7 +8,6 @@ middle_name: ""
 last_name: Masmoudi
 contact_note: >
   Best way to reach me: ferdaous.masmoudi@gmail.com
-  You can even add a little note about which of these is the best way to reach you.
 description: >
   PhD in Electrical Engineering and Renewable Energy Systems with experience in the end-to-end development of intelligent energy platforms, covering nonlinear mathematical modeling, parameter identification, optimization strategies, embedded implementation, and experimental validation.
   Research activities include multi-level mathematical modeling of photovoltaic and electrochemical energy systems, data-driven parameter identification (least squares, ARX-based approaches), and optimization-based tuning under real environmental conditions. State estimation techniques, including Extended Kalman Filtering (EKF), were implemented for real-time monitoring and control-oriented system supervision.
