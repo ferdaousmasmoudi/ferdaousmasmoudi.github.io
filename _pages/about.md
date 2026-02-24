@@ -6,7 +6,7 @@ subtitle: PhD in Electrical Engineering | Energy Systems Modeling, Control & Opt
 
 profile:
   align: right
-  image: ferdaous.png
+  image: ferdaous.PNG
   image_circular: false
   more_info: >
     <p>Sfax, Tunisia</p>
