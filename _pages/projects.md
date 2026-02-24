@@ -1,3 +1,11 @@
+
+---
+layout: page
+title: Projects
+permalink: /projects/
+description: Research and development projects
+---
+
 # Research and Development Projects
 
 ## Photovoltaic Systems
