@@ -25,7 +25,76 @@ announcements:
 latest_posts:
   enabled: false
 ---
+<div class="home-hero">
+  <div class="home-hero-grid">
+    <div>
+      <h1>Ferdaous Masmoudi, PhD</h1>
 
+      <div class="home-tags">
+        <span class="home-tag">Control Systems</span>
+        <span class="home-tag">Photovoltaic Energy</span>
+        <span class="home-tag">Robotics & AI</span>
+        <span class="home-tag">AI</span>
+      </div>
+
+      <p class="lead">
+        Developing intelligent energy and robotic systems; modeling, optimization, embedded AI & prototyping.
+      </p>
+
+      <div class="home-cta">
+        <a class="home-btn primary" href="{{ '/cv/' | relative_url }}">Download CV</a>
+        <a class="home-btn" href="{{ '/thesis/' | relative_url }}">Read Thesis</a>
+        <a class="home-btn" href="{{ '/publications/' | relative_url }}">Publications</a>
+        <a class="home-btn" href="{{ '/projects/' | relative_url }}">Research Projects</a>
+      </div>
+    </div>
+
+    <div>
+      <div class="home-photo">
+        <img src="{{ '/assets/img/ferdaous.png' | relative_url }}" alt="Ferdaous Masmoudi">
+      </div>
+
+      <div class="home-focus">
+        <div class="home-focus-row">
+          <span class="home-focus-dot"></span>
+          <div>
+            <div class="home-focus-label">Primary Focus</div>
+            <div class="home-focus-text">Photovoltaic Control & Optimization</div>
+          </div>
+        </div>
+        <div class="home-focus-row">
+          <span class="home-focus-dot secondary"></span>
+          <div>
+            <div class="home-focus-label">Secondary Focus</div>
+            <div class="home-focus-text">Robotics & Embedded AI</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="home-metrics">
+        <h2>Highlight Metrics</h2>
+        <div class="home-metric-grid">
+          <div class="home-metric">
+            <strong>10+ years</strong>
+            <span>experience</span>
+          </div>
+          <div class="home-metric">
+            <strong>25+</strong>
+            <span>experimental validation</span>
+          </div>
+          <div class="home-metric">
+            <strong>Real-time</strong>
+            <span>AI prototyping</span>
+          </div>
+          <div class="home-metric">
+            <strong>Hardware</strong>
+            <span>platform integration</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 ## Welcome
 
 I am a **PhD in Electrical Engineering** specializing in **Energy Systems Modeling, Control & Optimization**. My research focuses on nonlinear mathematical modeling, parameter identification, optimization strategies, and real-time embedded control for photovoltaic and electrochemical systems.
