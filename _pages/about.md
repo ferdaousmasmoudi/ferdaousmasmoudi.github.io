@@ -1,6 +1,6 @@
 ---
 layout: page
-title: about
+title: Home
 permalink: /
 subtitle: PhD in Electrical Engineering | Energy Systems Modeling, Control & Optimization | AgriTech Innovation
 
@@ -17,14 +17,8 @@ profile:
 selected_papers: true
 social: true
 
-announcements:
-  enabled: true
-  scrollable: true
-  limit: 5
-
-latest_posts:
-  enabled: false
 ---
+
 <div class="home-hero">
   <div class="home-hero-grid">
     <div>
