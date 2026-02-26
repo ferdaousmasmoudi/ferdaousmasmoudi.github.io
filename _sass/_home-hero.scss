@@ -5,8 +5,8 @@
 /* 1) Default (Light) variables */
 .home-hero {
   --hero-bg: radial-gradient(1200px 600px at 20% 0%, rgba(45, 108, 223, 0.10), transparent 60%),
-             radial-gradient(900px 500px at 80% 20%, rgba(32, 201, 151, 0.10), transparent 55%),
-             linear-gradient(180deg, rgba(250, 250, 252, 0.92), rgba(255, 255, 255, 0.92));
+    radial-gradient(900px 500px at 80% 20%, rgba(32, 201, 151, 0.10), transparent 55%),
+    linear-gradient(180deg, rgba(250, 250, 252, 0.92), rgba(255, 255, 255, 0.92));
   --hero-border: rgba(0, 0, 0, 0.06);
   --hero-text: rgba(0, 0, 0, 0.82);
   --hero-muted: rgba(0, 0, 0, 0.68);
@@ -22,13 +22,16 @@
   --card-bg: rgba(255, 255, 255, 0.85);
   --card-border: rgba(0, 0, 0, 0.08);
 
+  /* NEW: shared divider color (important for dark mode) */
+  --divider: rgba(0, 0, 0, 0.06);
+
   background: var(--hero-bg);
   border: 1px solid var(--hero-border);
   border-radius: 18px;
   padding: 28px;
   margin: 0 0 28px 0;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
-  color: var(--hero-text); /* important: sets a readable default */
+  color: var(--hero-text);
 }
 
 .home-hero-grid {
@@ -39,7 +42,9 @@
 }
 
 @media (max-width: 900px) {
-  .home-hero-grid { grid-template-columns: 1fr; }
+  .home-hero-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* Title + tags */
@@ -104,13 +109,13 @@
 
 .home-btn:hover {
   transform: translateY(-1px);
-  box-shadow: 0 8px 18px rgba(0,0,0,0.10);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.10);
 }
 
 .home-btn.primary {
   background: #1f4b99;
   color: #fff;
-  border-color: rgba(31,75,153,0.80);
+  border-color: rgba(31, 75, 153, 0.80);
 }
 
 .home-btn.primary:hover {
@@ -144,9 +149,14 @@
   display: flex;
   gap: 10px;
   align-items: center;
-  border-top: 1px solid rgba(0,0,0,0.06);
+
+  /* FIX: no hardcoded black border, use variable */
+  border-top: 1px solid var(--divider);
 }
-.home-focus-row:first-child { border-top: 0; }
+
+.home-focus-row:first-child {
+  border-top: 0;
+}
 
 .home-focus-dot {
   width: 10px;
@@ -154,10 +164,19 @@
   border-radius: 999px;
   background: #20c997;
 }
-.home-focus-dot.secondary { background: #2d6cdf; }
 
-.home-focus-label { font-weight: 800; color: var(--hero-text); }
-.home-focus-text  { color: var(--hero-muted); }
+.home-focus-dot.secondary {
+  background: #2d6cdf;
+}
+
+.home-focus-label {
+  font-weight: 800;
+  color: var(--hero-text);
+}
+
+.home-focus-text {
+  color: var(--hero-muted);
+}
 
 /* Metrics */
 .home-metrics {
@@ -183,18 +202,76 @@
 .home-metric {
   padding: 12px;
   border-radius: 14px;
-  border: 1px solid rgba(0,0,0,0.06);
-  background: rgba(255,255,255,0.75);
+
+  /* FIX: stop hardcoding light borders/bg */
+  border: 1px solid var(--card-border);
+  background: var(--card-bg);
 }
 
-.home-metric strong { display: block; font-size: 18px; color: var(--hero-text); }
-.home-metric span   { display: block; font-size: 13px; color: var(--hero-muted); opacity: 0.90; }
+.home-metric strong {
+  display: block;
+  font-size: 18px;
+  color: var(--hero-text);
+}
+
+.home-metric span {
+  display: block;
+  font-size: 13px;
+  color: var(--hero-muted);
+  opacity: 0.90;
+}
+
+/* =========================
+   Content inside the hero card
+   (for your "all inside one frame" approach)
+   ========================= */
+
+.home-sections {
+  margin-top: 22px;
+  padding-top: 18px;
+  border-top: 1px solid var(--divider);
+}
+
+.home-sections h2 {
+  margin: 22px 0 10px 0;
+  font-size: 22px;
+  color: var(--hero-text);
+}
+
+.home-sections h3 {
+  margin: 14px 0 8px 0;
+  font-size: 16px;
+  color: var(--hero-text);
+  opacity: 0.95;
+}
+
+.home-sections p,
+.home-sections li {
+  color: var(--hero-muted);
+  line-height: 1.65;
+}
+
+.home-sections ul {
+  margin: 0 0 10px 18px;
+}
+
+.home-sections a {
+  color: var(--hero-text);
+  text-decoration: underline;
+  text-decoration-color: rgba(45, 108, 223, 0.45);
+  text-underline-offset: 3px;
+}
+
+.home-sections hr {
+  border: 0;
+  border-top: 1px solid var(--divider);
+  margin: 18px 0;
+}
 
 /* =========================
    Dark mode (robust selectors)
    ========================= */
 
-/* We target many possible dark selectors used across al-folio versions */
 html.dark .home-hero,
 body.dark .home-hero,
 html[data-theme="dark"] .home-hero,
@@ -202,9 +279,9 @@ body[data-theme="dark"] .home-hero,
 [data-theme="dark"] .home-hero,
 .dark-mode .home-hero,
 .theme-dark .home-hero {
-  --hero-bg: radial-gradient(900px 500px at 12% 0%, rgba(45,108,223,0.28), transparent 70%),
-             radial-gradient(700px 420px at 88% 10%, rgba(32,201,151,0.22), transparent 66%),
-             linear-gradient(180deg, rgba(16, 18, 23, 0.92), rgba(16, 18, 23, 0.92));
+  --hero-bg: radial-gradient(900px 500px at 12% 0%, rgba(45, 108, 223, 0.28), transparent 70%),
+    radial-gradient(700px 420px at 88% 10%, rgba(32, 201, 151, 0.22), transparent 66%),
+    linear-gradient(180deg, rgba(16, 18, 23, 0.92), rgba(16, 18, 23, 0.92));
   --hero-border: rgba(255, 255, 255, 0.10);
   --hero-text: rgba(255, 255, 255, 0.92);
   --hero-muted: rgba(255, 255, 255, 0.74);
@@ -220,22 +297,13 @@ body[data-theme="dark"] .home-hero,
   --card-bg: rgba(255, 255, 255, 0.05);
   --card-border: rgba(255, 255, 255, 0.10);
 
+  /* NEW: divider for dark */
+  --divider: rgba(255, 255, 255, 0.08);
+
   box-shadow: 0 14px 50px rgba(0, 0, 0, 0.45);
 }
 
-/* Also make metric tiles consistent in dark */
-html.dark .home-metric,
-body.dark .home-metric,
-html[data-theme="dark"] .home-metric,
-body[data-theme="dark"] .home-metric,
-[data-theme="dark"] .home-metric,
-.dark-mode .home-metric,
-.theme-dark .home-metric {
-  border: 1px solid rgba(255,255,255,0.10);
-  background: rgba(255,255,255,0.04);
-}
-
-/* Extra fallback: if user OS is dark and selector doesn’t match */
+/* Extra fallback: if selector doesn’t match but OS is dark */
 @media (prefers-color-scheme: dark) {
   .home-hero {
     --hero-text: rgba(255, 255, 255, 0.92);
