@@ -36,8 +36,16 @@ social: true
       </p>
 
       <div class="home-cta">
-        <a class="home-btn primary" href="{{ '/cv/' | relative_url }}">Download CV</a>
-        <a class="home-btn secondary" href="{{ '/thesis/' | relative_url }}">Read Thesis</a>
+        <a class="home-btn primary" 
+           href="{{ '/assets/pdf/ModernCV_Ferdaous_2026__EN_.pdf' | relative_url }}" 
+           target="_blank">
+           Download CV
+        </a>
+        <a class="home-btn secondary" 
+           href="{{ '/assets/pdf/These_Ferdaous_Overleaf.pdf' | relative_url }}" 
+           target="_blank">
+           Read Thesis
+        </a>
         <a class="home-btn ghost" href="{{ '/publications/' | relative_url }}">Publications</a>
         <a class="home-btn ghost" href="{{ '/projects/' | relative_url }}">Research Projects</a>
       </div>
