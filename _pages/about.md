@@ -17,25 +17,6 @@ profile:
 selected_papers: true
 social: true
 ---
----
-layout: page
-title: Home
-permalink: /
-subtitle: PhD in Electrical Engineering | Energy Systems Modeling, Control & Optimization | AgriTech Innovation
-
-profile:
-  align: right
-  image: ferdaous.png
-  image_circular: false
-  more_info: >
-    <p>Sfax, Tunisia</p>
-    <p>French residence permit</p>
-    <p><a href="mailto:ferdaous.masmoudi@gmail.com">ferdaous.masmoudi@gmail.com</a></p>
-    <p>+216 23 605 813</p>
-
-selected_papers: true
-social: true
----
 
 <div class="home-hero">
 
