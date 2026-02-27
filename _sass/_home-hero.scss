@@ -88,12 +88,14 @@
 
 /* CTA buttons */
 .home-cta {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr)); /* 4 boutons */
   gap: 10px;
+  align-items: center;
 }
 
 .home-btn {
+  text-align: center;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -104,7 +106,15 @@
   color: var(--btn-text);
   text-decoration: none;
   font-weight: 700;
+  white-space: nowrap;
   transition: transform 120ms ease, background 120ms ease, border-color 120ms ease, box-shadow 120ms ease;
+}
+
+@media (max-width: 900px) {
+  .home-cta { grid-template-columns: repeat(2, minmax(0, 1fr)); } /* 2x2 */
+}
+@media (max-width: 520px) {
+  .home-cta { grid-template-columns: 1fr; } /* 1 par ligne */
 }
 
 .home-btn:hover {
