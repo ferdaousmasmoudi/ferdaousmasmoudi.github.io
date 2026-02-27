@@ -89,64 +89,85 @@
 .home-cta {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1.3fr;
-  gap: 10px;
+  gap: 12px;
   align-items: center;
 }
 
-.home-btn{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  gap:8px;
-
-  min-width: 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
-
-  /* rendu plus "bouton" */
-  background: rgba(255,255,255,0.85);
-  border: 1px solid rgba(17, 24, 39, 0.10);
-  box-shadow: 0 1px 0 rgba(17, 24, 39, 0.03);
-  backdrop-filter: saturate(140%) blur(2px);
-}
-
 @media (max-width: 900px) {
-  .home-cta { grid-template-columns: repeat(2, minmax(0, 1fr)); } /* 2x2 */
+  .home-cta { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (max-width: 520px) {
-  .home-cta { grid-template-columns: 1fr; } /* 1 par ligne */
+  .home-cta { grid-template-columns: 1fr; }
 }
 
-/* Base button: déjà ok, j'ajoute juste une identité plus "button" */
+/* Base button (single source of truth) */
 .home-btn{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  padding: 10px 14px;
+  border-radius: 14px;
+
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1;
+
+  text-decoration: none;
+  white-space: nowrap;
+
   min-width: 0;
   overflow: hidden;
-  text-overflow: ellipsis;
 
-  /* rendu plus "bouton" */
-  background: rgba(255,255,255,0.85);
+  background: rgba(255,255,255,0.92);
   border: 1px solid rgba(17, 24, 39, 0.10);
-  box-shadow: 0 1px 0 rgba(17, 24, 39, 0.03);
-  backdrop-filter: saturate(140%) blur(2px);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.10);
+
+  transition: transform 120ms ease, background 120ms ease, border-color 120ms ease, box-shadow 120ms ease;
 }
 
 .home-btn:hover{
   transform: translateY(-1px);
-  box-shadow: 0 10px 22px rgba(0,0,0,0.10);
+  box-shadow: 0 12px 24px rgba(0,0,0,0.12);
   border-color: rgba(31, 75, 153, 0.25);
 }
 
-/* Primary: tu gardes ton bleu */
+/* Icon + text (keeps space tight) */
+.home-btn .btn-ico{
+  width: 18px;
+  height: 18px;
+  flex: 0 0 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: inherit; /* IMPORTANT: icon follows button text color */
+}
+
+.home-btn .btn-ico svg{
+  width: 18px;
+  height: 18px;
+  display: block;
+}
+
+.home-btn .btn-text{
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Primary */
 .home-btn.primary{
   background: #1f4b99;
-  color:#fff;
+  color: #fff;
   border-color: rgba(31, 75, 153, 0.80);
 }
 .home-btn.primary:hover{
   background:#1b4288;
 }
 
-/* Secondary: important (Read Thesis) sans voler la vedette */
+/* Secondary */
 .home-btn.secondary{
   background: rgba(31, 75, 153, 0.10);
   color: #1f4b99;
@@ -157,35 +178,14 @@
   border-color: rgba(31, 75, 153, 0.55);
 }
 
-/* Ghost: léger mais clairement "cliquable" */
+/* Ghost */
 .home-btn.ghost{
-  background: rgba(255,255,255,0.60);
+  background: rgba(255,255,255,0.92);
   color: var(--btn-text);
-  border-color: rgba(17, 24, 39, 0.14);
+  border-color: rgba(17, 24, 39, 0.12);
 }
 .home-btn.ghost:hover{
-  background: rgba(255,255,255,0.90);
-}
-.home-btn .btn-ico{
-  width:18px;
-  height:18px;
-  flex:0 0 18px;
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-}
-
-.home-btn .btn-ico svg{
-  width:18px;
-  height:18px;
-  display:block;
-}
-
-.home-btn .btn-text{
-  min-width:0;
-  overflow:hidden;
-  text-overflow:ellipsis;
-  white-space:nowrap;
+  background: rgba(255,255,255,1);
 }
 
 /* Right column: photo + focus cards */
