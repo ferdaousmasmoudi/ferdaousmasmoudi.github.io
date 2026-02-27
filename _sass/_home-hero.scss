@@ -93,20 +93,21 @@
   align-items: center;
 }
 
-.home-btn {
-  text-align: center;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 8px 10px;
-  border-radius: 12px;
-  border: 1px solid var(--btn-border);
-  background: var(--btn-bg);
-  color: var(--btn-text);
-  text-decoration: none;
-  font-weight: 700;
-  white-space: nowrap;
-  transition: transform 120ms ease, background 120ms ease, border-color 120ms ease, box-shadow 120ms ease;
+.home-btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  /* rendu plus "bouton" */
+  background: rgba(255,255,255,0.85);
+  border: 1px solid rgba(17, 24, 39, 0.10);
+  box-shadow: 0 1px 0 rgba(17, 24, 39, 0.03);
+  backdrop-filter: saturate(140%) blur(2px);
 }
 
 @media (max-width: 900px) {
@@ -164,6 +165,27 @@
 }
 .home-btn.ghost:hover{
   background: rgba(255,255,255,0.90);
+}
+.home-btn .btn-ico{
+  width:18px;
+  height:18px;
+  flex:0 0 18px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.home-btn .btn-ico svg{
+  width:18px;
+  height:18px;
+  display:block;
+}
+
+.home-btn .btn-text{
+  min-width:0;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
 }
 
 /* Right column: photo + focus cards */
