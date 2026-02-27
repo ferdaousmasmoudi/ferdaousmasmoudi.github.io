@@ -22,9 +22,13 @@ social: true
   <div class="home-hero-grid">
     <div>
       <h1>Ferdaous Masmoudi, PhD</h1>
-
       <div class="home-tags">
-        Photovoltaic • Renewable Energy • Power Systems • Embedded Systems • Robotics • IoT • AI • Blockchain
+        <span class="tag-line">
+          Photovoltaic • Renewable Energy • Power Systems • Embedded Systems
+        </span>
+        <span class="tag-line">
+          Robotics • IoT • AI • Blockchain
+        </span>
       </div>
 
       <p class="lead">
