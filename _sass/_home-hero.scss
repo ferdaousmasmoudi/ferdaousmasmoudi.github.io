@@ -306,7 +306,25 @@
   border-top: 1px solid var(--divider);
   margin: 18px 0;
 }
-.home-tags { background: #ff00ff !important; }
+/* Keywords: clean, no box (final) */
+
+.home-tags{
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+
+  padding: 0 !important;
+  margin: 10px 0 14px 0 !important;
+
+  color: rgba(17,24,39,0.62) !important;
+  font-size: 13.5px !important;
+  font-weight: 500 !important;
+  line-height: 1.55 !important;
+
+  /* prevent the "big block" look */
+  display: block !important;
+  border-radius: 0 !important;
+}
 /* =========================
    Dark mode (robust selectors)
    ========================= */
