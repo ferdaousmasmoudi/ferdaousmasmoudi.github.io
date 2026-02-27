@@ -17,7 +17,6 @@ profile:
 selected_papers: true
 social: true
 ---
-
 <div class="home-hero">
   <div class="home-hero-grid">
     <div>
@@ -42,7 +41,7 @@ social: true
           </span>
           <span class="btn-text">CV</span>
         </a>
-      
+
         <a class="home-btn secondary" href="{{ '/thesis/' | relative_url }}">
           <span class="btn-ico" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none">
@@ -52,7 +51,7 @@ social: true
           </span>
           <span class="btn-text">Thesis</span>
         </a>
-      
+
         <a class="home-btn ghost" href="{{ '/publications/' | relative_url }}">
           <span class="btn-ico" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none">
@@ -62,7 +61,7 @@ social: true
           </span>
           <span class="btn-text">Publications</span>
         </a>
-      
+
         <a class="home-btn ghost" href="{{ '/projects/' | relative_url }}">
           <span class="btn-ico" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none">
@@ -72,27 +71,7 @@ social: true
           <span class="btn-text">Projects</span>
         </a>
       </div>
-      
-      <div class="home-photo">
-        <img src="{{ '/assets/img/ferdaous.png' | relative_url }}" alt="Ferdaous Masmoudi">
-      </div>
 
-      <div class="home-focus">
-        <div class="home-focus-row">
-          <span class="home-focus-dot"></span>
-          <div>
-            <div class="home-focus-label">Primary Focus</div>
-            <div class="home-focus-text">Photovoltaic Control &amp; Optimization</div>
-          </div>
-        </div>
-        <div class="home-focus-row">
-          <span class="home-focus-dot secondary"></span>
-          <div>
-            <div class="home-focus-label">Secondary Focus</div>
-            <div class="home-focus-text">Robotics &amp; Embedded AI</div>
-          </div>
-        </div>
-      </div>
 
       <div class="home-metrics">
         <h2>Highlight Metrics</h2>
