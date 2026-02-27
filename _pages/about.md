@@ -24,10 +24,7 @@ social: true
       <h1>Ferdaous Masmoudi, PhD</h1>
 
       <div class="home-tags">
-        <span class="home-tag">Control Systems</span>
-        <span class="home-tag">Photovoltaic Energy</span>
-        <span class="home-tag">Robotics &amp; AI</span>
-        <span class="home-tag">AI</span>
+        Photovoltaic • Renewable Energy • Power Systems • Embedded Systems • Robotics • IoT • AI • Blockchain
       </div>
 
       <p class="lead">
