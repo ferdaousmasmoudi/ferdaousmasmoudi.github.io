@@ -36,9 +36,9 @@ social: true
 
       <div class="home-cta">
         <a class="home-btn primary" href="{{ '/cv/' | relative_url }}">Download CV</a>
-        <a class="home-btn" href="{{ '/thesis/' | relative_url }}">Read Thesis</a>
-        <a class="home-btn" href="{{ '/publications/' | relative_url }}">Publications</a>
-        <a class="home-btn" href="{{ '/projects/' | relative_url }}">Research Projects</a>
+        <a class="home-btn secondary" href="{{ '/thesis/' | relative_url }}">Read Thesis</a>
+        <a class="home-btn ghost" href="{{ '/publications/' | relative_url }}">Publications</a>
+        <a class="home-btn ghost" href="{{ '/projects/' | relative_url }}">Research Projects</a>
       </div>
     </div>
 
