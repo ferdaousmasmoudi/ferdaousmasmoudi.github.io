@@ -32,14 +32,47 @@ social: true
       </p>
 
       <div class="home-cta">
-        <a class="home-btn primary" href="{{ '/cv/' | relative_url }}">Download CV</a>
-        <a class="home-btn secondary" href="{{ '/thesis/' | relative_url }}">Read Thesis</a>
-        <a class="home-btn ghost" href="{{ '/publications/' | relative_url }}">Publications</a>
-        <a class="home-btn ghost" href="{{ '/projects/' | relative_url }}">Research Projects</a>
+        <a class="home-btn primary" href="{{ '/cv/' | relative_url }}">
+          <span class="btn-ico" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M12 3v10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <path d="M8 11l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M4 21h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </span>
+          <span class="btn-text">CV</span>
+        </a>
+      
+        <a class="home-btn secondary" href="{{ '/thesis/' | relative_url }}">
+          <span class="btn-ico" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M12 7c-1.7-1.3-4-2-6-2H4v14h2c2 0 4.3.7 6 2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M12 7c1.7-1.3 4-2 6-2h2v14h-2c-2 0-4.3.7-6 2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          <span class="btn-text">Thesis</span>
+        </a>
+      
+        <a class="home-btn ghost" href="{{ '/publications/' | relative_url }}">
+          <span class="btn-ico" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M14 3H7a2 2 0 0 0-2 2v12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <path d="M17 7h-7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          <span class="btn-text">Publications</span>
+        </a>
+      
+        <a class="home-btn ghost" href="{{ '/projects/' | relative_url }}">
+          <span class="btn-ico" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M3 7a2 2 0 0 1 2-2h5l2 2h7a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          <span class="btn-text">Projects</span>
+        </a>
       </div>
-    </div>
-
-    <div>
+      
       <div class="home-photo">
         <img src="{{ '/assets/img/ferdaous.png' | relative_url }}" alt="Ferdaous Masmoudi">
       </div>
