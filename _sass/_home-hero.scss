@@ -55,17 +55,31 @@
   color: var(--hero-text);
 }
 
-.home-tags{
-  background: transparent !important;
-  border: 0 !important;
-  padding: 0 !important;
-  border-radius: 0 !important;
-  box-shadow: none !important;
+/* ===== Keywords – two white rounded labels ===== */
 
-  font-size: 13.5px;
-  font-weight: 500;
+.home-tags {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 12px 0 18px 0;
+}
+
+.home-tags .tag-line {
+  display: inline-block;
+  width: fit-content;
+
+  background: #ffffff;
+  padding: 6px 14px;
+
+  border-radius: 999px; /* pill shape */
+  border: 1px solid rgba(0,0,0,0.06);
+
+  font-size: 13px;
+  font-weight: 300;   /* very light */
+  letter-spacing: 0.2px;
   color: rgba(17,24,39,0.65);
-  line-height: 1.5;
+
+  box-shadow: 0 2px 6px rgba(0,0,0,0.04);
 }
 
 .home-hero p,
@@ -306,25 +320,9 @@
   border-top: 1px solid var(--divider);
   margin: 18px 0;
 }
-/* Keywords: clean, no box (final) */
 
-.home-tags{
-  background: transparent !important;
-  border: 0 !important;
-  box-shadow: none !important;
 
-  padding: 0 !important;
-  margin: 10px 0 14px 0 !important;
 
-  color: rgba(17,24,39,0.62) !important;
-  font-size: 13.5px !important;
-  font-weight: 500 !important;
-  line-height: 1.55 !important;
-
-  /* prevent the "big block" look */
-  display: block !important;
-  border-radius: 0 !important;
-}
 /* =========================
    Dark mode (robust selectors)
    ========================= */
