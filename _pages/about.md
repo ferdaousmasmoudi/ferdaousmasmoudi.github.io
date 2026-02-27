@@ -37,7 +37,7 @@ social: true
 
       <div class="home-cta">
         <a class="home-btn primary" 
-           href="{{ '/assets/pdf/ModernCV_Ferdaous_2026__EN_.pdf' | relative_url }}" 
+           href="{{ '/assets/pdf/ModernCVFerdaous2026EN.pdf' | relative_url }}" 
            target="_blank">
            Download CV
         </a>
