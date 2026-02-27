@@ -19,133 +19,146 @@ social: true
 ---
 
 <div class="home-hero">
+  <div class="home-hero-grid">
+    <div>
+      <h1>Ferdaous Masmoudi, PhD</h1>
 
-  <div class="home-tags">
-    Photovoltaic • Renewable Energy • Power Systems • Embedded Systems • Robotics • IoT • AI • Blockchain
-  </div>
+      <div class="home-tags">
+        Photovoltaic • Renewable Energy • Power Systems • Embedded Systems • Robotics • IoT • AI • Blockchain
+      </div>
 
-  <p class="lead">
-    Developing intelligent energy and robotic systems; modeling, optimization, embedded AI &amp; prototyping.
-  </p>
+      <p class="lead">
+        Developing intelligent energy and robotic systems; modeling, optimization, embedded AI &amp; prototyping.
+      </p>
 
-  <div class="home-cta">
-    <a class="home-btn primary" href="{{ '/cv/' | relative_url }}">Download CV</a>
-    <a class="home-btn secondary" href="{{ '/thesis/' | relative_url }}">Read Thesis</a>
-    <a class="home-btn ghost" href="{{ '/publications/' | relative_url }}">Publications</a>
-    <a class="home-btn ghost" href="{{ '/projects/' | relative_url }}">Research Projects</a>
-  </div>
-
-  <div class="home-focus">
-    <div class="home-focus-row">
-      <span class="home-focus-dot"></span>
-      <div>
-        <div class="home-focus-label">Primary Focus</div>
-        <div class="home-focus-text">Photovoltaic Control &amp; Optimization</div>
+      <div class="home-cta">
+        <a class="home-btn primary" href="{{ '/cv/' | relative_url }}">Download CV</a>
+        <a class="home-btn secondary" href="{{ '/thesis/' | relative_url }}">Read Thesis</a>
+        <a class="home-btn ghost" href="{{ '/publications/' | relative_url }}">Publications</a>
+        <a class="home-btn ghost" href="{{ '/projects/' | relative_url }}">Research Projects</a>
       </div>
     </div>
 
-    <div class="home-focus-row">
-      <span class="home-focus-dot secondary"></span>
-      <div>
-        <div class="home-focus-label">Secondary Focus</div>
-        <div class="home-focus-text">Robotics &amp; Embedded AI</div>
+    <div>
+      <div class="home-photo">
+        <img src="{{ '/assets/img/ferdaous.png' | relative_url }}" alt="Ferdaous Masmoudi">
+      </div>
+
+      <div class="home-focus">
+        <div class="home-focus-row">
+          <span class="home-focus-dot"></span>
+          <div>
+            <div class="home-focus-label">Primary Focus</div>
+            <div class="home-focus-text">Photovoltaic Control &amp; Optimization</div>
+          </div>
+        </div>
+        <div class="home-focus-row">
+          <span class="home-focus-dot secondary"></span>
+          <div>
+            <div class="home-focus-label">Secondary Focus</div>
+            <div class="home-focus-text">Robotics &amp; Embedded AI</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="home-metrics">
+        <h2>Highlight Metrics</h2>
+        <div class="home-metric-grid">
+          <div class="home-metric">
+            <strong>10+ years</strong>
+            <span>experience</span>
+          </div>
+          <div class="home-metric">
+            <strong>25+</strong>
+            <span>experimental validation</span>
+          </div>
+          <div class="home-metric">
+            <strong>Real-time</strong>
+            <span>AI prototyping</span>
+          </div>
+          <div class="home-metric">
+            <strong>Hardware</strong>
+            <span>platform integration</span>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 
-  <div class="home-metrics">
-    <h2>Highlight Metrics</h2>
-    <div class="home-metric-grid">
-      <div class="home-metric">
-        <strong>10+ years</strong>
-        <span>experience</span>
-      </div>
-      <div class="home-metric">
-        <strong>25+</strong>
-        <span>experimental validation</span>
-      </div>
-      <div class="home-metric">
-        <strong>Real-time</strong>
-        <span>AI prototyping</span>
-      </div>
-      <div class="home-metric">
-        <strong>Hardware</strong>
-        <span>platform integration</span>
-      </div>
-    </div>
+  <!-- =========================
+       FULL CONTENT INSIDE CARD
+       ========================= -->
+
+  <div class="home-sections">
+
+    <h2>Welcome</h2>
+    <p>
+      I am a <strong>PhD in Electrical Engineering</strong> specializing in
+      <strong>Energy Systems Modeling, Control &amp; Optimization</strong>.
+      My research focuses on nonlinear mathematical modeling, parameter identification,
+      optimization strategies, and real-time embedded control for photovoltaic and electrochemical systems.
+    </p>
+
+    <h2>Research Profile</h2>
+
+    <h3>Expertise Areas</h3>
+    <ul>
+      <li>Photovoltaic systems modeling &amp; MPPT control</li>
+      <li>Power electronics &amp; DC-DC converter design</li>
+      <li>Embedded systems &amp; real-time control (STM32, ESP32, Arduino)</li>
+      <li>Data-driven parameter identification &amp; state estimation (EKF)</li>
+      <li>AgriTech innovation &amp; IoT platforms</li>
+      <li>Mobile &amp; web development (Android, REST APIs)</li>
+      <li>Computer vision &amp; AI/ML integration</li>
+    </ul>
+
+    <h3>Key Competencies</h3>
+    <ul>
+      <li>Mathematical Modeling | Control Theory | Optimization</li>
+      <li>MATLAB/Simulink | C++ | Python | Embedded Systems</li>
+      <li>PCB Design &amp; Firmware Development | IoT &amp; LoRa</li>
+      <li>ROS/ROS2 | Linux | Git | Cloud Platforms</li>
+    </ul>
+
+    <h2>Professional Background</h2>
+
+    <h3>Industry</h3>
+    <p><strong>Co-founder &amp; R&amp;D Lead</strong> at NOVEL-TI (2016–Present)</p>
+    <ul>
+      <li>End-to-end development of intelligent energy systems</li>
+      <li>AgriTech solutions with blockchain-based traceability</li>
+      <li>Multi-disciplinary technical team leadership</li>
+    </ul>
+
+    <h3>Education</h3>
+    <ul>
+      <li>PhD in Electrical Engineering, ENIS Sfax (2016)</li>
+      <li>MSc in Electrical Conversion &amp; Renewable Energy, ENIS Sfax (2012)</li>
+      <li>Engineering Degree in Electrical Engineering, ENIS Sfax (2011)</li>
+    </ul>
+
+    <h2>Research Contributions</h2>
+    <p>
+      My doctoral research focused on <strong>optimization of standalone photovoltaic systems</strong>, including:
+    </p>
+    <ul>
+      <li>Nonlinear PV cell modeling (single, double, multi-diode configurations)</li>
+      <li>Optimization-based control strategies &amp; MPPT algorithms</li>
+      <li>Embedded implementation on microcontroller platforms</li>
+      <li>Real-time multi-sensor acquisition &amp; cloud supervision</li>
+    </ul>
+
+    <p><strong>3 Scopus-indexed journal publications</strong> &amp; <strong>12+ IEEE conference papers</strong></p>
+
+    <hr>
+
+    <p>
+      <strong>→ Quick access:</strong>
+      <a href="{{ '/cv/' | relative_url }}">CV</a>,
+      <a href="{{ '/thesis/' | relative_url }}">Thesis</a>,
+      <a href="{{ '/publications/' | relative_url }}">Publications</a>,
+      <a href="{{ '/projects/' | relative_url }}">Research Projects</a>
+    </p>
+
   </div>
-
-</div>
-
-<div class="home-sections">
-
-  <h2>Welcome</h2>
-  <p>
-    I am a <strong>PhD in Electrical Engineering</strong> specializing in
-    <strong>Energy Systems Modeling, Control &amp; Optimization</strong>.
-    My research focuses on nonlinear mathematical modeling, parameter identification,
-    optimization strategies, and real-time embedded control for photovoltaic and electrochemical systems.
-  </p>
-
-  <h2>Research Profile</h2>
-
-  <h3>Expertise Areas</h3>
-  <ul>
-    <li>Photovoltaic systems modeling &amp; MPPT control</li>
-    <li>Power electronics &amp; DC-DC converter design</li>
-    <li>Embedded systems &amp; real-time control (STM32, ESP32, Arduino)</li>
-    <li>Data-driven parameter identification &amp; state estimation (EKF)</li>
-    <li>AgriTech innovation &amp; IoT platforms</li>
-    <li>Mobile &amp; web development (Android, REST APIs)</li>
-    <li>Computer vision &amp; AI/ML integration</li>
-  </ul>
-
-  <h3>Key Competencies</h3>
-  <ul>
-    <li>Mathematical Modeling | Control Theory | Optimization</li>
-    <li>MATLAB/Simulink | C++ | Python | Embedded Systems</li>
-    <li>PCB Design &amp; Firmware Development | IoT &amp; LoRa</li>
-    <li>ROS/ROS2 | Linux | Git | Cloud Platforms</li>
-  </ul>
-
-  <h2>Professional Background</h2>
-
-  <h3>Industry</h3>
-  <p><strong>Co-founder &amp; R&amp;D Lead</strong> at NOVEL-TI (2016–Present)</p>
-  <ul>
-    <li>End-to-end development of intelligent energy systems</li>
-    <li>AgriTech solutions with blockchain-based traceability</li>
-    <li>Multi-disciplinary technical team leadership</li>
-  </ul>
-
-  <h3>Education</h3>
-  <ul>
-    <li>PhD in Electrical Engineering, ENIS Sfax (2016)</li>
-    <li>MSc in Electrical Conversion &amp; Renewable Energy, ENIS Sfax (2012)</li>
-    <li>Engineering Degree in Electrical Engineering, ENIS Sfax (2011)</li>
-  </ul>
-
-  <h2>Research Contributions</h2>
-  <p>
-    My doctoral research focused on <strong>optimization of standalone photovoltaic systems</strong>, including:
-  </p>
-  <ul>
-    <li>Nonlinear PV cell modeling (single, double, multi-diode configurations)</li>
-    <li>Optimization-based control strategies &amp; MPPT algorithms</li>
-    <li>Embedded implementation on microcontroller platforms</li>
-    <li>Real-time multi-sensor acquisition &amp; cloud supervision</li>
-  </ul>
-
-  <p><strong>3 Scopus-indexed journal publications</strong> &amp; <strong>12+ IEEE conference papers</strong></p>
-
-  <hr>
-
-  <p>
-    <strong>→ Quick access:</strong>
-    <a href="{{ '/cv/' | relative_url }}">CV</a>,
-    <a href="{{ '/thesis/' | relative_url }}">Thesis</a>,
-    <a href="{{ '/publications/' | relative_url }}">Publications</a>,
-    <a href="{{ '/projects/' | relative_url }}">Research Projects</a>
-  </p>
-
 </div>
