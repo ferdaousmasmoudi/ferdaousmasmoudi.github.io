@@ -83,9 +83,10 @@ description: PhD thesis (book reader)
   </p>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+
 <script src="https://cdn.jsdelivr.net/npm/page-flip@2.0.7/dist/js/page-flip.browser.min.js"></script>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 <script>
   const PDF_URL = "{{ '/assets/pdf/These_Ferdaous_Overleaf.pdf' | relative_url }}";
 
@@ -96,91 +97,135 @@ description: PhD thesis (book reader)
   const statusEl = document.getElementById("status");
   const bookEl = document.getElementById("book");
 
-  let flip = null;
-  let currentScale = 1.15;
   let pdfDoc = null;
+  let currentScale = 1.25;
+  let leftPage = 1; // left page number (odd usually)
+  const cache = new Map(); // pageNumber -> dataURL
+  let busy = false;
 
   function setStatus(txt){ statusEl.textContent = txt; }
 
-  async function renderAllPagesToImages(pdf, scale){
-    const images = [];
-    for (let p = 1; p <= pdf.numPages; p++){
-      setStatus(`Rendering: ${p}/${pdf.numPages}`);
-      const page = await pdf.getPage(p);
-      const viewport = page.getViewport({ scale });
+  function clamp(n, a, b){ return Math.max(a, Math.min(b, n)); }
 
-      const canvas = document.createElement("canvas");
-      const ctx = canvas.getContext("2d");
-      canvas.width = Math.floor(viewport.width);
-      canvas.height = Math.floor(viewport.height);
+  async function renderPageToDataURL(pageNumber, scale){
+    const key = `${pageNumber}@${scale}`;
+    if (cache.has(key)) return cache.get(key);
 
-      await page.render({ canvasContext: ctx, viewport }).promise;
+    const page = await pdfDoc.getPage(pageNumber);
+    const viewport = page.getViewport({ scale });
 
-      const img = document.createElement("img");
-      img.src = canvas.toDataURL("image/jpeg", 0.92);
-      img.style.width = "100%";
-      img.style.height = "100%";
-      img.draggable = false;
+    const canvas = document.createElement("canvas");
+    const ctx = canvas.getContext("2d", { alpha: false });
 
-      images.push(img);
-    }
-    return images;
+    canvas.width = Math.floor(viewport.width);
+    canvas.height = Math.floor(viewport.height);
+
+    await page.render({ canvasContext: ctx, viewport }).promise;
+
+    const url = canvas.toDataURL("image/jpeg", 0.90);
+    cache.set(key, url);
+    return url;
   }
 
-  function destroyFlip(){
-    if (flip){
-      try { flip.destroy(); } catch(e){}
-      flip = null;
-    }
-    bookEl.innerHTML = "";
+  function makeSpreadShell(){
+    bookEl.innerHTML = `
+      <div style="
+        height:100%;
+        display:grid;
+        grid-template-columns:1fr 1fr;
+        gap:0;
+        align-items:stretch;
+        background: rgba(255,255,255,0.75);
+      ">
+        <div id="L" style="border-right:1px solid rgba(0,0,0,0.06); display:flex; align-items:center; justify-content:center;"></div>
+        <div id="R" style="display:flex; align-items:center; justify-content:center;"></div>
+      </div>
+    `;
   }
 
-  async function buildFlipbook(scale){
-    destroyFlip();
+  function spinner(){
+    return `<div style="opacity:.55; font-weight:700;">Loading…</div>`;
+  }
+
+  async function showSpread(){
+    if (busy) return;
+    busy = true;
+
+    leftPage = clamp(leftPage, 1, pdfDoc.numPages);
+    const rightPage = clamp(leftPage + 1, 1, pdfDoc.numPages);
+
+    makeSpreadShell();
+    const L = document.getElementById("L");
+    const R = document.getElementById("R");
+
+    L.innerHTML = spinner();
+    R.innerHTML = spinner();
+
+    setStatus(`Loading pages ${leftPage}-${rightPage} / ${pdfDoc.numPages}`);
+
+    try{
+      // render left then right (fast perceived)
+      const leftUrl = await renderPageToDataURL(leftPage, currentScale);
+      L.innerHTML = `<img alt="p${leftPage}" src="${leftUrl}" style="max-width:100%; max-height:100%; display:block; border-radius:8px;"/>`;
+
+      if (rightPage !== leftPage){
+        const rightUrl = await renderPageToDataURL(rightPage, currentScale);
+        R.innerHTML = `<img alt="p${rightPage}" src="${rightUrl}" style="max-width:100%; max-height:100%; display:block; border-radius:8px;"/>`;
+      } else {
+        R.innerHTML = "";
+      }
+
+      setStatus(`Ready • pages ${leftPage}-${rightPage} / ${pdfDoc.numPages}`);
+
+      // prefetch next spread in background
+      const nextL = leftPage + 2;
+      const nextR = leftPage + 3;
+      if (nextL <= pdfDoc.numPages) renderPageToDataURL(nextL, currentScale).catch(()=>{});
+      if (nextR <= pdfDoc.numPages) renderPageToDataURL(nextR, currentScale).catch(()=>{});
+
+    } catch(e){
+      console.error(e);
+      setStatus("Error rendering pages.");
+      L.innerHTML = `<div style="color:#b00020; font-weight:700;">Render error</div>`;
+      R.innerHTML = "";
+    } finally {
+      busy = false;
+    }
+  }
+
+  async function init(){
     setStatus("Loading PDF…");
     pdfDoc = await pdfjsLib.getDocument(PDF_URL).promise;
 
-    setStatus("Preparing…");
-    const images = await renderAllPagesToImages(pdfDoc, scale);
+    // start at 1 (left) so spread is 1-2
+    leftPage = 1;
+    cache.clear();
 
-    flip = new St.PageFlip(bookEl, {
-      width: 460,
-      height: 650,
-      size: "stretch",
-      minWidth: 320,
-      maxWidth: 1000,
-      minHeight: 420,
-      maxHeight: 1400,
-      maxShadowOpacity: 0.18,
-      showCover: false,
-      mobileScrollSupport: true,
-      useMouseEvents: true
-    });
+    // wire buttons
+    document.getElementById("prevBtn").onclick = async () => {
+      leftPage = clamp(leftPage - 2, 1, pdfDoc.numPages);
+      await showSpread();
+    };
+    document.getElementById("nextBtn").onclick = async () => {
+      leftPage = clamp(leftPage + 2, 1, pdfDoc.numPages);
+      await showSpread();
+    };
+    document.getElementById("zoomIn").onclick = async () => {
+      currentScale = clamp(currentScale + 0.15, 0.9, 2.0);
+      cache.clear();
+      await showSpread();
+    };
+    document.getElementById("zoomOut").onclick = async () => {
+      currentScale = clamp(currentScale - 0.15, 0.9, 2.0);
+      cache.clear();
+      await showSpread();
+    };
 
-    flip.loadFromImages(images);
-
-    setStatus(`Ready • ${pdfDoc.numPages} pages`);
-
-    document.getElementById("prevBtn").onclick = () => flip.flipPrev();
-    document.getElementById("nextBtn").onclick = () => flip.flipNext();
-
-    flip.on("flip", (e) => {
-      const p = e.data + 1;
-      setStatus(`Page ${p} / ${pdfDoc.numPages}`);
-    });
+    await showSpread();
   }
 
-  document.getElementById("zoomIn").onclick = async () => {
-    currentScale = Math.min(currentScale + 0.15, 2.0);
-    await buildFlipbook(currentScale);
-  };
-  document.getElementById("zoomOut").onclick = async () => {
-    currentScale = Math.max(currentScale - 0.15, 0.85);
-    await buildFlipbook(currentScale);
-  };
-
-  buildFlipbook(currentScale).catch(err => {
+  init().catch(err => {
     console.error(err);
-    setStatus("Error loading flipbook.");
+    setStatus("Error loading PDF.");
   });
 </script>
