@@ -6,6 +6,9 @@ description: PhD thesis (dual view)
 ---
 <div class="thesis-fullbleed">
 <style>
+  .page__content, .post, .post-content, .container{
+    max-width: none !important;
+  }
   .thesis-wrap{
     max-width: none;          /* IMPORTANT */
     width: min(1400px, 96vw); /* la largeur réelle */
@@ -135,26 +138,20 @@ description: PhD thesis (dual view)
 
 
   <!-- SCROLL PANEL -->
+
   <section class="panel" id="panelScroll">
-    <div class="scrollbar">
-      <p class="hint" style="margin:0;">Fast vertical scroll (lighter).</p>
+    <p class="hint">Fast scroll (lighter). For zoom/fullscreen, open in new tab.</p>
   
-      <div class="scroll-zoom">
-        <button class="bookbtn" id="sZoomOut" type="button">－</button>
-        <div class="hint" id="sZoomLabel">100%</div>
-        <button class="bookbtn" id="sZoomIn" type="button">＋</button>
-      </div>
-    </div>
+    <iframe class="pdf-frame"
+      src="{{ '/assets/pdf/These_Ferdaous_Overleaf.pdf' | relative_url }}#toolbar=0&navpanes=0"
+      loading="lazy">
+    </iframe>
   
-    <div class="pdf-zoom-wrap" id="scrollWrap">
-      <iframe
-        class="pdf-frame"
-        id="scrollFrame"
-        src="{{ '/assets/pdf/These_Ferdaous_Overleaf.pdf' | relative_url }}#view=FitH&toolbar=0&navpanes=0&scrollbar=1"
-        loading="lazy">
-      </iframe>
-    </div>
-    
+    <a class="bookbtn" style="margin-top:10px; display:inline-flex;"
+       href="{{ '/assets/pdf/These_Ferdaous_Overleaf.pdf' | relative_url }}"
+       target="_blank" rel="noopener">
+      Open fullscreen
+    </a>
   </section>
 
 </div>
@@ -263,13 +260,14 @@ description: PhD thesis (dual view)
     return url;
   }
 
-  function makeSpreadShell(){
-    bookEl.innerHTML = `
-      <div style="height:100%;display:grid;grid-template-columns:1fr 1fr;background:rgba(255,255,255,0.75);">
-        <div id="L" style="border-right:1px solid rgba(0,0,0,0.06);display:flex;align-items:center;justify-content:center;"></div>
-        <div id="R" style="display:flex;align-items:center;justify-content:center;"></div>
-      </div>`;
-  }
+    function makeSpreadShell(){
+      bookEl.innerHTML = `
+        <div style="height:100%;display:grid;grid-template-columns:1fr 1fr;gap:0;background:rgba(255,255,255,0.75);">
+          <div id="L" style="border-right:1px solid rgba(0,0,0,0.06);display:flex;align-items:center;justify-content:center;padding:10px;"></div>
+          <div id="R" style="display:flex;align-items:center;justify-content:center;padding:10px;"></div>
+        </div>`;
+    }
+  
   function spinner(){ return `<div style="opacity:.55;font-weight:700;">Loading…</div>`; }
 
   async function showSpread(){
@@ -280,18 +278,13 @@ description: PhD thesis (dual view)
     const rightPage = clamp(leftPage + 1, 1, pdfDoc.numPages);
 
     makeSpreadShell();
-    function makeSpreadShell(){
-      bookEl.innerHTML = `
-        <div style="height:100%;display:grid;grid-template-columns:1fr 1fr;gap:0;background:rgba(255,255,255,0.75);">
-          <div id="L" style="border-right:1px solid rgba(0,0,0,0.06);display:flex;align-items:center;justify-content:center;padding:10px;"></div>
-          <div id="R" style="display:flex;align-items:center;justify-content:center;padding:10px;"></div>
-        </div>`;
-    }
+
     const L = document.getElementById("L");
     const R = document.getElementById("R");
 
-    L.innerHTML = spinner();
-    R.innerHTML = spinner();
+    L.innerHTML = `<img src="${leftUrl}" style="max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;display:block;border-radius:8px;"/>`;
+    R.innerHTML = `<img src="${rightUrl}" style="max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;display:block;border-radius:8px;"/>`;
+    
     setStatus(`Loading pages ${leftPage}-${rightPage} / ${pdfDoc.numPages}`);
 
     try{
