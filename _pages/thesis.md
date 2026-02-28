@@ -8,10 +8,8 @@ description: PhD thesis (dual view)
 <div class="thesis-fullbleed">
 
   <style>
-    /* --- Full-bleed WITHOUT touching al-folio template --- */
-    .thesis-fullbleed{
-      width: 100%;
-    }
+    /* Scope everything to this page to avoid breaking al-folio */
+    .thesis-fullbleed{ width:100%; }
 
     .thesis-wrap{
       width: min(1400px, 96vw);
@@ -54,6 +52,7 @@ description: PhD thesis (dual view)
       user-select:none;
       font-weight:700;
       font-size:13px;
+      line-height:1;
     }
     .viewbtn.active{
       border-color: rgba(31, 75, 153, .55);
@@ -91,17 +90,17 @@ description: PhD thesis (dual view)
 
     #book{
       width:100%;
-      height: min(78vh, 760px);
+      height: min(88vh, 900px);    /* a bit taller so a full page fits better */
       border-radius:16px;
-      overflow:auto; /* IMPORTANT: zoom won't "cut", you can pan */
+      overflow:auto;               /* IMPORTANT: zoom => pan inside (no cut) */
       background: rgba(255,255,255,.75);
       border: 1px solid rgba(0,0,0,.08);
       box-shadow: 0 12px 40px rgba(0,0,0,.10);
     }
 
     .spread{
-      height: 100%;
-      min-height: 520px;
+      height:100%;
+      min-height: 560px;
       display:grid;
       grid-template-columns: 1fr 1fr;
       background: rgba(255,255,255,0.75);
@@ -120,10 +119,10 @@ description: PhD thesis (dual view)
     }
 
     .pageSlot img{
-      max-width: 100%;
-      max-height: 100%;
-      width: auto;
-      height: auto;
+      max-width:100%;
+      max-height:100%;
+      width:auto;
+      height:auto;
       display:block;
       border-radius: 8px;
       object-fit: contain;
@@ -132,14 +131,17 @@ description: PhD thesis (dual view)
     /* Small screens: single page */
     @media (max-width: 900px){
       .spread{ grid-template-columns: 1fr; }
-      .pageSlot.left{ border-right: none; border-bottom: 1px solid rgba(0,0,0,0.06); }
+      .pageSlot.left{
+        border-right:none;
+        border-bottom: 1px solid rgba(0,0,0,0.06);
+      }
     }
 
     /* --- Scroll viewer --- */
     .pdf-frame{
-      display: block;
+      display:block;
       width:100%;
-      height: min(85vh, 920px);
+      height: min(88vh, 920px);
       border:0;
       border-radius:16px;
       overflow:hidden;
@@ -164,7 +166,7 @@ description: PhD thesis (dual view)
 
     <!-- BOOK PANEL -->
     <section class="panel active" id="panelBook">
-      <p class="hint">Two-page spread. Zoom increases readability; scroll inside the viewer to pan.</p>
+      <p class="hint">Two-page spread. Zoom improves readability; scroll inside the viewer to pan.</p>
 
       <div class="bookbar">
         <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
@@ -178,8 +180,8 @@ description: PhD thesis (dual view)
 
       <div id="book">
         <div class="spread">
-          <div class="pageSlot left" id="L"><span class="hint">Loading…</span></div>
-          <div class="pageSlot" id="R"><span class="hint">Loading…</span></div>
+          <div class="pageSlot left" id="L"><span class="hint" style="font-weight:700;opacity:.65;">Loading…</span></div>
+          <div class="pageSlot" id="R"><span class="hint" style="font-weight:700;opacity:.65;">Loading…</span></div>
         </div>
       </div>
     </section>
@@ -221,16 +223,16 @@ description: PhD thesis (dual view)
       btnScroll.classList.toggle("active", !isBook);
       panelBook.classList.toggle("active", isBook);
       panelScroll.classList.toggle("active", !isBook);
+
+      // Optional: remember choice AFTER user clicks (safe)
       try { localStorage.setItem("thesis_view_mode", mode); } catch(e){}
     }
 
     btnBook.addEventListener("click", () => setActiveView("book"));
     btnScroll.addEventListener("click", () => setActiveView("scroll"));
 
-    try {
-      const saved = localStorage.getItem("thesis_view_mode");
-      if (saved === "scroll") setActiveView("scroll");
-    } catch(e){}
+    // Force default open = BOOK (ignore saved "scroll" to match your requirement)
+    setActiveView("book");
 
     // ---------- Light network hint ----------
     const netHint = document.getElementById("netHint");
@@ -250,11 +252,12 @@ description: PhD thesis (dual view)
       "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
 
     const statusEl = document.getElementById("status");
+    const bookEl = document.getElementById("book");
     const L = document.getElementById("L");
     const R = document.getElementById("R");
 
     let pdfDoc = null;
-    let currentScale = 1.15; // start a bit lower to avoid huge renders
+    let currentScale = 1.0; // will be auto-fit on init
     let leftPage = 1;
     let busy = false;
 
@@ -276,6 +279,26 @@ description: PhD thesis (dual view)
       return canvas.toDataURL("image/jpeg", 0.90);
     }
 
+    function isSinglePageMode(){
+      return window.matchMedia && window.matchMedia("(max-width: 900px)").matches;
+    }
+
+    async function computeFitScale(){
+      // Fit page into available slot (per-page) so it starts "normal"
+      const page = await pdfDoc.getPage(1);
+      const v = page.getViewport({ scale: 1 });
+
+      const bookW = bookEl.clientWidth || 1000;
+      const bookH = bookEl.clientHeight || 700;
+
+      const pad = 24; // pageSlot padding approx
+      const perPageW = (isSinglePageMode() ? bookW : (bookW / 2)) - pad;
+      const perPageH = bookH - pad;
+
+      const s = Math.min(perPageW / v.width, perPageH / v.height);
+      currentScale = clamp(s, 0.75, 1.6);
+    }
+
     async function showSpread(){
       if (!pdfDoc || busy) return;
       busy = true;
@@ -283,15 +306,12 @@ description: PhD thesis (dual view)
       leftPage = clamp(leftPage, 1, pdfDoc.numPages);
       let rightPage = leftPage + 1;
 
-      // On small screens show single page
-      const single = window.matchMedia && window.matchMedia("(max-width: 900px)").matches;
+      const single = isSinglePageMode();
       if (single) rightPage = leftPage;
-
       rightPage = clamp(rightPage, 1, pdfDoc.numPages);
 
       L.innerHTML = spinner();
       R.innerHTML = spinner();
-
       setStatus(`Loading pages ${leftPage}-${rightPage} / ${pdfDoc.numPages}`);
 
       try{
@@ -322,34 +342,40 @@ description: PhD thesis (dual view)
 
       leftPage = 1;
 
+      // Auto-fit on first load
+      await computeFitScale();
+      await showSpread();
+
       document.getElementById("prevBtn").onclick = async () => {
-        leftPage = clamp(leftPage - 2, 1, pdfDoc.numPages);
+        leftPage = clamp(leftPage - (isSinglePageMode() ? 1 : 2), 1, pdfDoc.numPages);
         await showSpread();
       };
 
       document.getElementById("nextBtn").onclick = async () => {
-        leftPage = clamp(leftPage + 2, 1, pdfDoc.numPages);
+        leftPage = clamp(leftPage + (isSinglePageMode() ? 1 : 2), 1, pdfDoc.numPages);
         await showSpread();
       };
 
       document.getElementById("zoomIn").onclick = async () => {
-        currentScale = clamp(currentScale + 0.15, 0.85, 2.0);
+        currentScale = clamp(currentScale + 0.15, 0.6, 2.2);
         await showSpread();
       };
 
       document.getElementById("zoomOut").onclick = async () => {
-        currentScale = clamp(currentScale - 0.15, 0.85, 2.0);
+        currentScale = clamp(currentScale - 0.15, 0.6, 2.2);
         await showSpread();
       };
 
-      // Re-render on resize (switch 2 pages <-> 1 page)
+      // Refit on resize (keeps it "normal" after layout changes)
+      let t = null;
       window.addEventListener("resize", () => {
-        // debounce light
-        if (busy) return;
-        showSpread();
+        clearTimeout(t);
+        t = setTimeout(async () => {
+          if (!pdfDoc) return;
+          await computeFitScale();
+          await showSpread();
+        }, 150);
       });
-
-      await showSpread();
     }
 
     initBook().catch(err => {
