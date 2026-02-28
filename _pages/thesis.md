@@ -6,7 +6,12 @@ description: PhD thesis (dual view)
 ---
 <div class="thesis-fullbleed">
 <style>
-  .thesis-wrap{max-width:980px;margin:0 auto;padding:10px 0 30px}
+  .thesis-wrap{
+    max-width: none;          /* IMPORTANT */
+    width: min(1400px, 96vw); /* la largeur réelle */
+    margin: 0 auto;
+    padding:10px 0 30px;
+  }
   .thesis-topbar{
     display:flex; align-items:center; justify-content:space-between;
     gap:12px; flex-wrap:wrap; margin:10px 0 14px;
@@ -28,13 +33,17 @@ description: PhD thesis (dual view)
     background: rgba(31, 75, 153, .10);
     color:#1f4b99;
   }
-  .hint{font-size:13px;color:rgba(0,0,0,.55);margin:0}
-
-  /* Panels */
+  .hint{
+    font-size:13px;
+    color:rgba(0,0,0,.55);
+    margin:0;
+  }
+  
   .panel{display:none}
   .panel.active{display:block}
 
   /* Scroll viewer */
+  
   .pdf-frame{
     width:100%;
     height:min(85vh, 920px);
@@ -83,12 +92,6 @@ description: PhD thesis (dual view)
     gap:8px;
   }
 
-  
-  .thesis-fullbleed{
-  width: min(1400px, 96vw);
-  margin-left: 50%;
-  transform: translateX(-50%);
-  }
 </style>
 
 <div class="thesis-wrap">
