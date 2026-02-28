@@ -43,19 +43,19 @@ social: true
            Download CV
         </a>
         <a class="home-btn secondary" 
-           href="{{ '/thesis/' | relative_url }}">
+           href="{{ '/thesis/' | relative_url }}"
            target="_blank"
            rel="noopener">
            Read Thesis
            </a>
         <a class="home-btn ghost" 
-           href="{{ '/publications/' | relative_url }}">
+           href="{{ '/publications/' | relative_url }}"
            target="_blank"
            rel="noopener">
            Publications
            </a>
         <a class="home-btn ghost" 
-           href="{{ '/projects/' | relative_url }}">
+           href="{{ '/projects/' | relative_url }}"
            target="_blank"
            rel="noopener">
            Research Projects
