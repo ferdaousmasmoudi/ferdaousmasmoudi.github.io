@@ -44,14 +44,21 @@ description: PhD thesis (dual view)
 
   /* Scroll viewer */
   
-  .pdf-frame{
+  .pdf-zoom-wrap{
     width:100%;
     height:min(85vh, 920px);
-    border:0;
     border-radius:16px;
-    overflow:hidden;
+    overflow:auto;                 /* IMPORTANT: scroll */
     box-shadow:0 12px 40px rgba(0,0,0,.10);
+    background:#1f1f1f;
+  }
+  
+  .pdf-frame{
+    width:100%;
+    height:100%;
+    border:0;
     background:#fff;
+    transform-origin: top center;  /* IMPORTANT */
   }
 
   /* Book viewer container */
@@ -139,12 +146,15 @@ description: PhD thesis (dual view)
       </div>
     </div>
   
-    <iframe
-      class="pdf-frame"
-      id="scrollFrame"
-      src="{{ '/assets/pdf/These_Ferdaous_Overleaf.pdf' | relative_url }}#view=FitH&toolbar=0&navpanes=0&scrollbar=1&zoom=100"
-      loading="lazy">
-    </iframe>
+    <div class="pdf-zoom-wrap" id="scrollWrap">
+      <iframe
+        class="pdf-frame"
+        id="scrollFrame"
+        src="{{ '/assets/pdf/These_Ferdaous_Overleaf.pdf' | relative_url }}#view=FitH&toolbar=0&navpanes=0&scrollbar=1"
+        loading="lazy">
+      </iframe>
+    </div>
+    
   </section>
 
 </div>
@@ -181,24 +191,26 @@ description: PhD thesis (dual view)
   const sZoomOut = document.getElementById("sZoomOut");
   const sZoomLabel = document.getElementById("sZoomLabel");
   
-  let scrollZoom = 100;
+  // let scrollZoom = 100;
+  
+  let scrollZoom = 1; // 1 = 100%
   
   function setScrollZoom(z){
-    scrollZoom = Math.max(70, Math.min(180, z)); // clamp 70%..180%
-    if (sZoomLabel) sZoomLabel.textContent = `${scrollZoom}%`;
+    scrollZoom = Math.max(0.7, Math.min(1.8, z)); // 70%..180%
+    if (sZoomLabel) sZoomLabel.textContent = `${Math.round(scrollZoom*100)}%`;
   
-    // rebuild iframe src with new zoom (works with built-in pdf viewer)
-    const base = "{{ '/assets/pdf/These_Ferdaous_Overleaf.pdf' | relative_url }}";
-    const hash = `#view=FitH&toolbar=0&navpanes=0&scrollbar=1&zoom=${scrollZoom}`;
-    if (scrollFrame) scrollFrame.src = base + hash;
+    // scale iframe
+    scrollFrame.style.transform = `scale(${scrollZoom})`;
+  
+    // garder la largeur visible (sinon ça “rentre”)
+    scrollFrame.style.width = `${100/scrollZoom}%`;
+    scrollFrame.style.height = `${100/scrollZoom}%`;
   }
   
-  if (sZoomIn) sZoomIn.addEventListener("click", () => setScrollZoom(scrollZoom + 10));
-  if (sZoomOut) sZoomOut.addEventListener("click", () => setScrollZoom(scrollZoom - 10));
-  
-  // init label
-  setScrollZoom(scrollZoom);
-  
+  sZoomIn.addEventListener("click", () => setScrollZoom(scrollZoom + 0.1));
+  sZoomOut.addEventListener("click", () => setScrollZoom(scrollZoom - 0.1));
+  setScrollZoom(1);
+    
   
   
   // ---------- Light network hint (optional) ----------
@@ -268,6 +280,13 @@ description: PhD thesis (dual view)
     const rightPage = clamp(leftPage + 1, 1, pdfDoc.numPages);
 
     makeSpreadShell();
+    function makeSpreadShell(){
+      bookEl.innerHTML = `
+        <div style="height:100%;display:grid;grid-template-columns:1fr 1fr;gap:0;background:rgba(255,255,255,0.75);">
+          <div id="L" style="border-right:1px solid rgba(0,0,0,0.06);display:flex;align-items:center;justify-content:center;padding:10px;"></div>
+          <div id="R" style="display:flex;align-items:center;justify-content:center;padding:10px;"></div>
+        </div>`;
+    }
     const L = document.getElementById("L");
     const R = document.getElementById("R");
 
@@ -277,11 +296,11 @@ description: PhD thesis (dual view)
 
     try{
       const leftUrl = await renderPageToDataURL(leftPage, currentScale);
-      L.innerHTML = `<img alt="p${leftPage}" src="${leftUrl}" style="max-width:100%;max-height:100%;display:block;border-radius:8px;"/>`;
+      L.innerHTML = `<img alt="p${leftPage}" src="${leftUrl}" style="width:100%;height:auto;display:block;border-radius:8px;object-fit:contain;"/>`;
 
       if (rightPage !== leftPage){
         const rightUrl = await renderPageToDataURL(rightPage, currentScale);
-        R.innerHTML = `<img alt="p${rightPage}" src="${rightUrl}" style="max-width:100%;max-height:100%;display:block;border-radius:8px;"/>`;
+        R.innerHTML = `<img alt="p${rightPage}" src="${rightUrl}" style="width:100%;height:auto;display:block;border-radius:8px;object-fit:contain;"/>`;
       } else {
         R.innerHTML = "";
       }
