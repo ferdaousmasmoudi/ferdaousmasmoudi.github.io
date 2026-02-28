@@ -68,6 +68,11 @@ description: PhD thesis (dual view)
     font-weight:700; cursor:pointer; user-select:none;
   }
   .bookbtn:hover{transform:translateY(-1px); box-shadow:0 10px 22px rgba(0,0,0,.10)}
+  .thesis-fullbleed{
+  width: min(1400px, 96vw);
+  margin-left: 50%;
+  transform: translateX(-50%);
+  }
 </style>
 
 <div class="thesis-wrap">
