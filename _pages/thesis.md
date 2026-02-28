@@ -68,6 +68,22 @@ description: PhD thesis (dual view)
     font-weight:700; cursor:pointer; user-select:none;
   }
   .bookbtn:hover{transform:translateY(-1px); box-shadow:0 10px 22px rgba(0,0,0,.10)}
+  .scrollbar{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    flex-wrap:wrap;
+    margin: 0 0 10px 0;
+  }
+  
+  .scroll-zoom{
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+
+  
   .thesis-fullbleed{
   width: min(1400px, 96vw);
   margin-left: 50%;
@@ -107,19 +123,25 @@ description: PhD thesis (dual view)
 
   </section>
 
+
   <!-- SCROLL PANEL -->
   <section class="panel" id="panelScroll">
-    <p class="hint">Fast vertical scroll (lighter).</p>
+    <div class="scrollbar">
+      <p class="hint" style="margin:0;">Fast vertical scroll (lighter).</p>
+  
+      <div class="scroll-zoom">
+        <button class="bookbtn" id="sZoomOut" type="button">－</button>
+        <div class="hint" id="sZoomLabel">100%</div>
+        <button class="bookbtn" id="sZoomIn" type="button">＋</button>
+      </div>
+    </div>
+  
     <iframe
       class="pdf-frame"
-      src="{{ '/assets/pdf/These_Ferdaous_Overleaf.pdf' | relative_url }}#view=FitH&toolbar=0&navpanes=0&scrollbar=1"
+      id="scrollFrame"
+      src="{{ '/assets/pdf/These_Ferdaous_Overleaf.pdf' | relative_url }}#view=FitH&toolbar=0&navpanes=0&scrollbar=1&zoom=100"
       loading="lazy">
     </iframe>
-    <p class="hint" style="margin-top:10px;">
-      <a href="{{ '/assets/pdf/These_Ferdaous_Overleaf.pdf' | relative_url }}" target="_blank" rel="noopener">
-        Open the PDF in a new tab
-      </a>
-    </p>
   </section>
 
 </div>
@@ -150,6 +172,32 @@ description: PhD thesis (dual view)
   const saved = localStorage.getItem("thesis_view_mode");
   if (saved === "scroll") setActiveView("scroll");
 
+   // ---------- SCROLL VIEW: light zoom (iframe hash) ----------
+  const scrollFrame = document.getElementById("scrollFrame");
+  const sZoomIn = document.getElementById("sZoomIn");
+  const sZoomOut = document.getElementById("sZoomOut");
+  const sZoomLabel = document.getElementById("sZoomLabel");
+  
+  let scrollZoom = 100;
+  
+  function setScrollZoom(z){
+    scrollZoom = Math.max(70, Math.min(180, z)); // clamp 70%..180%
+    if (sZoomLabel) sZoomLabel.textContent = `${scrollZoom}%`;
+  
+    // rebuild iframe src with new zoom (works with built-in pdf viewer)
+    const base = "{{ '/assets/pdf/These_Ferdaous_Overleaf.pdf' | relative_url }}";
+    const hash = `#view=FitH&toolbar=0&navpanes=0&scrollbar=1&zoom=${scrollZoom}`;
+    if (scrollFrame) scrollFrame.src = base + hash;
+  }
+  
+  if (sZoomIn) sZoomIn.addEventListener("click", () => setScrollZoom(scrollZoom + 10));
+  if (sZoomOut) sZoomOut.addEventListener("click", () => setScrollZoom(scrollZoom - 10));
+  
+  // init label
+  setScrollZoom(scrollZoom);
+  
+  
+  
   // ---------- Light network hint (optional) ----------
   const netHint = document.getElementById("netHint");
   try{
