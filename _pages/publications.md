@@ -10,22 +10,17 @@ nav_order: 2
 {% include bib_search.liquid %}
 
 <style>
-/* =========================
-   Publications page styling
-   (scoped, won't affect other pages)
-   ========================= */
-
+/* Scoped to publications page */
 .publications {
   margin-top: 0.5rem;
 }
 
-/* Section titles */
 .publications h2 {
   margin-top: 1.6rem;
   margin-bottom: 0.6rem;
 }
 
-/* Make the search input look consistent */
+/* Search input */
 .publications .bibsearch-form-input,
 input#bibsearch.search.bibsearch-form-input {
   width: min(520px, 100%);
@@ -36,7 +31,7 @@ input#bibsearch.search.bibsearch-form-input {
   font-weight: 600;
 }
 
-/* Each publication item container (al-folio uses <li> inside <ol class="bibliography">) */
+/* Bibliography list */
 .publications ol.bibliography {
   list-style: none;
   padding-left: 0;
@@ -52,7 +47,7 @@ input#bibsearch.search.bibsearch-form-input {
   box-shadow: 0 10px 28px rgba(0,0,0,.06);
 }
 
-/* Title line */
+/* Title */
 .publications .title {
   font-weight: 800;
   font-size: 1.05rem;
@@ -64,6 +59,7 @@ input#bibsearch.search.bibsearch-form-input {
   margin-top: 6px;
   font-weight: 650;
 }
+
 .publications .periodical,
 .publications .venue,
 .publications .journal {
@@ -80,7 +76,6 @@ input#bibsearch.search.bibsearch-form-input {
   margin-top: 10px;
 }
 
-/* Make links look like soft buttons */
 .publications .links a,
 .publications a.btn,
 .publications .btn {
@@ -97,7 +92,6 @@ input#bibsearch.search.bibsearch-form-input {
   text-decoration: none !important;
 }
 
-/* Hover */
 .publications .links a:hover,
 .publications a.btn:hover,
 .publications .btn:hover {
@@ -105,20 +99,13 @@ input#bibsearch.search.bibsearch-form-input {
   box-shadow: 0 10px 22px rgba(0,0,0,.10);
 }
 
-/* Abbreviation badge (left label) - if present in your template */
-.publications .abbr,
-.publications .badge {
-  border-radius: 999px;
-}
-
-/* On small screens: reduce padding */
 @media (max-width: 700px){
   .publications ol.bibliography > li { padding: 14px 12px; }
   .publications .title { font-size: 1.0rem; }
 }
 </style>
 
-<div class="publications">
+<div class="publications" markdown="1">
 
 ## Journal Articles
 {% bibliography --query @*[keywords~=journal] %}
