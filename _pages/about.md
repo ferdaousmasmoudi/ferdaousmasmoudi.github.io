@@ -39,11 +39,27 @@ social: true
         <a class="home-btn primary" 
            href="{{ '/assets/pdf/ModernCVFerdaous2026EN.pdf' | relative_url }}" 
            target="_blank">
+           rel="noopener">
            Download CV
         </a>
-        <a class="home-btn secondary" href="{{ '/thesis/' | relative_url }}">Read Thesis</a>
-        <a class="home-btn ghost" href="{{ '/publications/' | relative_url }}">Publications</a>
-        <a class="home-btn ghost" href="{{ '/projects/' | relative_url }}">Research Projects</a>
+        <a class="home-btn secondary" 
+           href="{{ '/thesis/' | relative_url }}">
+           target="_blank"
+           rel="noopener">
+           Read Thesis
+           </a>
+        <a class="home-btn ghost" 
+           href="{{ '/publications/' | relative_url }}">
+           target="_blank"
+           rel="noopener">
+           Publications
+           </a>
+        <a class="home-btn ghost" 
+           href="{{ '/projects/' | relative_url }}">
+           target="_blank"
+           rel="noopener">
+           Research Projects
+           </a>
       </div>
     </div>
 
