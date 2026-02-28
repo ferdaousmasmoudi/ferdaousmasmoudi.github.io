@@ -320,7 +320,11 @@
   border-top: 1px solid var(--divider);
   margin: 18px 0;
 }
-
+.thesis-fullbleed{
+  width: min(1400px, 96vw);
+  margin-left: 50%;
+  transform: translateX(-50%);
+}
 
 
 /* =========================
