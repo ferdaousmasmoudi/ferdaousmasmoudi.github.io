@@ -4,7 +4,7 @@ title: Thesis
 permalink: /thesis/
 description: PhD thesis (dual view)
 ---
-
+<div class="thesis-fullbleed">
 <style>
   .thesis-wrap{max-width:980px;margin:0 auto;padding:10px 0 30px}
   .thesis-topbar{
@@ -100,11 +100,6 @@ description: PhD thesis (dual view)
 
     <div id="book"></div>
 
-    <p class="hint" style="margin-top:10px;">
-      <a href="{{ '/assets/pdf/These_Ferdaous_Overleaf.pdf' | relative_url }}" target="_blank" rel="noopener">
-        Open the original PDF
-      </a>
-    </p>
   </section>
 
   <!-- SCROLL PANEL -->
@@ -289,3 +284,4 @@ description: PhD thesis (dual view)
     setStatus("Error loading PDF. Switch to Scroll view.");
   });
 </script>
+</div>
