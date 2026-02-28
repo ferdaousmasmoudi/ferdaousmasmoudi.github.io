@@ -8,7 +8,7 @@ description: PhD thesis (dual view)
 <div class="thesis-fullbleed">
 
   <style>
-    /* --- Full-bleed WITHOUT touching al-folio template --- */
+    /* Scope everything to this page to avoid breaking al-folio */
     .thesis-fullbleed{ width:100%; }
 
     .thesis-wrap{
@@ -88,24 +88,20 @@ description: PhD thesis (dual view)
       line-height:1;
       text-decoration:none;
     }
-    .bookbtn:hover{
-      transform: translateY(-1px);
-      box-shadow: 0 10px 22px rgba(0,0,0,.10);
-    }
 
     #book{
       width:100%;
-      height: min(82vh, 860px);
+      height: min(88vh, 900px);    /* a bit taller so a full page fits better */
       border-radius:16px;
-      overflow:auto; /* IMPORTANT: zoom won't cut, you can pan */
+      overflow:auto;               /* IMPORTANT: zoom => pan inside (no cut) */
       background: rgba(255,255,255,.75);
       border: 1px solid rgba(0,0,0,.08);
       box-shadow: 0 12px 40px rgba(0,0,0,.10);
     }
 
     .spread{
-      height: 100%;
-      min-height: 520px;
+      height:100%;
+      min-height: 560px;
       display:grid;
       grid-template-columns: 1fr 1fr;
       background: rgba(255,255,255,0.75);
@@ -124,10 +120,10 @@ description: PhD thesis (dual view)
     }
 
     .pageSlot img{
-      max-width: 100%;
-      max-height: 100%;
-      width: auto;
-      height: auto;
+      max-width:100%;
+      max-height:100%;
+      width:auto;
+      height:auto;
       display:block;
       border-radius: 8px;
       object-fit: contain;
@@ -136,26 +132,29 @@ description: PhD thesis (dual view)
     /* Small screens: single page */
     @media (max-width: 900px){
       .spread{ grid-template-columns: 1fr; }
-      .pageSlot.left{ border-right: none; border-bottom: 1px solid rgba(0,0,0,0.06); }
+      .pageSlot.left{
+        border-right:none;
+        border-bottom: 1px solid rgba(0,0,0,0.06);
+      }
     }
 
-    /* --- Scroll viewer (PDF.js progressive render) --- */
-    .scrollpdf{
+    /* --- Scroll viewer (PDF.js, fast progressive render) --- */
+    #scrollPdf{
       width:100%;
       height: min(88vh, 920px);
-      overflow:auto;
       border-radius:16px;
-      background:#f6f7f9;
-      border: 1px solid rgba(0,0,0,.08);
+      overflow:auto;
       box-shadow: 0 12px 40px rgba(0,0,0,.10);
+      background:#f4f5f7;
+      border: 1px solid rgba(0,0,0,.08);
       padding: 14px 0;
     }
-    .scrollpdf .pdfpage{
+    #scrollPdf .pdfpage{
       display:flex;
       justify-content:center;
       padding: 10px 0;
     }
-    .scrollpdf canvas{
+    #scrollPdf canvas{
       background:#fff;
       border-radius:10px;
       box-shadow: 0 10px 24px rgba(0,0,0,.10);
@@ -178,7 +177,7 @@ description: PhD thesis (dual view)
 
     <!-- BOOK PANEL -->
     <section class="panel active" id="panelBook">
-      <p class="hint">Two-page spread. Zoom increases readability; scroll inside the viewer to pan.</p>
+      <p class="hint">Two-page spread. Zoom improves readability; scroll inside the viewer to pan.</p>
 
       <div class="bookbar">
         <div style="display:flex; gap:10px; align-items:center; flex-wrap:wrap;">
@@ -192,8 +191,8 @@ description: PhD thesis (dual view)
 
       <div id="book">
         <div class="spread">
-          <div class="pageSlot left" id="L"><span class="hint">Loading…</span></div>
-          <div class="pageSlot" id="R"><span class="hint">Loading…</span></div>
+          <div class="pageSlot left" id="L"><span class="hint" style="font-weight:700;opacity:.65;">Loading…</span></div>
+          <div class="pageSlot" id="R"><span class="hint" style="font-weight:700;opacity:.65;">Loading…</span></div>
         </div>
       </div>
     </section>
@@ -202,8 +201,8 @@ description: PhD thesis (dual view)
     <section class="panel" id="panelScroll">
       <p class="hint">Fast scroll (PDF.js). Pages render progressively as you scroll.</p>
 
-      <div id="scrollPdf" class="scrollpdf">
-        <div class="pdfpage"><span class="hint">Loading…</span></div>
+      <div id="scrollPdf">
+        <div class="pdfpage"><span class="hint" style="font-weight:700;opacity:.65;">Loading…</span></div>
       </div>
 
       <div style="margin-top:10px;">
@@ -221,32 +220,32 @@ description: PhD thesis (dual view)
   <script>
     const PDF_URL = "{{ '/assets/pdf/These_Ferdaous_Overleaf.pdf' | relative_url }}";
 
-    // ---------- View toggle (default: BOOK) ----------
+    // ---------- View toggle ----------
     const btnBook = document.getElementById("btnBook");
     const btnScroll = document.getElementById("btnScroll");
     const panelBook = document.getElementById("panelBook");
     const panelScroll = document.getElementById("panelScroll");
 
-    // Always open on BOOK first load; only switch if user explicitly saved scroll
-    function setActiveView(mode, persist=true){
+    function setActiveView(mode){
       const isBook = mode === "book";
       btnBook.classList.toggle("active", isBook);
       btnScroll.classList.toggle("active", !isBook);
       panelBook.classList.toggle("active", isBook);
       panelScroll.classList.toggle("active", !isBook);
-      if (persist){
-        try { localStorage.setItem("thesis_view_mode", mode); } catch(e){}
-      }
+
+      // Remember choice only after user clicks
+      try { localStorage.setItem("thesis_view_mode", mode); } catch(e){}
     }
 
     btnBook.addEventListener("click", () => setActiveView("book"));
-    btnScroll.addEventListener("click", () => setActiveView("scroll"));
+    btnScroll.addEventListener("click", () => {
+      setActiveView("scroll");
+      // lazy-init scroll renderer when user opens it
+      setTimeout(() => initScrollPdf().catch(console.error), 50);
+    });
 
-    // Default book. If you want to ignore saved mode forever, comment this block.
-    try {
-      const saved = localStorage.getItem("thesis_view_mode");
-      if (saved === "scroll") setActiveView("scroll", false);
-    } catch(e){}
+    // Force default open = BOOK (ignore saved "scroll")
+    setActiveView("book");
 
     // ---------- Light network hint ----------
     const netHint = document.getElementById("netHint");
@@ -260,20 +259,21 @@ description: PhD thesis (dual view)
       }
     } catch(e){}
 
-    // ---------- PDF.js setup ----------
+    // ---------- PDF.js base ----------
     const pdfjsLib = window.pdfjsLib;
     pdfjsLib.GlobalWorkerOptions.workerSrc =
       "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
 
     function clamp(n, a, b){ return Math.max(a, Math.min(b, n)); }
 
-    // ---------- BOOK VIEW (2-page spread) ----------
+    // ---------- BOOK VIEW (PDF.js 2-page spread) ----------
     const statusEl = document.getElementById("status");
+    const bookEl = document.getElementById("book");
     const L = document.getElementById("L");
     const R = document.getElementById("R");
 
     let pdfDoc = null;
-    let currentScale = 1.15; // initial render scale
+    let currentScale = 1.0; // will be auto-fit on init
     let leftPage = 1;
     let busy = false;
 
@@ -294,6 +294,26 @@ description: PhD thesis (dual view)
       return canvas.toDataURL("image/jpeg", 0.90);
     }
 
+    function isSinglePageMode(){
+      return window.matchMedia && window.matchMedia("(max-width: 900px)").matches;
+    }
+
+    async function computeFitScale(){
+      // Fit page into available slot (per-page) so it starts "normal"
+      const page = await pdfDoc.getPage(1);
+      const v = page.getViewport({ scale: 1 });
+
+      const bookW = bookEl.clientWidth || 1000;
+      const bookH = bookEl.clientHeight || 700;
+
+      const pad = 24; // pageSlot padding approx
+      const perPageW = (isSinglePageMode() ? bookW : (bookW / 2)) - pad;
+      const perPageH = bookH - pad;
+
+      const s = Math.min(perPageW / v.width, perPageH / v.height);
+      currentScale = clamp(s, 0.75, 1.6);
+    }
+
     async function showSpread(){
       if (!pdfDoc || busy) return;
       busy = true;
@@ -301,7 +321,7 @@ description: PhD thesis (dual view)
       leftPage = clamp(leftPage, 1, pdfDoc.numPages);
       let rightPage = leftPage + 1;
 
-      const single = window.matchMedia && window.matchMedia("(max-width: 900px)").matches;
+      const single = isSinglePageMode();
       if (single) rightPage = leftPage;
       rightPage = clamp(rightPage, 1, pdfDoc.numPages);
 
@@ -337,50 +357,65 @@ description: PhD thesis (dual view)
 
       leftPage = 1;
 
+      // Auto-fit on first load
+      await computeFitScale();
+      await showSpread();
+
       document.getElementById("prevBtn").onclick = async () => {
-        leftPage = clamp(leftPage - 2, 1, pdfDoc.numPages);
+        leftPage = clamp(leftPage - (isSinglePageMode() ? 1 : 2), 1, pdfDoc.numPages);
         await showSpread();
       };
 
       document.getElementById("nextBtn").onclick = async () => {
-        leftPage = clamp(leftPage + 2, 1, pdfDoc.numPages);
+        leftPage = clamp(leftPage + (isSinglePageMode() ? 1 : 2), 1, pdfDoc.numPages);
         await showSpread();
       };
 
       document.getElementById("zoomIn").onclick = async () => {
-        currentScale = clamp(currentScale + 0.15, 0.85, 2.0);
+        currentScale = clamp(currentScale + 0.15, 0.6, 2.2);
         await showSpread();
       };
 
       document.getElementById("zoomOut").onclick = async () => {
-        currentScale = clamp(currentScale - 0.15, 0.85, 2.0);
+        currentScale = clamp(currentScale - 0.15, 0.6, 2.2);
         await showSpread();
       };
 
+      // Refit on resize (keeps it "normal" after layout changes)
+      let t = null;
       window.addEventListener("resize", () => {
-        if (busy) return;
-        showSpread();
+        clearTimeout(t);
+        t = setTimeout(async () => {
+          if (!pdfDoc) return;
+          await computeFitScale();
+          await showSpread();
+        }, 150);
       });
-
-      await showSpread();
     }
+
+    initBook().catch(err => {
+      console.error(err);
+      setStatus("Error loading PDF. Switch to Scroll view.");
+    });
 
     // ---------- SCROLL VIEW (PDF.js progressive render) ----------
     const scrollHost = document.getElementById("scrollPdf");
     let scrollDoc = null;
-    let scrollRendering = new Set();
-    let scrollPageCanvases = [];
     let scrollScale = 1;
     let scrollInited = false;
+    let scrollCanvases = [];
+    let scrollObs = null;
+    const scrollRendering = new Set();
 
-    function clearScrollView(){
+    function clearScroll(){
       scrollHost.innerHTML = "";
+      scrollCanvases = [];
       scrollRendering.clear();
-      scrollPageCanvases = [];
+      if (scrollObs){ scrollObs.disconnect(); scrollObs = null; }
     }
 
     async function computeScrollFitScale(page){
-      const containerW = (scrollHost.clientWidth || 900) - 40; // margins
+      const containerW = (scrollHost.clientWidth || 900) - 40;
       const vp1 = page.getViewport({ scale: 1 });
       const s = containerW / vp1.width;
       scrollScale = clamp(s, 0.6, 1.8);
@@ -409,7 +444,7 @@ description: PhD thesis (dual view)
         const page = await scrollDoc.getPage(pageNum);
         const viewport = page.getViewport({ scale: scrollScale });
 
-        const canvas = scrollPageCanvases[pageNum];
+        const canvas = scrollCanvases[pageNum];
         if (!canvas) return;
 
         const ctx = canvas.getContext("2d", { alpha: false });
@@ -426,7 +461,7 @@ description: PhD thesis (dual view)
 
     function setupScrollObserver(){
       const root = scrollHost;
-      const obs = new IntersectionObserver((entries) => {
+      scrollObs = new IntersectionObserver((entries) => {
         for (const ent of entries){
           if (ent.isIntersecting){
             const pageNum = Number(ent.target.dataset.page);
@@ -435,69 +470,44 @@ description: PhD thesis (dual view)
         }
       }, { root, rootMargin: "900px 0px", threshold: 0.01 });
 
-      root.querySelectorAll(".pdfpage").forEach(el => obs.observe(el));
-      return obs;
+      root.querySelectorAll(".pdfpage").forEach(el => scrollObs.observe(el));
     }
 
-    let scrollObs = null;
-
     async function initScrollPdf(){
-      if (!scrollHost || scrollInited) return;
+      if (scrollInited) return;
 
-      clearScrollView();
+      clearScroll();
 
-      // Reuse already loaded doc if possible (fast)
+      // Reuse the already loaded document if possible (fast)
       scrollDoc = pdfDoc || await pdfjsLib.getDocument(PDF_URL).promise;
 
-      const p1 = await scrollDoc.getPage(1);
-      await computeScrollFitScale(p1);
+      const first = await scrollDoc.getPage(1);
+      await computeScrollFitScale(first);
 
       const n = scrollDoc.numPages;
-      scrollPageCanvases = new Array(n + 1);
+      scrollCanvases = new Array(n + 1);
       for (let i = 1; i <= n; i++){
-        scrollPageCanvases[i] = makePageShell(i);
+        scrollCanvases[i] = makePageShell(i);
       }
 
       // Render first page immediately
       await renderScrollPage(1);
 
-      // Observe the rest
-      scrollObs = setupScrollObserver();
+      // Render others on demand
+      setupScrollObserver();
       scrollInited = true;
     }
 
-    // Init scroll only when user opens scroll tab (keeps first paint fast)
-    btnScroll.addEventListener("click", () => {
-      setActiveView("scroll");
-      setTimeout(() => { initScrollPdf().catch(console.error); }, 50);
-    });
-
-    // If the page loads with scroll active (saved), initialize it
-    (function(){
-      const isScrollActive = panelScroll.classList.contains("active");
-      if (isScrollActive){
-        setTimeout(() => { initScrollPdf().catch(console.error); }, 50);
-      }
-    })();
-
-    // ---------- boot ----------
-    initBook().catch(err => {
-      console.error(err);
-      setStatus("Error loading PDF. Switch to Scroll view.");
-    });
-
-    // Optional: refit scroll pages on resize (kept light)
-    let resizeT = null;
+    // If user resizes while in scroll mode, refit and re-render progressively
+    let resizeT2 = null;
     window.addEventListener("resize", () => {
-      if (!scrollInited) return;
-      clearTimeout(resizeT);
-      resizeT = setTimeout(async () => {
+      if (!scrollInited || !scrollDoc) return;
+      clearTimeout(resizeT2);
+      resizeT2 = setTimeout(async () => {
         try{
           const p1 = await scrollDoc.getPage(1);
           await computeScrollFitScale(p1);
-
-          // Re-render only visible pages soon; simplest: clear and re-init
-          if (scrollObs) scrollObs.disconnect();
+          // Clear and re-init keeps it simple and consistent
           scrollInited = false;
           await initScrollPdf();
         } catch(e){ console.error(e); }
