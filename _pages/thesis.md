@@ -10,17 +10,13 @@ description: PhD thesis (dual view)
   <style>
     /* --- Full-bleed WITHOUT touching al-folio template --- */
     .thesis-fullbleed{
-      width: min(1400px, 100vw);
-      margin-left: calc(50% - 50vw);  /* break out of centered container */
-      padding: 0 14px;
-      box-sizing: border-box;
+      width: 100%;
     }
 
     .thesis-wrap{
-      width: 100%;
+      width: min(1400px, 96vw);
       margin: 0 auto;
       padding: 10px 0 30px;
-      box-sizing: border-box;
     }
 
     .thesis-topbar{
@@ -141,6 +137,7 @@ description: PhD thesis (dual view)
 
     /* --- Scroll viewer --- */
     .pdf-frame{
+      display: block;
       width:100%;
       height: min(85vh, 920px);
       border:0;
