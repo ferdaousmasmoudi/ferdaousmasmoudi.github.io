@@ -1,213 +1,117 @@
 /* =========================================================
-   Publications — Year Left / Dot on Axis / Cards Right (final)
-   Works with: h2.bibliography + ol.bibliography
+   Publications — Home-coherent Timeline
+   Year (left) ● Axis | Cards (right)
+   Works with al-folio: h2.bibliography + ol.bibliography
    ========================================================= */
 
 .publications{
-  --accent: var(--global-theme-color, var(--accent-color, #1f3a8a));
-  --axis: color-mix(in srgb, var(--accent) 22%, transparent);
-  --ink: rgba(0,0,0,.90);
-  --muted: rgba(0,0,0,.62);
-  --card: #fff;
-  --border: rgba(0,0,0,.10);
-  --shadow: 0 16px 42px rgba(0,0,0,.08);
+  /* Home palette (force blue/green; avoid global pink) */
+  --pub-blue: #1f4b99;     /* Home primary */
+  --pub-green: #20c997;    /* Home secondary */
+  --accent: var(--pub-blue);
 
-  /* Geometry */
-  --year-col: 72px;     /* space for "2021" */
-  --gap: 16px;          /* gap between year and axis */
-  --axis-x: calc(var(--year-col) + var(--gap)); /* where the axis sits */
-  --cards-pad: calc(var(--axis-x) + 42px);      /* where cards start */
+  /* neutrals */
+  --ink: rgba(17,24,39,.92);
+  --muted: rgba(17,24,39,.62);
+  --card: rgba(255,255,255,.92);
+  --border: rgba(17,24,39,.10);
+  --shadow: 0 14px 38px rgba(0,0,0,.08);
+
+  /* axis color */
+  --axis: rgba(31,75,153,.22);
+
+  /* geometry */
+  --year-col: 72px; /* width for "2021" */
+  --gap: 14px;      /* space between year and axis */
+  --axis-x: calc(var(--year-col) + var(--gap));
+  --cards-pad: calc(var(--axis-x) + 34px); /* where cards start */
 }
 
-/* --- YEAR HEADER LINE (2021 ●) --- */
+/* =========================================
+   Year header (e.g., "2021") + dot on axis
+   ========================================= */
 .publications h2.bibliography{
   float: none !important;
   clear: both !important;
 
   position: relative;
-  margin: 30px 0 10px 0 !important;
+  margin: 26px 0 12px 0 !important;
 
-  /* reserve space left for year + axis */
+  /* reserve left space for year column + axis + card gap */
   padding-left: var(--cards-pad) !important;
 
+  /* style */
   font-size: .95rem;
-  font-weight: 950;
-  color: color-mix(in srgb, var(--accent) 75%, black);
+  font-weight: 900;
+  color: var(--accent);
+
+  /* move ONLY the year text back into the left column */
+  transform: translateX(calc(-1 * (var(--cards-pad) - var(--year-col))));
 }
 
-/* Place the year text to the LEFT of axis */
-.publications h2.bibliography{
-  /* make room for a left "year column" */
-}
-.publications h2.bibliography{
-  /* keep year visible and aligned */
-}
-
-/* Dot on axis for the YEAR header */
+/* Year dot on the axis */
 .publications h2.bibliography::before{
   content: "";
   position: absolute;
   left: var(--axis-x);
   top: 50%;
   transform: translate(-50%, -50%);
+
   width: 12px;
   height: 12px;
   border-radius: 999px;
+
   background: var(--accent);
-  box-shadow: 0 0 0 6px color-mix(in srgb, var(--accent) 15%, transparent);
+  box-shadow: 0 0 0 6px rgba(31,75,153,.14);
 }
 
-/* Move the actual year text to the left column (without changing HTML) */
-.publications h2.bibliography{
-  display: block;
-}
-.publications h2.bibliography{
-  /* visually align the year itself */
-  text-indent: calc(-1 * (var(--cards-pad) - 0px)); /* pull text back to far left */
-  padding-left: var(--cards-pad) !important;        /* keep dot/cards geometry */
-}
-.publications h2.bibliography{
-  /* then push it back into a fixed year column width */
-}
-.publications h2.bibliography{
-  /* final: year sits at x=0..year-col, dot at axis-x */
-  padding-left: var(--cards-pad) !important;
-  text-indent: 0;
-}
-.publications h2.bibliography{
-  /* Use a pseudo layout via absolute overlay */
-}
-.publications h2.bibliography{
-  /* Put the year into an absolute "year column" */
-}
-.publications h2.bibliography{
-  /* we'll render a clean year label using ::after */
-}
-.publications h2.bibliography::after{
-  content: attr(data-year);
-}
-
-/* Reliable year label: reuse the header text by hiding it visually and re-drawing it */
-.publications h2.bibliography{
-  color: transparent; /* hide original text */
-}
-.publications h2.bibliography::after{
-  content: attr(id); /* fallback, will be replaced below */
-}
-.publications h2.bibliography::after{
-  content: ""; /* reset */
-}
-/* Re-draw year using the element's text via CSS isn't possible directly,
-   so we restore the text and position it with a span-like approach:
-   -> keep text visible, but position it in the year column using relative + translate.
-*/
-.publications h2.bibliography{
-  color: color-mix(in srgb, var(--accent) 75%, black);
-  display: inline-block;
-  padding-left: 0 !important;
-  margin-left: 0 !important;
-  transform: translateX(0);
-}
-
-/* Create the "year column" by giving the year header a fixed width zone */
-.publications h2.bibliography{
-  width: 100%;
-}
-.publications h2.bibliography{
-  padding-left: 0 !important;
-}
-.publications h2.bibliography{
-  /* add a left padding zone to place dot/cards, but we will place year with absolute */
-  position: relative;
-  padding-left: var(--cards-pad) !important;
-}
-
-/* Year text positioned in left column */
-.publications h2.bibliography{
-  /* keep text flow normal, but we can’t move the text alone;
-     instead we overlay a year label using a background technique:
-     simplest robust approach: wrap year visually with a chip is not requested.
-     So we set the year header to display:flex and split via pseudo-element. */
-  display: flex;
-  align-items: center;
-  gap: 0;
-}
-
-/* Left column year label (pseudo) */
-.publications h2.bibliography::after{
-  content: "";
-}
-
-/* IMPORTANT: Use the real year text via '::marker' is not possible.
-   So we do the practical approach: keep the year as-is,
-   but shift the whole line so the year sits left, while dot stays fixed.
-*/
-.publications h2.bibliography{
-  padding-left: var(--cards-pad) !important; /* dot geometry */
-}
-.publications h2.bibliography{
-  /* year aligned left by absolute positioning */
-}
-.publications h2.bibliography{
-  /* FINAL: year label in left column */
-}
-.publications h2.bibliography{
-  justify-content: flex-start;
-}
-.publications h2.bibliography{
-  /* make year appear at left edge */
-}
-.publications h2.bibliography{
-  /* We'll do it with an inner offset using transform on the whole header,
-     but counter it for content by padding-left already. */
-}
-.publications h2.bibliography{
-  padding-left: var(--cards-pad) !important;
-}
-.publications h2.bibliography{
-  /* move the text into the year column */
-  transform: translateX(calc(-1 * (var(--cards-pad) - var(--year-col))));
-}
-
-/* --- LIST FOR THIS YEAR (axis continuous) --- */
+/* =========================================
+   The list for this year + continuous axis
+   ========================================= */
 .publications h2.bibliography + ol.bibliography{
   list-style: none !important;
   margin: 0 !important;
+
   padding: 0 0 0 var(--cards-pad) !important;
   position: relative;
   max-width: 980px;
 }
 
-/* Axis: continue from the year dot down through the cards */
+/* continuous axis line */
 .publications h2.bibliography + ol.bibliography::before{
   content: "";
   position: absolute;
-  left: calc(var(--axis-x) - 0px);
-  top: -18px;  /* connects to year header */
+  left: var(--axis-x);
+  top: -18px;     /* connects to year dot */
   bottom: 0;
+
   width: 2px;
   background: var(--axis);
   border-radius: 2px;
 }
 
-/* --- EACH PUBLICATION ITEM = CARD on the right --- */
+/* =========================================
+   Each publication item (card on right)
+   ========================================= */
 .publications h2.bibliography + ol.bibliography > li{
   position: relative;
   margin: 0 0 16px 0 !important;
 
   background: var(--card);
   border: 1px solid var(--border);
-  border-radius: 20px;
+  border-radius: 18px;
   padding: 18px 20px !important;
 
   box-shadow: var(--shadow);
   transition: transform .16s ease, box-shadow .16s ease, border-color .16s ease;
 }
 
-/* dot for each item on axis */
+/* item dot on the axis */
 .publications h2.bibliography + ol.bibliography > li::before{
   content: "";
   position: absolute;
+
+  /* put dot exactly on axis */
   left: calc(-1 * (var(--cards-pad) - var(--axis-x)));
   top: 26px;
   transform: translateX(-50%);
@@ -215,15 +119,17 @@
   width: 10px;
   height: 10px;
   border-radius: 999px;
+
   background: #fff;
   border: 2px solid var(--accent);
-  box-shadow: 0 0 0 5px color-mix(in srgb, var(--accent) 14%, transparent);
+  box-shadow: 0 0 0 5px rgba(31,75,153,.12);
 }
 
 /* connector from axis to card */
 .publications h2.bibliography + ol.bibliography > li::after{
   content: "";
   position: absolute;
+
   left: calc(-1 * (var(--cards-pad) - var(--axis-x)));
   top: 30px;
 
@@ -236,22 +142,27 @@
 /* hover */
 .publications h2.bibliography + ol.bibliography > li:hover{
   transform: translateY(-2px);
-  border-color: color-mix(in srgb, var(--accent) 35%, transparent);
+  border-color: rgba(31,75,153,.28);
   box-shadow: 0 22px 55px rgba(0,0,0,.12);
 }
 
-/* badges */
+/* =========================================
+   Badge (abbr)
+   ========================================= */
 .publications .abbr .badge{
   border-radius: 999px !important;
   padding: 8px 12px !important;
   font-weight: 900 !important;
   font-size: .76rem !important;
-  background: color-mix(in srgb, var(--accent) 10%, white) !important;
-  border: 1px solid color-mix(in srgb, var(--accent) 22%, transparent) !important;
-  color: color-mix(in srgb, var(--accent) 75%, black) !important;
+
+  background: rgba(31,75,153,.10) !important;
+  border: 1px solid rgba(31,75,153,.22) !important;
+  color: rgba(31,75,153,.95) !important;
 }
 
-/* typography */
+/* =========================================
+   Typography
+   ========================================= */
 .publications .title{
   font-weight: 900;
   font-size: 1.06rem;
@@ -267,17 +178,20 @@
 }
 .publications .periodical,
 .publications .venue{
-  color: rgba(0,0,0,.58);
+  color: rgba(17,24,39,.58);
   font-style: italic;
 }
 
-/* buttons: never white text */
+/* =========================================
+   Links/buttons — always readable (no white text)
+   ========================================= */
 .publications .links{
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
   margin-top: 12px;
 }
+
 .publications .links a,
 .publications a.btn,
 .publications .btn{
@@ -286,18 +200,35 @@
   font-weight: 900 !important;
   font-size: .82rem !important;
 
-  background: color-mix(in srgb, var(--accent) 10%, white) !important;
-  color: color-mix(in srgb, var(--accent) 75%, black) !important;
-  border: 1px solid color-mix(in srgb, var(--accent) 22%, transparent) !important;
+  background: rgba(31,75,153,.10) !important;
+  color: rgba(31,75,153,.95) !important;
+  border: 1px solid rgba(31,75,153,.22) !important;
   text-decoration: none !important;
 }
+
 .publications .links a:hover,
 .publications .btn:hover{
-  background: color-mix(in srgb, var(--accent) 16%, white) !important;
+  background: rgba(31,75,153,.14) !important;
   transform: translateY(-1px);
 }
 
-/* mobile */
+/* =========================================
+   Search input (coherent)
+   ========================================= */
+.publications #bibsearch{
+  width: 100%;
+  max-width: 680px;
+  padding: 10px 12px;
+  border: 1px solid rgba(17,24,39,.14);
+  border-radius: 12px;
+  margin: 12px 0 22px 0;
+  font-size: 0.98rem;
+  background: rgba(255,255,255,.92);
+}
+
+/* =========================================
+   Mobile
+   ========================================= */
 @media (max-width: 720px){
   .publications{
     --year-col: 0px;
@@ -305,6 +236,7 @@
     --axis-x: 12px;
     --cards-pad: 22px;
   }
+
   .publications h2.bibliography{
     transform: none;
     padding-left: 22px !important;
@@ -321,4 +253,33 @@
   .publications h2.bibliography + ol.bibliography > li::after{
     display: none;
   }
+}
+
+/* =========================================
+   Dark mode (simple + safe)
+   ========================================= */
+html.dark .publications,
+[data-theme="dark"] .publications{
+  --card: rgba(255,255,255,.06);
+  --border: rgba(255,255,255,.12);
+  --shadow: 0 18px 60px rgba(0,0,0,.45);
+  --ink: rgba(255,255,255,.92);
+  --muted: rgba(255,255,255,.72);
+  --axis: rgba(45,108,223,.35);
+}
+
+html.dark .publications .abbr .badge,
+[data-theme="dark"] .publications .abbr .badge{
+  background: rgba(45,108,223,.12) !important;
+  border: 1px solid rgba(45,108,223,.25) !important;
+  color: rgba(255,255,255,.88) !important;
+}
+
+html.dark .publications .links a,
+html.dark .publications .btn,
+[data-theme="dark"] .publications .links a,
+[data-theme="dark"] .publications .btn{
+  background: rgba(45,108,223,.14) !important;
+  border: 1px solid rgba(45,108,223,.28) !important;
+  color: rgba(255,255,255,.88) !important;
 }
