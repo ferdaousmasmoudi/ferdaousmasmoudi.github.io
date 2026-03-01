@@ -1,17 +1,16 @@
 /* =========================================================
-   Publications — Home UI/UX + Modern Timeline (Blue/Green)
-   Target: <div class="publications"> ... jekyll-scholar output ...
+   Publications — Home UI/UX + Timeline balanced (Year RIGHT)
+   Axis LEFT / Cards RIGHT / Year label RIGHT
    ========================================================= */
 
-/* ---------- 1) Home-like frame + shared tokens ---------- */
 .publications{
-  /* Home palette (forced: no pink) */
-  --accent: #1f4b99;     /* Home primary blue */
-  --accent2: #20c997;    /* Home green */
+  /* Home palette (no pink) */
+  --accent: #1f4b99;
+  --accent2: #20c997;
+
   --ink: rgba(0, 0, 0, 0.82);
   --muted: rgba(0, 0, 0, 0.68);
 
-  /* Home-like surfaces */
   --hero-bg: radial-gradient(1200px 600px at 20% 0%, rgba(45, 108, 223, 0.10), transparent 60%),
              radial-gradient(900px 500px at 80% 20%, rgba(32, 201, 151, 0.10), transparent 55%),
              linear-gradient(180deg, rgba(250, 250, 252, 0.92), rgba(255, 255, 255, 0.92));
@@ -19,11 +18,8 @@
 
   --chip-bg: rgba(255, 255, 255, 0.75);
   --chip-border: rgba(0, 0, 0, 0.10);
-  --chip-text: rgba(0, 0, 0, 0.78);
 
-  --btn-bg: rgba(255, 255, 255, 0.90);
   --btn-border: rgba(0, 0, 0, 0.14);
-  --btn-text: rgba(0, 0, 0, 0.80);
 
   --card-bg: rgba(255, 255, 255, 0.85);
   --card-border: rgba(0, 0, 0, 0.08);
@@ -31,34 +27,24 @@
   --divider: rgba(0, 0, 0, 0.06);
 
   /* Timeline geometry */
-  --year-col: 72px;     /* width for "2021" */
-  --gap: 18px;          /* year -> axis gap */
-  --axis-x: calc(var(--year-col) + var(--gap));   /* axis position from left */
-  --cards-pad: calc(var(--axis-x) + 38px);        /* where cards start */
+  --axis-x: 28px;        /* axis position inside publications frame */
+  --cards-pad: 74px;     /* where cards start (space for axis + connector) */
+  --year-col: 64px;      /* year label width on the right of axis */
+  --row-h: 28px;         /* baseline alignment */
 
-  /* Timeline visuals */
   --axis: rgba(31, 75, 153, 0.22);
-  --dot: #1f4b99;
   --dot-ring: rgba(31, 75, 153, 0.14);
 
-  /* Frame like Home hero */
   background: var(--hero-bg);
   border: 1px solid var(--hero-border);
   border-radius: 18px;
   padding: 22px;
   margin: 0 0 18px 0;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.08);
   color: var(--ink);
 }
 
-/* Keep internal typography consistent */
-.publications p,
-.publications li,
-.publications .post-description{
-  color: var(--muted);
-}
-
-/* ---------- 2) Search input (Home button feel) ---------- */
+/* ---------- Search input (Home feel) ---------- */
 .publications #bibsearch{
   width: 100%;
   max-width: 760px;
@@ -66,7 +52,7 @@
   border-radius: 14px;
   border: 1px solid var(--btn-border);
   background: rgba(255,255,255,0.85);
-  color: var(--btn-text);
+  color: rgba(0,0,0,0.80);
   box-shadow: 0 1px 0 rgba(17, 24, 39, 0.03);
   backdrop-filter: saturate(140%) blur(2px);
   outline: none;
@@ -76,11 +62,9 @@
   border-color: rgba(31, 75, 153, 0.35);
   box-shadow: 0 10px 22px rgba(0,0,0,0.10);
 }
-
-/* Prevent duplicate input if rendered twice */
 .publications #bibsearch + #bibsearch{ display:none !important; }
 
-/* ---------- 3) Section headings (Journal/Conference/Book) ---------- */
+/* ---------- Section titles ---------- */
 .publications h2:not(.bibliography){
   margin-top: 22px;
   margin-bottom: 14px;
@@ -88,29 +72,25 @@
   color: var(--ink);
 }
 
-/* ---------- 4) Year header (align year left of axis, dot on axis) ---------- */
-/* al-folio sometimes floats year headers: kill it */
+/* ---------- Year header line (balanced: year RIGHT) ---------- */
 .publications h2.bibliography{
   float: none !important;
   clear: both !important;
 
   position: relative;
-  margin: 20px 0 10px 0 !important;
+  margin: 22px 0 10px 0 !important;
 
-  /* Make it a 2-col layout: year | spacer (cards area) */
-  display: grid;
-  grid-template-columns: var(--year-col) 1fr;
-  align-items: center;
+  /* Reserve left space for axis; year appears near axis, on its right */
+  padding-left: calc(var(--axis-x) + 18px) !important;
+  padding-right: 0 !important;
 
-  /* Reserve left space so it lines up with cards block */
-  padding-left: 0 !important;
-
-  font-size: 0.92rem;
+  font-size: 0.90rem;
   font-weight: 950;
   color: var(--accent);
+  line-height: var(--row-h);
 }
 
-/* Dot for the year on the axis */
+/* Year dot on axis */
 .publications h2.bibliography::before{
   content: "";
   position: absolute;
@@ -120,47 +100,41 @@
   width: 14px;
   height: 14px;
   border-radius: 999px;
-  background: var(--dot);
+  background: var(--accent);
   box-shadow: 0 0 0 6px var(--dot-ring);
 }
 
-/* Ensure the year text stays visually in the left column */
+/* Put the year text (the header text) to the RIGHT of the dot, nicely */
 .publications h2.bibliography{
-  padding-right: 0 !important;
-}
-.publications h2.bibliography{
-  justify-items: end; /* year aligned right inside year-col */
-}
-.publications h2.bibliography{
-  /* align this header with the list/cards block */
-  margin-left: 0 !important;
+  display: inline-block;
+  background: transparent;
 }
 
-/* ---------- 5) List block per year + continuous axis ---------- */
+/* ---------- List block for the year ---------- */
 .publications h2.bibliography + ol.bibliography{
   list-style: none !important;
   margin: 0 !important;
 
-  /* cards start at cards-pad */
+  /* Cards start */
   padding: 0 0 0 var(--cards-pad) !important;
 
   position: relative;
   max-width: 980px;
 }
 
-/* Vertical axis line for the year section (connects to year dot) */
+/* Axis line (continuous through the year items) */
 .publications h2.bibliography + ol.bibliography::before{
   content: "";
   position: absolute;
   left: calc(var(--axis-x) - var(--cards-pad));
-  top: -18px;
+  top: calc(-1 * (var(--row-h) / 2)); /* touches the year dot */
   bottom: 0;
   width: 2px;
   background: var(--axis);
   border-radius: 2px;
 }
 
-/* ---------- 6) Cards (Home card style) ---------- */
+/* ---------- Cards ---------- */
 .publications h2.bibliography + ol.bibliography > li{
   position: relative;
   margin: 0 0 16px 0 !important;
@@ -174,14 +148,13 @@
   transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
 }
 
-/* Node dot on axis for each card */
+/* Item dot on axis */
 .publications h2.bibliography + ol.bibliography > li::before{
   content: "";
   position: absolute;
   left: calc(var(--axis-x) - var(--cards-pad));
   top: 26px;
   transform: translateX(-50%);
-
   width: 10px;
   height: 10px;
   border-radius: 999px;
@@ -190,13 +163,13 @@
   box-shadow: 0 0 0 5px rgba(31, 75, 153, 0.12);
 }
 
-/* Connector line axis -> card */
+/* Connector axis -> card */
 .publications h2.bibliography + ol.bibliography > li::after{
   content: "";
   position: absolute;
   left: calc(var(--axis-x) - var(--cards-pad));
   top: 30px;
-  width: 22px;
+  width: 24px;
   height: 2px;
   background: var(--axis);
   border-radius: 2px;
@@ -209,7 +182,7 @@
   box-shadow: 0 22px 55px rgba(0,0,0,0.10);
 }
 
-/* ---------- 7) Abbreviation badge (chip style like Home tags) ---------- */
+/* ---------- Badge chips (like Home tags) ---------- */
 .publications .abbr .badge{
   border-radius: 999px !important;
   padding: 8px 12px !important;
@@ -223,7 +196,7 @@
   box-shadow: 0 2px 6px rgba(0,0,0,0.04) !important;
 }
 
-/* ---------- 8) Typography inside cards ---------- */
+/* ---------- Text ---------- */
 .publications .title{
   font-weight: 900;
   font-size: 1.06rem;
@@ -243,14 +216,13 @@
   font-style: italic;
 }
 
-/* ---------- 9) Links / Buttons (Home-style, readable text) ---------- */
+/* ---------- Links/buttons (Home secondary style; no white text) ---------- */
 .publications .links{
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
   margin-top: 12px;
 }
-
 .publications .links a,
 .publications a.btn,
 .publications .btn{
@@ -262,37 +234,23 @@
   background: rgba(31, 75, 153, 0.10) !important;
   color: #1f4b99 !important;
   border: 1px solid rgba(31, 75, 153, 0.25) !important;
-
   text-decoration: none !important;
 }
-
 .publications .links a:hover,
 .publications .btn:hover{
   background: rgba(31, 75, 153, 0.16) !important;
   transform: translateY(-1px);
 }
 
-/* Hard override: kill any accidental magenta coming from other rules */
-.publications .links a,
-.publications .abbr .badge,
-.publications h2.bibliography,
-.publications h2.bibliography::before{
-  filter: none !important;
-}
-
-/* ---------- 10) Mobile ---------- */
+/* ---------- Mobile ---------- */
 @media (max-width: 720px){
   .publications{
     padding: 16px;
-    --year-col: 0px;
-    --gap: 12px;
     --axis-x: 12px;
     --cards-pad: 22px;
   }
 
   .publications h2.bibliography{
-    grid-template-columns: 1fr;
-    justify-items: start;
     padding-left: 22px !important;
   }
   .publications h2.bibliography::before{
@@ -311,7 +269,7 @@
   }
 }
 
-/* ---------- 11) Dark mode (same philosophy as Home) ---------- */
+/* ---------- Dark mode (Home-like) ---------- */
 html.dark .publications,
 body.dark .publications,
 html[data-theme="dark"] .publications,
@@ -329,6 +287,7 @@ body[data-theme="dark"] .publications,
 
   --chip-bg: rgba(255, 255, 255, 0.07);
   --chip-border: rgba(255, 255, 255, 0.14);
+
   --btn-border: rgba(255, 255, 255, 0.16);
 
   --card-bg: rgba(255, 255, 255, 0.05);
@@ -339,7 +298,7 @@ body[data-theme="dark"] .publications,
   --axis: rgba(45, 108, 223, 0.30);
   --dot-ring: rgba(45, 108, 223, 0.18);
 
-  box-shadow: 0 14px 50px rgba(0, 0, 0, 0.45);
+  box-shadow: 0 14px 50px rgba(0,0,0,0.45);
 }
 
 html.dark .publications #bibsearch,
@@ -347,7 +306,6 @@ body.dark .publications #bibsearch{
   background: rgba(255,255,255,0.06);
   color: rgba(255,255,255,0.92);
 }
-
 html.dark .publications .periodical,
 body.dark .publications .periodical,
 html.dark .publications .venue,
