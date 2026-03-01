@@ -9,102 +9,6 @@ nav_order: 2
 
 {% include bib_search.liquid %}
 
-<style>
-/* Scoped to publications page */
-.publications {
-  margin-top: 0.5rem;
-}
-
-.publications h2 {
-  margin-top: 1.6rem;
-  margin-bottom: 0.6rem;
-}
-
-/* Search input */
-.publications .bibsearch-form-input,
-input#bibsearch.search.bibsearch-form-input {
-  width: min(520px, 100%);
-  padding: 10px 12px;
-  border-radius: 12px;
-  border: 1px solid rgba(0,0,0,.15);
-  background: rgba(255,255,255,.9);
-  font-weight: 600;
-}
-
-/* Bibliography list */
-.publications ol.bibliography {
-  list-style: none;
-  padding-left: 0;
-  margin-left: 0;
-}
-
-.publications ol.bibliography > li {
-  padding: 18px 14px;
-  margin: 0 0 12px 0;
-  border-radius: 16px;
-  border: 1px solid rgba(0,0,0,.08);
-  background: rgba(255,255,255,.75);
-  box-shadow: 0 10px 28px rgba(0,0,0,.06);
-}
-
-/* Title */
-.publications .title {
-  font-weight: 800;
-  font-size: 1.05rem;
-  line-height: 1.25;
-}
-
-/* Authors + venue */
-.publications .author {
-  margin-top: 6px;
-  font-weight: 650;
-}
-
-.publications .periodical,
-.publications .venue,
-.publications .journal {
-  margin-top: 4px;
-  font-style: italic;
-  opacity: .85;
-}
-
-/* Links row (buttons) */
-.publications .links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 10px;
-}
-
-.publications .links a,
-.publications a.btn,
-.publications .btn {
-  display: inline-flex !important;
-  align-items: center;
-  justify-content: center;
-  padding: 6px 10px !important;
-  border-radius: 12px !important;
-  border: 1px solid rgba(0,0,0,.12) !important;
-  background: rgba(255,255,255,.92) !important;
-  font-weight: 800 !important;
-  font-size: 0.82rem !important;
-  line-height: 1 !important;
-  text-decoration: none !important;
-}
-
-.publications .links a:hover,
-.publications a.btn:hover,
-.publications .btn:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 10px 22px rgba(0,0,0,.10);
-}
-
-@media (max-width: 700px){
-  .publications ol.bibliography > li { padding: 14px 12px; }
-  .publications .title { font-size: 1.0rem; }
-}
-</style>
-
 <div class="publications" markdown="1">
 
 {% if site.bib_search %}
@@ -123,6 +27,5 @@ input#bibsearch.search.bibsearch-form-input {
 
 ## Conference Presentations (Program-listed)
 {% bibliography --query @misc %}
-
 
 </div>
