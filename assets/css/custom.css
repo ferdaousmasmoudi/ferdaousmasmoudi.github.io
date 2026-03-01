@@ -1,4 +1,8 @@
-/* Publications page – small UX polishing */
+/* =========================================================
+   Publications page – small UX polishing (existing)
+   ========================================================= */
+
+/* Search input */
 #bibsearch{
   width: 100%;
   max-width: 680px;
@@ -19,9 +23,10 @@
 .bibliography .title{
   font-weight: 700;
 }
-/* ============================= */
-/* Publications Harmonization   */
-/* ============================= */
+
+/* =========================================================
+   Publications Harmonization (existing)
+   ========================================================= */
 
 /* Remove flashy badge color */
 .badge {
@@ -31,7 +36,7 @@
   border-radius: 6px;
 }
 
-/* Publication cards */
+/* Publication cards (if your theme uses .publication wrapper somewhere) */
 .publication {
   background: #ffffff;
   border-radius: 14px;
@@ -85,4 +90,149 @@
 
 .publication .btn:hover {
   background: #ececec;
+}
+
+/* =========================================================
+   Refonte Complète Custom (NEW) — Premium Timeline for .bibliography
+   ========================================================= */
+
+/* 1) Make the publication list look like premium cards */
+.bibliography{
+  list-style: none;
+  padding-left: 0;
+  margin-left: 0;
+  position: relative;
+  max-width: 980px;
+}
+
+/* Timeline vertical axis */
+.bibliography:before{
+  content: "";
+  position: absolute;
+  left: 86px;            /* axis position */
+  top: 6px;
+  bottom: 6px;
+  width: 2px;
+  background: rgba(0,0,0,0.08);
+  border-radius: 2px;
+}
+
+/* Each entry becomes a card */
+.bibliography li{
+  position: relative;
+  background: #fff;
+  border-radius: 16px;
+  padding: 16px 18px 14px 18px;
+  margin: 0 0 14px 120px; /* room for year + axis */
+  box-shadow: 0 10px 24px rgba(0,0,0,0.05);
+  border: 1px solid rgba(0,0,0,0.06);
+}
+
+/* Hover: subtle lift */
+.bibliography li:hover{
+  transform: translateY(-1px);
+  transition: 140ms ease;
+  box-shadow: 0 14px 30px rgba(0,0,0,0.07);
+}
+
+/* Timeline dot for each item */
+.bibliography li:before{
+  content: "";
+  position: absolute;
+  left: -42px;          /* aligns on axis */
+  top: 20px;
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: #fff;
+  border: 2px solid rgba(0,0,0,0.18);
+}
+
+/* 2) Year column (works if .year exists inside each entry) */
+.bibliography .year{
+  position: absolute;
+  left: -120px;
+  top: 14px;
+  width: 90px;
+  text-align: right;
+  color: rgba(0,0,0,0.45);
+  font-weight: 650;
+  font-size: 0.92rem;
+}
+
+/* 3) Typography inside the card */
+.bibliography .title{
+  display: block;
+  font-size: 1.02rem;
+  font-weight: 750;
+  line-height: 1.25;
+  margin: 0 0 6px 0;
+  color: rgba(0,0,0,0.88);
+}
+
+.bibliography .author,
+.bibliography .authors{
+  display: block;
+  font-size: 0.92rem;
+  color: rgba(0,0,0,0.62);
+  line-height: 1.35;
+  margin: 0 0 6px 0;
+}
+
+/* Venue / journal line (common al-folio field name: .venue / .periodical) */
+.bibliography .venue,
+.bibliography .periodical{
+  display: block;
+  font-size: 0.92rem;
+  color: rgba(0,0,0,0.58);
+  font-style: italic;
+  margin: 0 0 10px 0;
+}
+
+/* 4) Buttons/links inside publication entries */
+.bibliography a.btn,
+.bibliography .btn{
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.82rem;
+  padding: 6px 10px;
+  border-radius: 10px;
+  border: 1px solid rgba(0,0,0,0.14);
+  background: rgba(255,255,255,0.9);
+  text-decoration: none;
+  color: rgba(0,0,0,0.78);
+}
+
+.bibliography a.btn:hover,
+.bibliography .btn:hover{
+  background: rgba(0,0,0,0.03);
+  border-color: rgba(0,0,0,0.20);
+}
+
+/* If al-folio prints links as small inline anchors (not buttons), soften them */
+.bibliography a{
+  text-decoration-thickness: from-font;
+}
+
+/* 5) Mobile: remove left year column, keep timeline minimal */
+@media (max-width: 720px){
+  .bibliography:before{
+    left: 10px;
+  }
+
+  .bibliography li{
+    margin-left: 22px;
+  }
+
+  .bibliography li:before{
+    left: -16px;
+  }
+
+  .bibliography .year{
+    position: static;
+    width: auto;
+    text-align: left;
+    margin: 0 0 6px 0;
+  }
 }
