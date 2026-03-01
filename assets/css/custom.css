@@ -19,3 +19,70 @@
 .bibliography .title{
   font-weight: 700;
 }
+/* ============================= */
+/* Publications Harmonization   */
+/* ============================= */
+
+/* Remove flashy badge color */
+.badge {
+  background-color: #e9ecef !important;
+  color: #444 !important;
+  font-weight: 500;
+  border-radius: 6px;
+}
+
+/* Publication cards */
+.publication {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 20px 24px;
+  margin-bottom: 28px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.04);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.publication:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.06);
+}
+
+/* Title */
+.publication .title {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #222;
+  margin-bottom: 6px;
+}
+
+/* Authors */
+.publication .author {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+/* Journal / conference */
+.publication .venue {
+  font-style: italic;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+/* Year styling */
+.publication .year {
+  color: #999;
+  font-weight: 400;
+}
+
+/* Buttons */
+.publication .btn {
+  background: #f8f9fa;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  padding: 4px 10px;
+  transition: background 0.2s ease;
+}
+
+.publication .btn:hover {
+  background: #ececec;
+}
