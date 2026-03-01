@@ -1,219 +1,277 @@
 /* =========================================================
-   Publications — HOME COHERENT TIMELINE DESIGN
+   Publications V7 — Uses Theme Accent (same as Home)
+   No guessing hex: uses CSS variables from theme.
    ========================================================= */
 
 .publications{
-  --accent: #b30fbf;   /* same tone as active nav / tags */
-  --card-bg: #ffffff;
-  --ink: #1e1e1e;
-  --muted: #5c5c5c;
-  --line: rgba(179,15,191,.20);
-  --shadow: 0 18px 40px rgba(0,0,0,.08);
+  --accent: var(--global-theme-color, var(--accent-color, #3b82f6));
+  --ink: rgba(0,0,0,.90);
+  --muted: rgba(0,0,0,.62);
+  --axis: color-mix(in srgb, var(--accent) 22%, transparent);
+  --card: #fff;
+  --border: rgba(0,0,0,.10);
+  --shadow: 0 16px 42px rgba(0,0,0,.08);
 }
 
-/* =========================
-   Search
-   ========================= */
-
+/* Search: keep clean */
 .publications #bibsearch{
   width: 100%;
   max-width: 720px;
   padding: 12px 14px;
-  border-radius: 16px;
-  border: 1px solid rgba(0,0,0,.18);
+  border-radius: 14px;
+  border: 1px solid rgba(0,0,0,.15);
   background: #fff;
-  font-size: 0.98rem;
+  font-size: .98rem;
 }
 
-/* =========================
-   Section titles
-   ========================= */
+/* Prevent duplicate bibsearch input if it exists twice */
+.publications #bibsearch + #bibsearch{ display:none !important; }
 
+/* Section headings */
 .publications h2:not(.bibliography){
   margin-top: 2rem;
   margin-bottom: 1rem;
-  font-weight: 800;
+  font-weight: 850;
 }
 
-/* =========================
-   Year chip (timeline anchor)
-   ========================= */
-
+/* Year heading (h2.bibliography) — pinned to timeline */
 .publications h2.bibliography{
+  float: none !important;
+  clear: both !important;
+
   position: relative;
-  margin: 30px 0 16px 0;
-  padding-left: 120px;
-  font-size: 0.9rem;
-  font-weight: 900;
-  letter-spacing: .02em;
-  color: var(--accent);
+  margin: 28px 0 12px 0 !important;
+  padding-left: 96px !important;
+
+  font-size: .92rem;
+  font-weight: 950;
+  color: var(--ink);
 }
 
-/* Timeline vertical line */
-.publications ol.bibliography{
-  list-style: none;
-  padding-left: 120px;
-  margin-left: 0;
-  position: relative;
+/* Year chip placed near the axis */
+.publications h2.bibliography::before{
+  content: attr(data-year);
+}
+
+/* Inject the year text inside a chip using the element text itself */
+.publications h2.bibliography{
+  --year: "";
+}
+.publications h2.bibliography{
+  color: transparent; /* we will render visible year using ::after */
+}
+.publications h2.bibliography::after{
+  content: attr(class); /* fallback if something fails */
+}
+
+/* Reliable: render the actual year from the element text */
+.publications h2.bibliography::after{
+  content: "";
+}
+
+/* Use a nested span-like trick: re-show text by resetting color, and add chip */
+.publications h2.bibliography{
+  color: var(--ink);
+}
+.publications h2.bibliography{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.publications h2.bibliography{
+  padding-left: 0 !important; /* we will align with grid instead */
+}
+
+/* Layout: year chip + list aligned as a block */
+.publications h2.bibliography,
+.publications h2.bibliography + ol.bibliography{
   max-width: 980px;
 }
 
-.publications ol.bibliography::before{
+/* The list block for this year */
+.publications h2.bibliography + ol.bibliography{
+  list-style: none !important;
+  padding-left: 96px !important;
+  margin-left: 0 !important;
+  position: relative;
+}
+
+/* Draw axis for this year block (connected) */
+.publications h2.bibliography + ol.bibliography::before{
   content: "";
   position: absolute;
-  left: 48px;
-  top: 0;
+  left: 34px;
+  top: -34px;       /* extends upward to meet the year chip */
   bottom: 0;
-  width: 3px;
-  background: var(--line);
+  width: 2px;
+  background: var(--axis);
   border-radius: 2px;
 }
 
-/* =========================
-   Publication card
-   ========================= */
-
-.publications ol.bibliography > li{
+/* Year chip positioned on the left aligned to axis */
+.publications h2.bibliography{
   position: relative;
-  background: var(--card-bg);
-  border-radius: 22px;
-  padding: 20px 22px;
-  margin-bottom: 20px;
-  border: 1px solid rgba(0,0,0,.08);
-  box-shadow: var(--shadow);
-  transition: all .18s ease;
+  padding-left: 96px !important;
 }
-
-.publications ol.bibliography > li:hover{
-  transform: translateY(-2px);
-  border-color: rgba(179,15,191,.40);
-  box-shadow: 0 22px 50px rgba(0,0,0,.12);
-}
-
-/* Timeline node */
-.publications ol.bibliography > li::before{
+.publications h2.bibliography::before{
   content: "";
   position: absolute;
-  left: -78px;
-  top: 28px;
+  left: 26px;
+  top: 50%;
+  transform: translateY(-50%);
   width: 14px;
   height: 14px;
-  border-radius: 50%;
-  background: #fff;
-  border: 3px solid var(--accent);
-  box-shadow: 0 0 0 6px rgba(179,15,191,.12);
+  border-radius: 999px;
+  background: var(--accent);
+  box-shadow: 0 0 0 6px color-mix(in srgb, var(--accent) 16%, transparent);
 }
 
-/* Connector line */
-.publications ol.bibliography > li::after{
+/* Visible chip with the year text */
+.publications h2.bibliography{
+  padding-top: 2px;
+}
+.publications h2.bibliography > *{ display:none; } /* safeguard */
+.publications h2.bibliography{
+  color: var(--ink);
+}
+.publications h2.bibliography{
+  font-weight: 950;
+}
+.publications h2.bibliography{
+  /* create the chip via background on the element itself */
+  display: inline-flex;
+  align-items: center;
+  padding: 7px 12px !important;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--accent) 10%, white);
+  border: 1px solid color-mix(in srgb, var(--accent) 20%, transparent);
+  margin-left: 0 !important;
+}
+
+/* ---------------------------------------------------------
+   Cards
+   --------------------------------------------------------- */
+
+.publications h2.bibliography + ol.bibliography > li{
+  position: relative;
+  margin: 0 0 16px 0 !important;
+  padding: 18px 20px !important;
+
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  box-shadow: var(--shadow);
+
+  transition: transform .16s ease, box-shadow .16s ease, border-color .16s ease;
+}
+
+/* Node + connector from axis to card */
+.publications h2.bibliography + ol.bibliography > li::before{
   content: "";
   position: absolute;
-  left: -64px;
-  top: 34px;
-  width: 28px;
-  height: 3px;
-  background: var(--line);
-  border-radius: 3px;
+  left: -58px;
+  top: 26px;
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: #fff;
+  border: 2px solid var(--accent);
+  box-shadow: 0 0 0 5px color-mix(in srgb, var(--accent) 14%, transparent);
+}
+.publications h2.bibliography + ol.bibliography > li::after{
+  content: "";
+  position: absolute;
+  left: -48px;
+  top: 30px;
+  width: 22px;
+  height: 2px;
+  background: var(--axis);
+  border-radius: 2px;
 }
 
-/* =========================
-   Badge column
-   ========================= */
-
-.publications .abbr{
-  display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
-  padding-right: 12px;
+/* Hover */
+.publications h2.bibliography + ol.bibliography > li:hover{
+  transform: translateY(-2px);
+  border-color: color-mix(in srgb, var(--accent) 35%, transparent);
+  box-shadow: 0 22px 55px rgba(0,0,0,.12);
 }
 
+/* Badge = home chips */
 .publications .abbr .badge{
   border-radius: 999px !important;
-  padding: 8px 14px !important;
-  font-weight: 800 !important;
-  font-size: .75rem !important;
-  background: rgba(179,15,191,.08) !important;
-  border: 1px solid rgba(179,15,191,.25) !important;
-  color: var(--accent) !important;
+  padding: 8px 12px !important;
+  font-weight: 900 !important;
+  font-size: .76rem !important;
+  background: color-mix(in srgb, var(--accent) 10%, white) !important;
+  border: 1px solid color-mix(in srgb, var(--accent) 22%, transparent) !important;
+  color: color-mix(in srgb, var(--accent) 70%, black) !important;
 }
 
-/* =========================
-   Typography
-   ========================= */
-
+/* Typography */
 .publications .title{
   font-weight: 900;
-  font-size: 1.08rem;
+  font-size: 1.06rem;
+  line-height: 1.25;
   color: var(--ink);
   margin-bottom: 6px;
 }
-
 .publications .author,
 .publications .authors{
   color: var(--muted);
-  font-weight: 600;
-  line-height: 1.4;
+  font-weight: 650;
+  line-height: 1.35;
 }
-
 .publications .periodical,
-.publications .venue,
-.publications .journal{
+.publications .venue{
+  color: rgba(0,0,0,.58);
   font-style: italic;
-  color: rgba(0,0,0,.65);
 }
 
-/* =========================
-   Buttons
-   ========================= */
-
+/* Buttons: readable (no white text) */
 .publications .links{
-  margin-top: 12px;
   display: flex;
-  gap: 10px;
   flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 12px;
 }
-
 .publications .links a,
+.publications a.btn,
 .publications .btn{
   border-radius: 999px !important;
-  padding: 7px 14px !important;
-  font-weight: 800 !important;
-  font-size: .8rem !important;
-  background: var(--accent) !important;
-  color: #fff !important;
-  border: none !important;
-  transition: all .18s ease;
-}
+  padding: 7px 12px !important;
+  font-weight: 900 !important;
+  font-size: .82rem !important;
 
+  background: color-mix(in srgb, var(--accent) 10%, white) !important;
+  color: color-mix(in srgb, var(--accent) 75%, black) !important;
+  border: 1px solid color-mix(in srgb, var(--accent) 22%, transparent) !important;
+  text-decoration: none !important;
+}
 .publications .links a:hover,
 .publications .btn:hover{
-  background: #8c0da0 !important;
+  background: color-mix(in srgb, var(--accent) 16%, white) !important;
   transform: translateY(-1px);
 }
 
-/* =========================
-   Mobile adjustments
-   ========================= */
-
-@media (max-width: 768px){
-
-  .publications ol.bibliography{
-    padding-left: 30px;
+/* Mobile */
+@media (max-width: 720px){
+  .publications h2.bibliography + ol.bibliography{
+    padding-left: 22px !important;
   }
-
-  .publications ol.bibliography::before{
-    left: 12px;
+  .publications h2.bibliography + ol.bibliography::before{
+    left: 10px;
+    top: -18px;
   }
-
-  .publications ol.bibliography > li::before{
-    left: -18px;
-  }
-
-  .publications ol.bibliography > li::after{
-    display: none;
-  }
-
   .publications h2.bibliography{
-    padding-left: 0;
+    padding-left: 22px !important;
+  }
+  .publications h2.bibliography::before{
+    left: 2px;
+  }
+  .publications h2.bibliography + ol.bibliography > li::before{
+    left: -16px;
+  }
+  .publications h2.bibliography + ol.bibliography > li::after{
+    display: none;
   }
 }
