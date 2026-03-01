@@ -1,145 +1,150 @@
 /* =========================================================
-   Publications — HOME COHERENT TIMELINE DESIGN
+   Publications V5 — STRUCTURED TIMELINE (HOME STYLE)
+   Clean • Academic • Coherent with Home
    ========================================================= */
 
 .publications{
-  --accent: #b30fbf;   /* same tone as active nav / tags */
+  --accent: #1f3a8a;      /* Home blue */
   --card-bg: #ffffff;
-  --ink: #1e1e1e;
-  --muted: #5c5c5c;
-  --line: rgba(179,15,191,.20);
-  --shadow: 0 18px 40px rgba(0,0,0,.08);
+  --border: rgba(0,0,0,.08);
+  --muted: rgba(0,0,0,.65);
+  --ink: rgba(0,0,0,.90);
+  --shadow: 0 18px 40px rgba(0,0,0,.06);
 }
 
-/* =========================
-   Search
-   ========================= */
-
+/* Search */
 .publications #bibsearch{
   width: 100%;
   max-width: 720px;
   padding: 12px 14px;
-  border-radius: 16px;
-  border: 1px solid rgba(0,0,0,.18);
+  border-radius: 14px;
+  border: 1px solid rgba(0,0,0,.15);
   background: #fff;
-  font-size: 0.98rem;
+  font-size: .98rem;
 }
 
-/* =========================
-   Section titles
-   ========================= */
-
+/* Section title */
 .publications h2:not(.bibliography){
   margin-top: 2rem;
   margin-bottom: 1rem;
   font-weight: 800;
 }
 
-/* =========================
-   Year chip (timeline anchor)
-   ========================= */
+/* =========================================================
+   TIMELINE LAYOUT
+   ========================================================= */
 
-.publications h2.bibliography{
-  position: relative;
-  margin: 30px 0 16px 0;
-  padding-left: 120px;
-  font-size: 0.9rem;
-  font-weight: 900;
-  letter-spacing: .02em;
-  color: var(--accent);
-}
-
-/* Timeline vertical line */
 .publications ol.bibliography{
   list-style: none;
-  padding-left: 120px;
+  padding-left: 140px;
   margin-left: 0;
   position: relative;
-  max-width: 980px;
+  max-width: 1000px;
 }
 
+/* Vertical axis */
 .publications ol.bibliography::before{
   content: "";
   position: absolute;
-  left: 48px;
+  left: 60px;
   top: 0;
   bottom: 0;
   width: 3px;
-  background: var(--line);
+  background: rgba(31,58,138,.15);
   border-radius: 2px;
 }
 
-/* =========================
-   Publication card
-   ========================= */
+/* Year header positioned on axis */
+.publications h2.bibliography{
+  position: relative;
+  margin: 30px 0 12px 0;
+  padding-left: 140px;
+  font-size: .95rem;
+  font-weight: 900;
+  color: var(--accent);
+}
+
+/* Year node on axis */
+.publications h2.bibliography::before{
+  content: "";
+  position: absolute;
+  left: 54px;
+  top: 8px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 6px rgba(31,58,138,.12);
+}
+
+/* =========================================================
+   CARD DESIGN
+   ========================================================= */
 
 .publications ol.bibliography > li{
   position: relative;
+  margin: 0 0 20px 0;
+  padding: 20px 24px;
   background: var(--card-bg);
-  border-radius: 22px;
-  padding: 20px 22px;
-  margin-bottom: 20px;
-  border: 1px solid rgba(0,0,0,.08);
+  border-radius: 20px;
+  border: 1px solid var(--border);
   box-shadow: var(--shadow);
   transition: all .18s ease;
 }
 
-.publications ol.bibliography > li:hover{
-  transform: translateY(-2px);
-  border-color: rgba(179,15,191,.40);
-  box-shadow: 0 22px 50px rgba(0,0,0,.12);
-}
-
-/* Timeline node */
+/* Connector from axis to card */
 .publications ol.bibliography > li::before{
   content: "";
   position: absolute;
-  left: -78px;
-  top: 28px;
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-  background: #fff;
-  border: 3px solid var(--accent);
-  box-shadow: 0 0 0 6px rgba(179,15,191,.12);
+  left: -80px;
+  top: 30px;
+  width: 30px;
+  height: 2px;
+  background: rgba(31,58,138,.18);
 }
 
-/* Connector line */
+/* Small node */
 .publications ol.bibliography > li::after{
   content: "";
   position: absolute;
-  left: -64px;
-  top: 34px;
-  width: 28px;
-  height: 3px;
-  background: var(--line);
-  border-radius: 3px;
+  left: -88px;
+  top: 26px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #fff;
+  border: 3px solid var(--accent);
 }
 
-/* =========================
-   Badge column
-   ========================= */
+/* Hover */
+.publications ol.bibliography > li:hover{
+  transform: translateY(-3px);
+  border-color: rgba(31,58,138,.35);
+  box-shadow: 0 22px 55px rgba(0,0,0,.10);
+}
 
-.publications .abbr{
-  display: flex;
+/* Bootstrap row alignment */
+.publications ol.bibliography > li .row{
   align-items: flex-start;
-  justify-content: flex-start;
-  padding-right: 12px;
 }
+
+/* =========================================================
+   BADGE (Journal / Conf)
+   ========================================================= */
 
 .publications .abbr .badge{
   border-radius: 999px !important;
   padding: 8px 14px !important;
   font-weight: 800 !important;
   font-size: .75rem !important;
-  background: rgba(179,15,191,.08) !important;
-  border: 1px solid rgba(179,15,191,.25) !important;
+  background: rgba(31,58,138,.08) !important;
+  border: 1px solid rgba(31,58,138,.25) !important;
   color: var(--accent) !important;
 }
 
-/* =========================
-   Typography
-   ========================= */
+/* =========================================================
+   TYPOGRAPHY
+   ========================================================= */
 
 .publications .title{
   font-weight: 900;
@@ -158,18 +163,18 @@
 .publications .periodical,
 .publications .venue,
 .publications .journal{
+  color: rgba(0,0,0,.60);
   font-style: italic;
-  color: rgba(0,0,0,.65);
 }
 
-/* =========================
-   Buttons
-   ========================= */
+/* =========================================================
+   BUTTONS (Fix white text issue)
+   ========================================================= */
 
 .publications .links{
-  margin-top: 12px;
   display: flex;
   gap: 10px;
+  margin-top: 14px;
   flex-wrap: wrap;
 }
 
@@ -178,22 +183,22 @@
   border-radius: 999px !important;
   padding: 7px 14px !important;
   font-weight: 800 !important;
-  font-size: .8rem !important;
-  background: var(--accent) !important;
-  color: #fff !important;
-  border: none !important;
-  transition: all .18s ease;
+  font-size: .82rem !important;
+  background: rgba(31,58,138,.08) !important;
+  color: var(--accent) !important;   /* FIXED: no white text */
+  border: 1px solid rgba(31,58,138,.25) !important;
+  text-decoration: none !important;
 }
 
 .publications .links a:hover,
 .publications .btn:hover{
-  background: #8c0da0 !important;
+  background: rgba(31,58,138,.15) !important;
   transform: translateY(-1px);
 }
 
-/* =========================
-   Mobile adjustments
-   ========================= */
+/* =========================================================
+   MOBILE
+   ========================================================= */
 
 @media (max-width: 768px){
 
@@ -205,15 +210,16 @@
     left: 12px;
   }
 
-  .publications ol.bibliography > li::before{
-    left: -18px;
+  .publications h2.bibliography{
+    padding-left: 30px;
   }
 
+  .publications h2.bibliography::before{
+    left: 6px;
+  }
+
+  .publications ol.bibliography > li::before,
   .publications ol.bibliography > li::after{
     display: none;
-  }
-
-  .publications h2.bibliography{
-    padding-left: 0;
   }
 }
