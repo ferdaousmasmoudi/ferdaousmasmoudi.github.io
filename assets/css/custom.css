@@ -1,213 +1,229 @@
 /* =========================================================
-   Publications V7 — Uses Theme Accent (same as Home)
-   No guessing hex: uses CSS variables from theme.
+   Publications — Home UI/UX + Modern Timeline (Blue/Green)
+   Target: <div class="publications"> ... jekyll-scholar output ...
    ========================================================= */
 
+/* ---------- 1) Home-like frame + shared tokens ---------- */
 .publications{
-  --accent: var(--global-theme-color, var(--accent-color, #3b82f6));
-  --ink: rgba(0,0,0,.90);
-  --muted: rgba(0,0,0,.62);
-  --axis: color-mix(in srgb, var(--accent) 22%, transparent);
-  --card: #fff;
-  --border: rgba(0,0,0,.10);
-  --shadow: 0 16px 42px rgba(0,0,0,.08);
+  /* Home palette (forced: no pink) */
+  --accent: #1f4b99;     /* Home primary blue */
+  --accent2: #20c997;    /* Home green */
+  --ink: rgba(0, 0, 0, 0.82);
+  --muted: rgba(0, 0, 0, 0.68);
+
+  /* Home-like surfaces */
+  --hero-bg: radial-gradient(1200px 600px at 20% 0%, rgba(45, 108, 223, 0.10), transparent 60%),
+             radial-gradient(900px 500px at 80% 20%, rgba(32, 201, 151, 0.10), transparent 55%),
+             linear-gradient(180deg, rgba(250, 250, 252, 0.92), rgba(255, 255, 255, 0.92));
+  --hero-border: rgba(0, 0, 0, 0.06);
+
+  --chip-bg: rgba(255, 255, 255, 0.75);
+  --chip-border: rgba(0, 0, 0, 0.10);
+  --chip-text: rgba(0, 0, 0, 0.78);
+
+  --btn-bg: rgba(255, 255, 255, 0.90);
+  --btn-border: rgba(0, 0, 0, 0.14);
+  --btn-text: rgba(0, 0, 0, 0.80);
+
+  --card-bg: rgba(255, 255, 255, 0.85);
+  --card-border: rgba(0, 0, 0, 0.08);
+
+  --divider: rgba(0, 0, 0, 0.06);
+
+  /* Timeline geometry */
+  --year-col: 72px;     /* width for "2021" */
+  --gap: 18px;          /* year -> axis gap */
+  --axis-x: calc(var(--year-col) + var(--gap));   /* axis position from left */
+  --cards-pad: calc(var(--axis-x) + 38px);        /* where cards start */
+
+  /* Timeline visuals */
+  --axis: rgba(31, 75, 153, 0.22);
+  --dot: #1f4b99;
+  --dot-ring: rgba(31, 75, 153, 0.14);
+
+  /* Frame like Home hero */
+  background: var(--hero-bg);
+  border: 1px solid var(--hero-border);
+  border-radius: 18px;
+  padding: 22px;
+  margin: 0 0 18px 0;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+  color: var(--ink);
 }
 
-/* Search: keep clean */
+/* Keep internal typography consistent */
+.publications p,
+.publications li,
+.publications .post-description{
+  color: var(--muted);
+}
+
+/* ---------- 2) Search input (Home button feel) ---------- */
 .publications #bibsearch{
   width: 100%;
-  max-width: 720px;
+  max-width: 760px;
   padding: 12px 14px;
   border-radius: 14px;
-  border: 1px solid rgba(0,0,0,.15);
-  background: #fff;
-  font-size: .98rem;
+  border: 1px solid var(--btn-border);
+  background: rgba(255,255,255,0.85);
+  color: var(--btn-text);
+  box-shadow: 0 1px 0 rgba(17, 24, 39, 0.03);
+  backdrop-filter: saturate(140%) blur(2px);
+  outline: none;
+  margin: 8px 0 16px 0;
+}
+.publications #bibsearch:focus{
+  border-color: rgba(31, 75, 153, 0.35);
+  box-shadow: 0 10px 22px rgba(0,0,0,0.10);
 }
 
-/* Prevent duplicate bibsearch input if it exists twice */
+/* Prevent duplicate input if rendered twice */
 .publications #bibsearch + #bibsearch{ display:none !important; }
 
-/* Section headings */
+/* ---------- 3) Section headings (Journal/Conference/Book) ---------- */
 .publications h2:not(.bibliography){
-  margin-top: 2rem;
-  margin-bottom: 1rem;
+  margin-top: 22px;
+  margin-bottom: 14px;
   font-weight: 850;
+  color: var(--ink);
 }
 
-/* Year heading (h2.bibliography) — pinned to timeline */
+/* ---------- 4) Year header (align year left of axis, dot on axis) ---------- */
+/* al-folio sometimes floats year headers: kill it */
 .publications h2.bibliography{
   float: none !important;
   clear: both !important;
 
   position: relative;
-  margin: 28px 0 12px 0 !important;
-  padding-left: 96px !important;
+  margin: 20px 0 10px 0 !important;
 
-  font-size: .92rem;
-  font-weight: 950;
-  color: var(--ink);
-}
-
-/* Year chip placed near the axis */
-.publications h2.bibliography::before{
-  content: attr(data-year);
-}
-
-/* Inject the year text inside a chip using the element text itself */
-.publications h2.bibliography{
-  --year: "";
-}
-.publications h2.bibliography{
-  color: transparent; /* we will render visible year using ::after */
-}
-.publications h2.bibliography::after{
-  content: attr(class); /* fallback if something fails */
-}
-
-/* Reliable: render the actual year from the element text */
-.publications h2.bibliography::after{
-  content: "";
-}
-
-/* Use a nested span-like trick: re-show text by resetting color, and add chip */
-.publications h2.bibliography{
-  color: var(--ink);
-}
-.publications h2.bibliography{
-  display: flex;
+  /* Make it a 2-col layout: year | spacer (cards area) */
+  display: grid;
+  grid-template-columns: var(--year-col) 1fr;
   align-items: center;
-  gap: 10px;
-}
-.publications h2.bibliography{
-  padding-left: 0 !important; /* we will align with grid instead */
+
+  /* Reserve left space so it lines up with cards block */
+  padding-left: 0 !important;
+
+  font-size: 0.92rem;
+  font-weight: 950;
+  color: var(--accent);
 }
 
-/* Layout: year chip + list aligned as a block */
-.publications h2.bibliography,
+/* Dot for the year on the axis */
+.publications h2.bibliography::before{
+  content: "";
+  position: absolute;
+  left: var(--axis-x);
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 14px;
+  height: 14px;
+  border-radius: 999px;
+  background: var(--dot);
+  box-shadow: 0 0 0 6px var(--dot-ring);
+}
+
+/* Ensure the year text stays visually in the left column */
+.publications h2.bibliography{
+  padding-right: 0 !important;
+}
+.publications h2.bibliography{
+  justify-items: end; /* year aligned right inside year-col */
+}
+.publications h2.bibliography{
+  /* align this header with the list/cards block */
+  margin-left: 0 !important;
+}
+
+/* ---------- 5) List block per year + continuous axis ---------- */
 .publications h2.bibliography + ol.bibliography{
+  list-style: none !important;
+  margin: 0 !important;
+
+  /* cards start at cards-pad */
+  padding: 0 0 0 var(--cards-pad) !important;
+
+  position: relative;
   max-width: 980px;
 }
 
-/* The list block for this year */
-.publications h2.bibliography + ol.bibliography{
-  list-style: none !important;
-  padding-left: 96px !important;
-  margin-left: 0 !important;
-  position: relative;
-}
-
-/* Draw axis for this year block (connected) */
+/* Vertical axis line for the year section (connects to year dot) */
 .publications h2.bibliography + ol.bibliography::before{
   content: "";
   position: absolute;
-  left: 34px;
-  top: -34px;       /* extends upward to meet the year chip */
+  left: calc(var(--axis-x) - var(--cards-pad));
+  top: -18px;
   bottom: 0;
   width: 2px;
   background: var(--axis);
   border-radius: 2px;
 }
 
-/* Year chip positioned on the left aligned to axis */
-.publications h2.bibliography{
-  position: relative;
-  padding-left: 96px !important;
-}
-.publications h2.bibliography::before{
-  content: "";
-  position: absolute;
-  left: 26px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 14px;
-  height: 14px;
-  border-radius: 999px;
-  background: var(--accent);
-  box-shadow: 0 0 0 6px color-mix(in srgb, var(--accent) 16%, transparent);
-}
-
-/* Visible chip with the year text */
-.publications h2.bibliography{
-  padding-top: 2px;
-}
-.publications h2.bibliography > *{ display:none; } /* safeguard */
-.publications h2.bibliography{
-  color: var(--ink);
-}
-.publications h2.bibliography{
-  font-weight: 950;
-}
-.publications h2.bibliography{
-  /* create the chip via background on the element itself */
-  display: inline-flex;
-  align-items: center;
-  padding: 7px 12px !important;
-  border-radius: 999px;
-  background: color-mix(in srgb, var(--accent) 10%, white);
-  border: 1px solid color-mix(in srgb, var(--accent) 20%, transparent);
-  margin-left: 0 !important;
-}
-
-/* ---------------------------------------------------------
-   Cards
-   --------------------------------------------------------- */
-
+/* ---------- 6) Cards (Home card style) ---------- */
 .publications h2.bibliography + ol.bibliography > li{
   position: relative;
   margin: 0 0 16px 0 !important;
+
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 18px;
   padding: 18px 20px !important;
 
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 20px;
-  box-shadow: var(--shadow);
-
-  transition: transform .16s ease, box-shadow .16s ease, border-color .16s ease;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.06);
+  transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
 }
 
-/* Node + connector from axis to card */
+/* Node dot on axis for each card */
 .publications h2.bibliography + ol.bibliography > li::before{
   content: "";
   position: absolute;
-  left: -58px;
+  left: calc(var(--axis-x) - var(--cards-pad));
   top: 26px;
+  transform: translateX(-50%);
+
   width: 10px;
   height: 10px;
   border-radius: 999px;
   background: #fff;
   border: 2px solid var(--accent);
-  box-shadow: 0 0 0 5px color-mix(in srgb, var(--accent) 14%, transparent);
+  box-shadow: 0 0 0 5px rgba(31, 75, 153, 0.12);
 }
+
+/* Connector line axis -> card */
 .publications h2.bibliography + ol.bibliography > li::after{
   content: "";
   position: absolute;
-  left: -48px;
+  left: calc(var(--axis-x) - var(--cards-pad));
   top: 30px;
   width: 22px;
   height: 2px;
   background: var(--axis);
   border-radius: 2px;
+  transform: translateX(8px);
 }
 
-/* Hover */
 .publications h2.bibliography + ol.bibliography > li:hover{
   transform: translateY(-2px);
-  border-color: color-mix(in srgb, var(--accent) 35%, transparent);
-  box-shadow: 0 22px 55px rgba(0,0,0,.12);
+  border-color: rgba(31, 75, 153, 0.25);
+  box-shadow: 0 22px 55px rgba(0,0,0,0.10);
 }
 
-/* Badge = home chips */
+/* ---------- 7) Abbreviation badge (chip style like Home tags) ---------- */
 .publications .abbr .badge{
   border-radius: 999px !important;
   padding: 8px 12px !important;
   font-weight: 900 !important;
-  font-size: .76rem !important;
-  background: color-mix(in srgb, var(--accent) 10%, white) !important;
-  border: 1px solid color-mix(in srgb, var(--accent) 22%, transparent) !important;
-  color: color-mix(in srgb, var(--accent) 70%, black) !important;
+  font-size: 0.76rem !important;
+
+  background: var(--chip-bg) !important;
+  border: 1px solid var(--chip-border) !important;
+  color: rgba(31, 75, 153, 0.90) !important;
+
+  box-shadow: 0 2px 6px rgba(0,0,0,0.04) !important;
 }
 
-/* Typography */
+/* ---------- 8) Typography inside cards ---------- */
 .publications .title{
   font-weight: 900;
   font-size: 1.06rem;
@@ -223,55 +239,118 @@
 }
 .publications .periodical,
 .publications .venue{
-  color: rgba(0,0,0,.58);
+  color: rgba(0,0,0,0.58);
   font-style: italic;
 }
 
-/* Buttons: readable (no white text) */
+/* ---------- 9) Links / Buttons (Home-style, readable text) ---------- */
 .publications .links{
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
   margin-top: 12px;
 }
+
 .publications .links a,
 .publications a.btn,
 .publications .btn{
   border-radius: 999px !important;
   padding: 7px 12px !important;
   font-weight: 900 !important;
-  font-size: .82rem !important;
+  font-size: 0.82rem !important;
 
-  background: color-mix(in srgb, var(--accent) 10%, white) !important;
-  color: color-mix(in srgb, var(--accent) 75%, black) !important;
-  border: 1px solid color-mix(in srgb, var(--accent) 22%, transparent) !important;
+  background: rgba(31, 75, 153, 0.10) !important;
+  color: #1f4b99 !important;
+  border: 1px solid rgba(31, 75, 153, 0.25) !important;
+
   text-decoration: none !important;
 }
+
 .publications .links a:hover,
 .publications .btn:hover{
-  background: color-mix(in srgb, var(--accent) 16%, white) !important;
+  background: rgba(31, 75, 153, 0.16) !important;
   transform: translateY(-1px);
 }
 
-/* Mobile */
+/* Hard override: kill any accidental magenta coming from other rules */
+.publications .links a,
+.publications .abbr .badge,
+.publications h2.bibliography,
+.publications h2.bibliography::before{
+  filter: none !important;
+}
+
+/* ---------- 10) Mobile ---------- */
 @media (max-width: 720px){
+  .publications{
+    padding: 16px;
+    --year-col: 0px;
+    --gap: 12px;
+    --axis-x: 12px;
+    --cards-pad: 22px;
+  }
+
+  .publications h2.bibliography{
+    grid-template-columns: 1fr;
+    justify-items: start;
+    padding-left: 22px !important;
+  }
+  .publications h2.bibliography::before{
+    left: 12px;
+  }
+
   .publications h2.bibliography + ol.bibliography{
     padding-left: 22px !important;
   }
   .publications h2.bibliography + ol.bibliography::before{
-    left: 10px;
+    left: 12px;
     top: -18px;
-  }
-  .publications h2.bibliography{
-    padding-left: 22px !important;
-  }
-  .publications h2.bibliography::before{
-    left: 2px;
-  }
-  .publications h2.bibliography + ol.bibliography > li::before{
-    left: -16px;
   }
   .publications h2.bibliography + ol.bibliography > li::after{
     display: none;
   }
+}
+
+/* ---------- 11) Dark mode (same philosophy as Home) ---------- */
+html.dark .publications,
+body.dark .publications,
+html[data-theme="dark"] .publications,
+body[data-theme="dark"] .publications,
+[data-theme="dark"] .publications,
+.dark-mode .publications,
+.theme-dark .publications{
+  --hero-bg: radial-gradient(900px 500px at 12% 0%, rgba(45, 108, 223, 0.28), transparent 70%),
+             radial-gradient(700px 420px at 88% 10%, rgba(32, 201, 151, 0.22), transparent 66%),
+             linear-gradient(180deg, rgba(16, 18, 23, 0.92), rgba(16, 18, 23, 0.92));
+
+  --hero-border: rgba(255, 255, 255, 0.10);
+  --ink: rgba(255, 255, 255, 0.92);
+  --muted: rgba(255, 255, 255, 0.74);
+
+  --chip-bg: rgba(255, 255, 255, 0.07);
+  --chip-border: rgba(255, 255, 255, 0.14);
+  --btn-border: rgba(255, 255, 255, 0.16);
+
+  --card-bg: rgba(255, 255, 255, 0.05);
+  --card-border: rgba(255, 255, 255, 0.10);
+
+  --divider: rgba(255, 255, 255, 0.08);
+
+  --axis: rgba(45, 108, 223, 0.30);
+  --dot-ring: rgba(45, 108, 223, 0.18);
+
+  box-shadow: 0 14px 50px rgba(0, 0, 0, 0.45);
+}
+
+html.dark .publications #bibsearch,
+body.dark .publications #bibsearch{
+  background: rgba(255,255,255,0.06);
+  color: rgba(255,255,255,0.92);
+}
+
+html.dark .publications .periodical,
+body.dark .publications .periodical,
+html.dark .publications .venue,
+body.dark .publications .venue{
+  color: rgba(255,255,255,0.72);
 }
