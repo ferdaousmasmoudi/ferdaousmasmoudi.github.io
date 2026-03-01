@@ -107,13 +107,22 @@ input#bibsearch.search.bibsearch-form-input {
 
 <div class="publications" markdown="1">
 
+{% if site.bib_search %}
+  <script src="{{ '/assets/js/bibsearch.js' | relative_url | bust_file_cache }}" type="module"></script>
+  <input type="text" id="bibsearch" spellcheck="false" autocomplete="off" placeholder="Search publications...">
+{% endif %}
+
 ## Journal Articles
-{% bibliography --query @*[keywords~=journal] %}
+{% bibliography --query @article %}
 
 ## Conference Papers
-{% bibliography --query @*[keywords~=conference] %}
+{% bibliography --query @inproceedings %}
 
 ## Book Chapters
-{% bibliography --query @*[keywords~=bookchapter] %}
+{% bibliography --query @incollection %}
+
+## Conference Presentations (Program-listed)
+{% bibliography --query @misc %}
+
 
 </div>
