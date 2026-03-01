@@ -1,98 +1,103 @@
 /* =========================================================
-   Publications — Home-coherent Timeline
-   Year (left) ● Axis | Cards (right)
-   Works with al-folio: h2.bibliography + ol.bibliography
+   Publications — Year (left) • Dot on axis • Cards (right)
+   Stable version for al-folio/jekyll-scholar markup:
+   h2.bibliography + ol.bibliography > li > .row ...
    ========================================================= */
 
 .publications{
-  /* Home palette (force blue/green; avoid global pink) */
-  --pub-blue: #1f4b99;     /* Home primary */
-  --pub-green: #20c997;    /* Home secondary */
-  --accent: var(--pub-blue);
+  --accent: #1f4b99;                 /* Home primary blue */
+  --accent2: #20c997;                /* Home secondary green (optional) */
 
-  /* neutrals */
-  --ink: rgba(17,24,39,.92);
-  --muted: rgba(17,24,39,.62);
-  --card: rgba(255,255,255,.92);
-  --border: rgba(17,24,39,.10);
-  --shadow: 0 14px 38px rgba(0,0,0,.08);
+  --axis: rgba(31, 75, 153, 0.25);
+  --ink: rgba(17, 24, 39, 0.92);
+  --muted: rgba(17, 24, 39, 0.62);
 
-  /* axis color */
-  --axis: rgba(31,75,153,.22);
+  --card: rgba(255,255,255,0.92);
+  --border: rgba(17, 24, 39, 0.10);
+  --shadow: 0 14px 40px rgba(0,0,0,0.08);
 
-  /* geometry */
-  --year-col: 72px; /* width for "2021" */
-  --gap: 14px;      /* space between year and axis */
-  --axis-x: calc(var(--year-col) + var(--gap));
-  --cards-pad: calc(var(--axis-x) + 34px); /* where cards start */
+  /* Geometry */
+  --year-col: 70px;                  /* width reserved for year label */
+  --gap: 16px;                       /* gap between year and axis */
+  --dot: 12px;                       /* dot size on axis */
+  --axis-x: calc(var(--year-col) + var(--gap) + (var(--dot) / 2));
+  --cards-pad: calc(var(--year-col) + var(--gap) + var(--dot) + 24px);
 }
 
-/* =========================================
-   Year header (e.g., "2021") + dot on axis
-   ========================================= */
+/* ---- Search input harmonized with Home ---- */
+.publications #bibsearch{
+  width: 100%;
+  max-width: 720px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,0.92);
+  color: var(--ink);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+  margin: 10px 0 18px 0;
+}
+
+/* ---- Year header line: "2021  ●" aligned left-of-axis ---- */
 .publications h2.bibliography{
+  /* Remove theme floats */
   float: none !important;
   clear: both !important;
 
-  position: relative;
-  margin: 26px 0 12px 0 !important;
+  margin: 26px 0 10px 0 !important;
 
-  /* reserve left space for year column + axis + card gap */
-  padding-left: var(--cards-pad) !important;
+  display: grid;
+  grid-template-columns: var(--year-col) var(--gap) var(--dot) 1fr;
+  align-items: center;
 
-  /* style */
-  font-size: .95rem;
+  font-size: 0.95rem;
   font-weight: 900;
   color: var(--accent);
-
-  /* move ONLY the year text back into the left column */
-  transform: translateX(calc(-1 * (var(--cards-pad) - var(--year-col))));
+  letter-spacing: 0.2px;
 }
 
-/* Year dot on the axis */
+/* Year itself on the left column */
+.publications h2.bibliography{
+  justify-items: start;
+}
+.publications h2.bibliography{
+  /* make the text sit in col 1 and align right */
+  text-align: right;
+  padding: 0 !important;
+}
+
+/* Dot on the axis (grid column 3) */
 .publications h2.bibliography::before{
   content: "";
-  position: absolute;
-  left: var(--axis-x);
-  top: 50%;
-  transform: translate(-50%, -50%);
-
-  width: 12px;
-  height: 12px;
+  grid-column: 3;
+  width: var(--dot);
+  height: var(--dot);
   border-radius: 999px;
-
   background: var(--accent);
-  box-shadow: 0 0 0 6px rgba(31,75,153,.14);
+  box-shadow: 0 0 0 6px rgba(31, 75, 153, 0.14);
 }
 
-/* =========================================
-   The list for this year + continuous axis
-   ========================================= */
+/* The following list (for that year) gets left padding to start cards after axis */
 .publications h2.bibliography + ol.bibliography{
   list-style: none !important;
   margin: 0 !important;
-
   padding: 0 0 0 var(--cards-pad) !important;
   position: relative;
   max-width: 980px;
 }
 
-/* continuous axis line */
+/* Vertical axis line: perfectly connected to the year dot */
 .publications h2.bibliography + ol.bibliography::before{
   content: "";
   position: absolute;
-  left: var(--axis-x);
-  top: -18px;     /* connects to year dot */
+  left: calc(-1 * (var(--cards-pad) - var(--axis-x)));
+  top: -18px;          /* connects under the year dot */
   bottom: 0;
-
   width: 2px;
   background: var(--axis);
   border-radius: 2px;
 }
 
-/* =========================================
-   Each publication item (card on right)
-   ========================================= */
+/* Each publication item as a clean card */
 .publications h2.bibliography + ol.bibliography > li{
   position: relative;
   margin: 0 0 16px 0 !important;
@@ -106,12 +111,10 @@
   transition: transform .16s ease, box-shadow .16s ease, border-color .16s ease;
 }
 
-/* item dot on the axis */
+/* Dot for each item on the axis */
 .publications h2.bibliography + ol.bibliography > li::before{
   content: "";
   position: absolute;
-
-  /* put dot exactly on axis */
   left: calc(-1 * (var(--cards-pad) - var(--axis-x)));
   top: 26px;
   transform: translateX(-50%);
@@ -119,50 +122,55 @@
   width: 10px;
   height: 10px;
   border-radius: 999px;
-
   background: #fff;
   border: 2px solid var(--accent);
-  box-shadow: 0 0 0 5px rgba(31,75,153,.12);
+  box-shadow: 0 0 0 5px rgba(31, 75, 153, 0.12);
 }
 
-/* connector from axis to card */
+/* Small connector from axis to the card */
 .publications h2.bibliography + ol.bibliography > li::after{
   content: "";
   position: absolute;
-
   left: calc(-1 * (var(--cards-pad) - var(--axis-x)));
   top: 30px;
-
   width: 26px;
   height: 2px;
   background: var(--axis);
   transform: translateX(8px);
 }
 
-/* hover */
 .publications h2.bibliography + ol.bibliography > li:hover{
   transform: translateY(-2px);
-  border-color: rgba(31,75,153,.28);
-  box-shadow: 0 22px 55px rgba(0,0,0,.12);
+  border-color: rgba(31, 75, 153, 0.25);
+  box-shadow: 0 22px 55px rgba(0,0,0,0.12);
 }
 
-/* =========================================
-   Badge (abbr)
-   ========================================= */
+/* Fix Bootstrap columns inside each item to avoid weird shrinking */
+.publications .row{
+  align-items: flex-start;
+}
+.publications .abbr{
+  margin-bottom: 10px;
+}
+
+/* Badges: force Home-like blue, remove any “pink theme override” */
 .publications .abbr .badge{
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+
   border-radius: 999px !important;
   padding: 8px 12px !important;
-  font-weight: 900 !important;
-  font-size: .76rem !important;
 
-  background: rgba(31,75,153,.10) !important;
-  border: 1px solid rgba(31,75,153,.22) !important;
-  color: rgba(31,75,153,.95) !important;
+  font-weight: 900 !important;
+  font-size: 0.75rem !important;
+
+  background: rgba(31, 75, 153, 0.10) !important;
+  border: 1px solid rgba(31, 75, 153, 0.25) !important;
+  color: rgba(31, 75, 153, 0.95) !important;
 }
 
-/* =========================================
-   Typography
-   ========================================= */
+/* Typography */
 .publications .title{
   font-weight: 900;
   font-size: 1.06rem;
@@ -170,116 +178,67 @@
   color: var(--ink);
   margin-bottom: 6px;
 }
+
 .publications .author,
 .publications .authors{
   color: var(--muted);
   font-weight: 650;
   line-height: 1.35;
 }
+
 .publications .periodical,
 .publications .venue{
-  color: rgba(17,24,39,.58);
+  color: rgba(17,24,39,0.58);
   font-style: italic;
 }
 
-/* =========================================
-   Links/buttons — always readable (no white text)
-   ========================================= */
+/* Links buttons: enforce readable text (no white-on-white, no pink) */
 .publications .links{
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
   margin-top: 12px;
 }
-
 .publications .links a,
 .publications a.btn,
 .publications .btn{
   border-radius: 999px !important;
   padding: 7px 12px !important;
   font-weight: 900 !important;
-  font-size: .82rem !important;
+  font-size: 0.82rem !important;
 
-  background: rgba(31,75,153,.10) !important;
-  color: rgba(31,75,153,.95) !important;
-  border: 1px solid rgba(31,75,153,.22) !important;
+  background: rgba(31, 75, 153, 0.10) !important;
+  color: rgba(31, 75, 153, 0.95) !important;
+  border: 1px solid rgba(31, 75, 153, 0.25) !important;
+
   text-decoration: none !important;
 }
-
 .publications .links a:hover,
 .publications .btn:hover{
-  background: rgba(31,75,153,.14) !important;
+  background: rgba(31, 75, 153, 0.16) !important;
   transform: translateY(-1px);
 }
 
-/* =========================================
-   Search input (coherent)
-   ========================================= */
-.publications #bibsearch{
-  width: 100%;
-  max-width: 680px;
-  padding: 10px 12px;
-  border: 1px solid rgba(17,24,39,.14);
-  border-radius: 12px;
-  margin: 12px 0 22px 0;
-  font-size: 0.98rem;
-  background: rgba(255,255,255,.92);
-}
-
-/* =========================================
-   Mobile
-   ========================================= */
+/* Mobile: keep axis + cards readable */
 @media (max-width: 720px){
   .publications{
     --year-col: 0px;
-    --gap: 12px;
+    --gap: 10px;
+    --dot: 12px;
     --axis-x: 12px;
     --cards-pad: 22px;
   }
 
   .publications h2.bibliography{
-    transform: none;
-    padding-left: 22px !important;
+    grid-template-columns: 0px var(--gap) var(--dot) 1fr;
+    text-align: left;
   }
-  .publications h2.bibliography::before{
-    left: 12px;
-  }
+
   .publications h2.bibliography + ol.bibliography{
-    padding-left: 22px !important;
+    padding-left: var(--cards-pad) !important;
   }
-  .publications h2.bibliography + ol.bibliography::before{
-    left: 12px;
-  }
+
   .publications h2.bibliography + ol.bibliography > li::after{
     display: none;
   }
-}
-
-/* =========================================
-   Dark mode (simple + safe)
-   ========================================= */
-html.dark .publications,
-[data-theme="dark"] .publications{
-  --card: rgba(255,255,255,.06);
-  --border: rgba(255,255,255,.12);
-  --shadow: 0 18px 60px rgba(0,0,0,.45);
-  --ink: rgba(255,255,255,.92);
-  --muted: rgba(255,255,255,.72);
-  --axis: rgba(45,108,223,.35);
-}
-
-html.dark .publications .abbr .badge,
-[data-theme="dark"] .publications .abbr .badge{
-  background: rgba(45,108,223,.12) !important;
-  border: 1px solid rgba(45,108,223,.25) !important;
-  color: rgba(255,255,255,.88) !important;
-}
-
-html.dark .publications .links a,
-html.dark .publications .btn,
-[data-theme="dark"] .publications .links a,
-[data-theme="dark"] .publications .btn{
-  background: rgba(45,108,223,.14) !important;
-  border: 1px solid rgba(45,108,223,.28) !important;
-  color: rgba(255,255,255,.88) !important;
 }
