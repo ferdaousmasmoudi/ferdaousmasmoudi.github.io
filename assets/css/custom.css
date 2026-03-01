@@ -1,68 +1,185 @@
 /* =========================================================
-   Publications — FULL REWORK (Premium Cards, high contrast)
+   Publications — Home-coherent Modern Timeline (V2)
    Scoped to: <div class="publications">
-   Works with al-folio HTML: h2.bibliography + ol.bibliography > li .row .abbr .badge
    ========================================================= */
 
-/* --- Search input --- */
+.publications{
+  /* Accent color: adjust if you know your Home accent variable */
+  --pub-accent: #b30fbf;          /* close to the active nav pink */
+  --pub-ink: rgba(0,0,0,.88);
+  --pub-muted: rgba(0,0,0,.62);
+  --pub-line: rgba(0,0,0,.10);
+  --pub-card: rgba(255,255,255,.94);
+  --pub-shadow: 0 14px 34px rgba(0,0,0,.08);
+  --pub-radius: 18px;
+}
+
+/* Search */
 .publications #bibsearch{
   width: 100%;
-  max-width: 680px;
-  padding: 10px 12px;
+  max-width: 720px;
+  padding: 11px 12px;
+  border-radius: 14px;
   border: 1px solid rgba(0,0,0,.18);
-  border-radius: 12px;
-  margin: 12px 0 22px 0;
-  font-size: 0.98rem;
   background: rgba(255,255,255,.92);
+  font-size: 0.98rem;
 }
 
-/* --- Section titles --- */
-.publications h2{
-  margin-top: 1.8rem;
-  margin-bottom: 0.8rem;
+/* Sections (Journal Articles, etc.) */
+.publications h2:not(.bibliography){
+  margin-top: 1.9rem;
+  margin-bottom: 0.9rem;
+  letter-spacing: 0.01em;
 }
 
-/* al-folio prints year headings as: <h2 class="bibliography">2021</h2> */
+/* ----- Timeline container ----- */
+.publications{
+  position: relative;
+}
+
+/* Each year header (al-folio: <h2 class="bibliography">2021</h2>) becomes a timeline chip */
 .publications h2.bibliography{
+  position: relative;
   margin: 22px 0 10px 0;
+  padding-left: 86px; /* room for axis + chip */
   font-size: 0.95rem;
-  font-weight: 850;
-  color: rgba(0,0,0,0.52);
-  letter-spacing: 0.02em;
+  font-weight: 900;
+  color: rgba(0,0,0,.50);
 }
 
-/* --- Bibliography list reset --- */
+/* Year chip */
+.publications h2.bibliography::before{
+  content: attr(class); /* fallback if attr not used - will be overridden below */
+}
+
+/* Use a pseudo element for the chip text */
+.publications h2.bibliography{
+  /* keep the actual year text visible */
+}
+
+/* Axis for each year block: draw a vertical line behind the list that follows */
 .publications ol.bibliography{
   list-style: none;
   padding-left: 0;
   margin-left: 0;
   max-width: 980px;
+  position: relative;
+  padding-left: 86px; /* timeline gutter */
+  margin-bottom: 18px;
 }
 
-/* --- Premium card for each entry --- */
+/* Timeline vertical axis (per year block) */
+.publications ol.bibliography::before{
+  content: "";
+  position: absolute;
+  left: 34px;              /* axis x inside gutter */
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(
+    to bottom,
+    rgba(0,0,0,0.00),
+    var(--pub-line),
+    rgba(0,0,0,0.00)
+  );
+  border-radius: 2px;
+}
+
+/* Year chip positioned on the axis */
+.publications h2.bibliography::after{
+  content: attr(data-year);
+}
+
+/* Since h2 contains the year text, we create a chip using ::after and hide the default layout look */
+.publications h2.bibliography{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.publications h2.bibliography::before{
+  content: "";
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: var(--pub-accent);
+  box-shadow: 0 0 0 4px rgba(179,15,191,.12);
+  margin-left: 22px; /* align dot near axis */
+}
+
+.publications h2.bibliography span{
+  display: none;
+}
+
+/* Create a chip around the year text itself */
+.publications h2.bibliography{
+  color: rgba(0,0,0,.55);
+}
+
+.publications h2.bibliography{
+  /* turn the year text into a chip */
+}
+
+.publications h2.bibliography{
+  /* Wrap-like effect using background on the h2 text */
+  width: fit-content;
+  padding: 6px 12px 6px 8px;
+  border-radius: 999px;
+  background: rgba(179,15,191,.08);
+  border: 1px solid rgba(179,15,191,.18);
+}
+
+/* ----- Publication card ----- */
 .publications ol.bibliography > li{
   position: relative;
-  padding: 16px 16px;
   margin: 0 0 14px 0;
-  border-radius: 16px;
-  background: rgba(255,255,255,0.94);
+  padding: 16px 16px;
+  border-radius: var(--pub-radius);
+  background: var(--pub-card);
   border: 1px solid rgba(0,0,0,0.10);
-  box-shadow: 0 12px 28px rgba(0,0,0,0.08);
+  box-shadow: var(--pub-shadow);
 }
 
-/* Hover: subtle lift */
+/* Timeline node per item */
+.publications ol.bibliography > li::before{
+  content: "";
+  position: absolute;
+  left: -62px;        /* inside gutter near axis */
+  top: 22px;
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+  background: #fff;
+  border: 2px solid rgba(0,0,0,0.25);
+  box-shadow: 0 0 0 5px rgba(179,15,191,.10);
+}
+
+/* Small connector from axis to card */
+.publications ol.bibliography > li::after{
+  content: "";
+  position: absolute;
+  left: -50px;
+  top: 27px;
+  width: 24px;
+  height: 2px;
+  background: rgba(0,0,0,0.12);
+  border-radius: 2px;
+}
+
+/* Hover: modern */
 .publications ol.bibliography > li:hover{
   transform: translateY(-1px);
   transition: 140ms ease;
-  box-shadow: 0 16px 34px rgba(0,0,0,0.10);
+  border-color: rgba(179,15,191,.30);
+  box-shadow: 0 18px 40px rgba(0,0,0,.10);
 }
 
-/* --- Layout alignment (Bootstrap row/col inside li) --- */
+/* Inside bootstrap row */
 .publications ol.bibliography > li .row{
   align-items: flex-start;
 }
 
-/* Keep the left column visible and aligned */
+/* Abbreviation badge column */
 .publications .abbr{
   display: flex;
   align-items: flex-start;
@@ -70,51 +187,42 @@
   padding-right: 10px;
 }
 
-/* Journal/Conf badge — readable, not saturated */
 .publications .abbr .badge{
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
   width: 100%;
   border-radius: 12px !important;
   padding: 9px 10px !important;
-  font-weight: 850 !important;
+  font-weight: 900 !important;
   font-size: 0.78rem !important;
-  color: rgba(0,0,0,0.78) !important;
-  background: rgba(0,0,0,0.06) !important;
-  border: 1px solid rgba(0,0,0,0.12) !important;
-  white-space: normal;          /* allow wrapping if long */
-  text-align: center;
+  color: rgba(0,0,0,0.75) !important;
+  background: rgba(0,0,0,0.05) !important;
+  border: 1px solid rgba(0,0,0,0.10) !important;
 }
 
-/* --- Typography hierarchy --- */
+/* Typography */
 .publications .title{
-  font-weight: 850;
-  font-size: 1.04rem;
+  color: var(--pub-ink);
+  font-weight: 900;
+  font-size: 1.05rem;
   line-height: 1.25;
-  color: rgba(0,0,0,0.92);
   margin-bottom: 6px;
 }
 
 .publications .author,
 .publications .authors{
-  margin-top: 2px;
+  color: var(--pub-muted);
   font-weight: 650;
-  color: rgba(0,0,0,0.72);
   line-height: 1.35;
 }
 
 .publications .periodical,
 .publications .venue,
 .publications .journal{
-  margin-top: 4px;
+  color: rgba(0,0,0,.58);
   font-style: italic;
-  color: rgba(0,0,0,0.60);
-  opacity: 1;
   line-height: 1.35;
 }
 
-/* --- Links row / buttons --- */
+/* Buttons */
 .publications .links{
   display: flex;
   flex-wrap: wrap;
@@ -129,47 +237,45 @@
   align-items: center;
   justify-content: center;
   padding: 7px 11px !important;
-  border-radius: 12px !important;
-  border: 1px solid rgba(0,0,0,.14) !important;
-  background: rgba(0,0,0,0.03) !important;
-  font-weight: 850 !important;
+  border-radius: 999px !important;
+  border: 1px solid rgba(179,15,191,.25) !important;
+  background: rgba(179,15,191,.08) !important;
+  font-weight: 900 !important;
   font-size: 0.82rem !important;
-  line-height: 1 !important;
+  color: rgba(0,0,0,.82) !important;
   text-decoration: none !important;
-  color: rgba(0,0,0,0.82) !important;
 }
 
 .publications .links a:hover,
 .publications a.btn:hover,
 .publications .btn:hover{
+  background: rgba(179,15,191,.14) !important;
   transform: translateY(-1px);
-  background: rgba(0,0,0,0.06) !important;
-  box-shadow: 0 10px 22px rgba(0,0,0,.10);
 }
 
-/* --- Remove accidental global effects from older rules --- */
-.publications .badge{
-  /* keep it readable even if other badge rules exist */
-  background-color: rgba(0,0,0,0.06) !important;
-  color: rgba(0,0,0,0.78) !important;
-}
-
-/* --- Mobile: stack badge above content for clarity --- */
+/* Mobile: reduce gutter */
 @media (max-width: 720px){
-  .publications ol.bibliography > li{
-    padding: 14px 12px;
+  .publications ol.bibliography{
+    padding-left: 22px;
   }
-
+  .publications ol.bibliography::before{
+    left: 10px;
+  }
+  .publications h2.bibliography{
+    padding-left: 0;
+    margin-left: 0;
+  }
+  .publications h2.bibliography::before{
+    margin-left: 0;
+  }
+  .publications ol.bibliography > li::before{
+    left: -18px;
+    box-shadow: 0 0 0 4px rgba(179,15,191,.10);
+  }
+  .publications ol.bibliography > li::after{
+    display: none;
+  }
   .publications .abbr{
     margin-bottom: 10px;
-  }
-
-  .publications .abbr .badge{
-    width: auto;      /* avoid huge block */
-    min-width: 160px;
-  }
-
-  .publications .title{
-    font-size: 1.0rem;
   }
 }
