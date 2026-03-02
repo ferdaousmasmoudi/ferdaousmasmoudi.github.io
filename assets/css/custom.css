@@ -369,3 +369,36 @@ html[data-theme="dark"] .publications .links a.btn,
   font-size: 12px !important;
   font-weight: 600 !important;
 }
+/* =========================================================
+   Publications – Lighter Typography
+   ========================================================= */
+
+/* Title lighter */
+.publications .title{
+  font-weight: 400 !important;   /* normal */
+}
+
+/* Authors lighter */
+.publications .author{
+  font-weight: 400 !important;
+}
+
+/* Journal line lighter */
+.publications .periodical{
+  font-weight: 400 !important;
+}
+
+/* Badge lighter */
+.publications .col.col-sm-2.abbr abbr.badge{
+  font-weight: 500 !important;
+}
+
+/* DOI button lighter */
+.publications .links a.btn{
+  font-weight: 500 !important;
+}
+
+/* Section headers slightly lighter */
+.publications > h2[id]{
+  font-weight: 600 !important;
+}
