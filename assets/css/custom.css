@@ -322,3 +322,257 @@ body[data-theme="dark"] .publications .links a.btn{
     max-width: 100%;
   }
 }
+
+/* =========================================================
+   Publications — Cards (NO timeline) — Badge on top of card
+   Drop-in overrides for al-folio / jekyll-scholar markup
+   File: assets/css/custom.css
+   ========================================================= */
+
+.publications{
+  --accent: var(--global-theme-color, var(--accent-color, #2d6cdf));
+  --bg-soft: rgba(45,108,223,.10);
+  --card: rgba(255,255,255,.86);
+  --border: rgba(0,0,0,.08);
+  --ink: rgba(0,0,0,.86);
+  --muted: rgba(0,0,0,.62);
+  --shadow: 0 16px 44px rgba(0,0,0,.08);
+  --radius: 18px;
+}
+
+/* ---------- Search input (kept simple) ---------- */
+.publications #bibsearch{
+  width: 100%;
+  max-width: 760px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: 1px solid rgba(0,0,0,.12);
+  background: rgba(255,255,255,.78);
+  box-shadow: 0 10px 28px rgba(0,0,0,.06);
+  outline: none;
+}
+.publications #bibsearch:focus{
+  border-color: color-mix(in srgb, var(--accent) 38%, rgba(0,0,0,.12));
+  box-shadow: 0 14px 34px rgba(0,0,0,.08);
+}
+
+/* ---------- Remove list look ---------- */
+.publications ol.bibliography{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.publications ol.bibliography > li{
+  margin: 0 0 18px 0;
+}
+
+/* ---------- Make each entry a card ---------- */
+/* Your structure:
+   li > .row > .col.col-sm-2.abbr + #id.col-sm-8 + ...
+   We style the li itself as the card container. */
+.publications ol.bibliography > li{
+  position: relative;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--card);
+  box-shadow: var(--shadow);
+  padding: 18px 18px 16px 18px;     /* base padding */
+  backdrop-filter: saturate(140%) blur(8px);
+  -webkit-backdrop-filter: saturate(140%) blur(8px);
+}
+
+/* We want more text density and to use the full width.
+   Prevent the bootstrap row from “eating” padding. */
+.publications ol.bibliography > li > .row{
+  margin-left: 0;
+  margin-right: 0;
+  align-items: flex-start;
+}
+
+/* Hide the old left column space and use it only as a "badge carrier" */
+.publications .col.col-sm-2.abbr{
+  /* keep it in DOM, but remove layout influence */
+  flex: 0 0 auto;
+  max-width: 0;
+  width: 0;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+/* Make the main content column take the full width */
+.publications .col-sm-8{
+  flex: 1 1 auto;
+  max-width: 100%;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+/* ---------- Badge (journal tag) as a top pill ---------- */
+/* The badge exists inside the .abbr column:
+   <abbr class="badge rounded w-100">J. Energy Storage</abbr>
+   We turn it into an absolute pill at the top-left of the card. */
+.publications .col.col-sm-2.abbr abbr.badge{
+  position: absolute;
+  top: 14px;
+  left: 14px;
+
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+
+  /* KEY: auto width based on text (no clipping) */
+  width: auto !important;
+  max-width: calc(100% - 28px);
+  padding: 6px 12px !important;
+
+  border-radius: 999px !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.2px;
+  line-height: 1 !important;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  background: rgba(45,108,223,.10) !important;
+  border: 1px solid rgba(45,108,223,.24) !important;
+  color: rgba(45,108,223,.92) !important;
+
+  box-shadow: 0 10px 22px rgba(0,0,0,.08);
+}
+
+/* Add top padding to the card content so it doesn't collide with the badge */
+.publications ol.bibliography > li{
+  padding-top: 52px; /* space for the badge pill */
+}
+
+/* ---------- Typography: make everything larger & better used ---------- */
+.publications .title{
+  color: var(--ink);
+  font-size: 18px;
+  font-weight: 750;
+  line-height: 1.35;
+  margin: 0 0 8px 0;
+}
+
+.publications .author{
+  color: color-mix(in srgb, var(--ink) 85%, var(--muted));
+  font-size: 14px;
+  font-weight: 650;
+  line-height: 1.35;
+  margin: 0 0 6px 0;
+}
+
+.publications .periodical{
+  color: var(--muted);
+  font-size: 13.5px;
+  line-height: 1.35;
+  margin: 0;
+}
+.publications .periodical em{
+  color: color-mix(in srgb, var(--accent) 75%, var(--muted));
+  font-style: italic;
+}
+
+/* Links zone spacing */
+.publications .links{
+  margin-top: 10px;
+}
+
+/* ---------- DOI button: pill, consistent light/dark ---------- */
+/* Your DOI is: <a class="btn btn-sm z-depth-0">DOI</a> */
+.publications .links a.btn{
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+
+  padding: 6px 12px !important;
+  border-radius: 999px !important;
+
+  font-size: 12px !important;
+  font-weight: 750 !important;
+  line-height: 1 !important;
+  text-transform: none !important;
+  letter-spacing: 0.2px;
+
+  background: rgba(45,108,223,.10) !important;
+  border: 1px solid rgba(45,108,223,.28) !important;
+  color: rgba(45,108,223,.95) !important;
+
+  box-shadow: none !important;
+}
+.publications .links a.btn:hover{
+  background: rgba(45,108,223,.14) !important;
+  border-color: rgba(45,108,223,.40) !important;
+  transform: translateY(-1px);
+}
+
+/* ---------- Year headings keep subtle ---------- */
+.publications h2.bibliography{
+  opacity: .28;
+  font-weight: 700;
+  letter-spacing: .2px;
+  margin: 18px 0 10px 0;
+}
+
+/* =========================================================
+   Dark mode — keep same geometry, better contrast
+   ========================================================= */
+html.dark .publications,
+body.dark .publications,
+html[data-theme="dark"] .publications,
+body[data-theme="dark"] .publications,
+[data-theme="dark"] .publications{
+  --card: rgba(255,255,255,.06);
+  --border: rgba(255,255,255,.10);
+  --ink: rgba(255,255,255,.92);
+  --muted: rgba(255,255,255,.70);
+  --shadow: 0 18px 55px rgba(0,0,0,.45);
+}
+
+html.dark .publications #bibsearch,
+body.dark .publications #bibsearch,
+html[data-theme="dark"] .publications #bibsearch,
+body[data-theme="dark"] .publications #bibsearch,
+[data-theme="dark"] .publications #bibsearch{
+  background: rgba(255,255,255,.06);
+  border-color: rgba(255,255,255,.12);
+  color: rgba(255,255,255,.88);
+}
+
+html.dark .publications .col.col-sm-2.abbr abbr.badge,
+body.dark .publications .col.col-sm-2.abbr abbr.badge,
+html[data-theme="dark"] .publications .col.col-sm-2.abbr abbr.badge,
+body[data-theme="dark"] .publications .col.col-sm-2.abbr abbr.badge,
+[data-theme="dark"] .publications .col.col-sm-2.abbr abbr.badge{
+  background: rgba(45,108,223,.14) !important;
+  border-color: rgba(45,108,223,.30) !important;
+  color: rgba(170,205,255,.95) !important;
+}
+
+html.dark .publications .links a.btn,
+body.dark .publications .links a.btn,
+html[data-theme="dark"] .publications .links a.btn,
+body[data-theme="dark"] .publications .links a.btn,
+[data-theme="dark"] .publications .links a.btn{
+  background: rgba(45,108,223,.14) !important;
+  border-color: rgba(45,108,223,.30) !important;
+  color: rgba(170,205,255,.95) !important;
+}
+html.dark .publications .links a.btn:hover,
+body.dark .publications .links a.btn:hover,
+html[data-theme="dark"] .publications .links a.btn:hover,
+body[data-theme="dark"] .publications .links a.btn:hover,
+[data-theme="dark"] .publications .links a.btn:hover{
+  background: rgba(45,108,223,.18) !important;
+  border-color: rgba(45,108,223,.42) !important;
+}
+
+/* ---------- Small screens: slightly tighter ---------- */
+@media (max-width: 520px){
+  .publications ol.bibliography > li{
+    padding: 52px 14px 14px 14px;
+  }
+  .publications .title{ font-size: 17px; }
+}
