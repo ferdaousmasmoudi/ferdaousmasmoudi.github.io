@@ -1,254 +1,324 @@
-
 /* =========================================================
-   Publications — Cards (NO timeline) — Badge on top of card
-   Drop-in overrides for al-folio / jekyll-scholar markup
-   File: assets/css/custom.css
+   Publications – Clean Cards (no timeline)
+   Works with al-folio / jekyll-scholar default HTML.
+   Targets:
+     .publications
+     ol.bibliography > li > .row
+     .col.col-sm-2.abbr > abbr.badge
+     .col-sm-8 (title/author/periodical/links)
    ========================================================= */
 
-.publications{
-  --accent: var(--global-theme-color, var(--accent-color, #2d6cdf));
-  --bg-soft: rgba(45,108,223,.10);
-  --card: rgba(255,255,255,.86);
-  --border: rgba(0,0,0,.08);
-  --ink: rgba(0,0,0,.86);
-  --muted: rgba(0,0,0,.62);
-  --shadow: 0 16px 44px rgba(0,0,0,.08);
-  --radius: 18px;
+/* ---------- Theme tokens (Light) ---------- */
+:root{
+  --pub-bg:
+    radial-gradient(1200px 650px at 18% 0%, rgba(45,108,223,.10), transparent 60%),
+    radial-gradient(900px 520px at 85% 22%, rgba(32,201,151,.10), transparent 55%),
+    linear-gradient(180deg, rgba(250,250,252,.92), rgba(255,255,255,.92));
+
+  --pub-surface: rgba(255,255,255,.86);
+  --pub-surface-2: rgba(255,255,255,.72);
+  --pub-border: rgba(0,0,0,.08);
+  --pub-divider: rgba(0,0,0,.06);
+
+  --pub-text: rgba(0,0,0,.86);
+  --pub-muted: rgba(0,0,0,.62);
+
+  --pub-blue: rgba(45,108,223,1);
+  --pub-blue-soft: rgba(45,108,223,.14);
+  --pub-green: rgba(32,201,151,1);
+
+  --pub-radius: 18px;
+  --pub-radius-sm: 14px;
+
+  --pub-shadow: 0 16px 55px rgba(0,0,0,.08);
+  --pub-shadow-card: 0 16px 44px rgba(0,0,0,.07);
 }
 
-/* ---------- Search input (kept simple) ---------- */
+/* ---------- Theme tokens (Dark) ---------- */
+html.dark,
+body.dark,
+html[data-theme="dark"],
+body[data-theme="dark"],
+[data-theme="dark"],
+.dark-mode,
+.theme-dark{
+  --pub-bg:
+    radial-gradient(900px 520px at 12% 0%, rgba(45,108,223,.26), transparent 70%),
+    radial-gradient(720px 420px at 88% 10%, rgba(32,201,151,.20), transparent 66%),
+    linear-gradient(180deg, rgba(16,18,23,.92), rgba(16,18,23,.92));
+
+  --pub-surface: rgba(255,255,255,.06);
+  --pub-surface-2: rgba(255,255,255,.04);
+  --pub-border: rgba(255,255,255,.10);
+  --pub-divider: rgba(255,255,255,.10);
+
+  --pub-text: rgba(255,255,255,.92);
+  --pub-muted: rgba(255,255,255,.72);
+
+  --pub-blue: rgba(131,171,255,1);
+  --pub-blue-soft: rgba(131,171,255,.16);
+
+  --pub-shadow: 0 18px 60px rgba(0,0,0,.48);
+  --pub-shadow-card: 0 16px 44px rgba(0,0,0,.35);
+}
+
+/* =========================================================
+   Page header area (title + subtitle)
+   ========================================================= */
+.post .post-header .post-title{
+  letter-spacing: -0.02em;
+  font-weight: 300;         /* close to screenshot */
+  color: var(--pub-text);
+}
+.post .post-header .post-description{
+  color: var(--pub-muted);
+}
+
+/* =========================================================
+   Publications container: soft panel background
+   ========================================================= */
+.publications{
+  background: var(--pub-bg);
+  border: 1px solid var(--pub-border);
+  border-radius: var(--pub-radius);
+  padding: 18px;
+  box-shadow: var(--pub-shadow);
+}
+
+/* =========================================================
+   Search box
+   ========================================================= */
 .publications #bibsearch{
   width: 100%;
-  max-width: 760px;
-  padding: 12px 14px;
   border-radius: 14px;
-  border: 1px solid rgba(0,0,0,.12);
-  background: rgba(255,255,255,.78);
-  box-shadow: 0 10px 28px rgba(0,0,0,.06);
+  border: 1px solid var(--pub-border);
+  background: var(--pub-surface);
+  color: var(--pub-text);
+  padding: 12px 14px;
   outline: none;
+  box-shadow: 0 10px 30px rgba(0,0,0,.06);
+  backdrop-filter: saturate(140%) blur(8px);
+  -webkit-backdrop-filter: saturate(140%) blur(8px);
 }
-.publications #bibsearch:focus{
-  border-color: color-mix(in srgb, var(--accent) 38%, rgba(0,0,0,.12));
-  box-shadow: 0 14px 34px rgba(0,0,0,.08);
+.publications #bibsearch::placeholder{
+  color: var(--pub-muted);
 }
 
-/* ---------- Remove list look ---------- */
+/* =========================================================
+   Section titles (Journal Articles, Conference Papers, ...)
+   ========================================================= */
+.publications > h2[id]{
+  margin-top: 18px;
+  padding-top: 8px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--pub-text);
+}
+
+/* Year headings like "2021" generated as: h2.bibliography */
+.publications h2.bibliography{
+  margin: 10px 0 8px 0;
+  font-weight: 600;
+  font-size: 16px;
+  color: rgba(0,0,0,.18);
+  text-align: right;
+}
+html.dark .publications h2.bibliography,
+body.dark .publications h2.bibliography,
+html[data-theme="dark"] .publications h2.bibliography,
+body[data-theme="dark"] .publications h2.bibliography,
+[data-theme="dark"] .publications h2.bibliography{
+  color: rgba(255,255,255,.18);
+}
+
+/* =========================================================
+   Bibliography list reset
+   ========================================================= */
 .publications ol.bibliography{
   list-style: none;
   margin: 0;
   padding: 0;
+  position: relative;
 }
-.publications ol.bibliography > li{
-  margin: 0 0 18px 0;
+.publications ol.bibliography li{
+  margin: 0 0 14px 0;
 }
 
-/* ---------- Make each entry a card ---------- */
-/* Your structure:
-   li > .row > .col.col-sm-2.abbr + #id.col-sm-8 + ...
-   We style the li itself as the card container. */
-.publications ol.bibliography > li{
-  position: relative;
-  border-radius: var(--radius);
-  border: 1px solid var(--border);
-  background: var(--card);
-  box-shadow: var(--shadow);
-  padding: 18px 18px 16px 18px;     /* base padding */
+/* =========================================================
+   Card layout (the <li> becomes the card)
+   ========================================================= */
+.publications ol.bibliography li{
+  border-radius: var(--pub-radius);
+  border: 1px solid var(--pub-border);
+  background: var(--pub-surface);
+  box-shadow: var(--pub-shadow-card);
+  padding: 14px 16px;
   backdrop-filter: saturate(140%) blur(8px);
   -webkit-backdrop-filter: saturate(140%) blur(8px);
 }
 
-/* We want more text density and to use the full width.
-   Prevent the bootstrap row from “eating” padding. */
-.publications ol.bibliography > li > .row{
+/* The internal Bootstrap row: remove gutter/negative margins */
+.publications ol.bibliography li .row{
   margin-left: 0;
   margin-right: 0;
-  align-items: flex-start;
-}
-
-/* Hide the old left column space and use it only as a "badge carrier" */
-.publications .col.col-sm-2.abbr{
-  /* keep it in DOM, but remove layout influence */
-  flex: 0 0 auto;
-  max-width: 0;
-  width: 0;
-  padding: 0 !important;
-  margin: 0 !important;
-}
-
-/* Make the main content column take the full width */
-.publications .col-sm-8{
-  flex: 1 1 auto;
-  max-width: 100%;
-  padding-left: 0 !important;
-  padding-right: 0 !important;
-}
-
-/* ---------- Badge (journal tag) as a top pill ---------- */
-/* The badge exists inside the .abbr column:
-   <abbr class="badge rounded w-100">J. Energy Storage</abbr>
-   We turn it into an absolute pill at the top-left of the card. */
-.publications .col.col-sm-2.abbr abbr.badge{
-  position: absolute;
-  top: 14px;
-  left: 14px;
-
-  display: inline-flex !important;
   align-items: center;
-  justify-content: center;
+}
 
-  /* KEY: auto width based on text (no clipping) */
-  width: auto !important;
-  max-width: calc(100% - 28px);
-  padding: 6px 12px !important;
+/* ===== Journal chip (badge) — clean pill ===== */
+.publications .col.col-sm-2.abbr{
+  /* on enlève l'effet “bulle” trop marqué */
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
 
+  /* garde l’alignement */
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  width: 92px !important;
+  min-width: 92px !important;
+  max-width: 92px !important;
+  padding: 0 !important;
+  margin-right: 14px !important;
+}
+
+/* le vrai chip */
+.publications .col.col-sm-2.abbr abbr.badge{
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  padding: 7px 12px !important;
   border-radius: 999px !important;
+
   font-size: 12px !important;
-  font-weight: 700 !important;
-  letter-spacing: 0.2px;
+  font-weight: 600 !important;
+  letter-spacing: 0 !important;
   line-height: 1 !important;
 
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-
+  /* style “référence” */
   background: rgba(45,108,223,.10) !important;
-  border: 1px solid rgba(45,108,223,.24) !important;
-  color: rgba(45,108,223,.92) !important;
+  border: 1px solid rgba(45,108,223,.28) !important;
+  color: rgba(45,108,223,.95) !important;
 
-  box-shadow: 0 10px 22px rgba(0,0,0,.08);
+  box-shadow: none !important; /* IMPORTANT: supprime le halo */
+  text-shadow: none !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  max-width: 86px !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
 }
 
-/* Add top padding to the card content so it doesn't collide with the badge */
-.publications ol.bibliography > li{
-  padding-top: 52px; /* space for the badge pill */
+/* Dark mode — chip lisible */
+html[data-theme="dark"] .publications .col.col-sm-2.abbr abbr.badge,
+body[data-theme="dark"] .publications .col.col-sm-2.abbr abbr.badge{
+  background: rgba(131,171,255,.16) !important;
+  border-color: rgba(131,171,255,.34) !important;
+  color: rgba(231,238,255,.95) !important;
 }
 
-/* ---------- Typography: make everything larger & better used ---------- */
+/* =========================================================
+   Main content column (title/author/venue)
+   ========================================================= */
+.publications .col-sm-8{
+  padding-left: 0;
+  padding-right: 0;
+  min-width: 0; /* allow ellipsis */
+}
+
+/* Title */
 .publications .title{
-  color: var(--ink);
-  font-size: 18px;
-  font-weight: 750;
+  font-size: 15px;
   line-height: 1.35;
-  margin: 0 0 8px 0;
+  font-weight: 500;
+  color: var(--pub-text);
 }
 
+/* Authors */
 .publications .author{
-  color: color-mix(in srgb, var(--ink) 85%, var(--muted));
-  font-size: 14px;
-  font-weight: 650;
-  line-height: 1.35;
-  margin: 0 0 6px 0;
+  margin-top: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--pub-text);
+  opacity: .90;
 }
 
+/* Periodical line */
 .publications .periodical{
-  color: var(--muted);
-  font-size: 13.5px;
-  line-height: 1.35;
-  margin: 0;
+  margin-top: 4px;
+  font-size: 12px;
+  color: var(--pub-muted);
 }
 .publications .periodical em{
-  color: color-mix(in srgb, var(--accent) 75%, var(--muted));
   font-style: italic;
+  color: var(--pub-blue);
+}
+html.dark .publications .periodical em,
+body.dark .publications .periodical em,
+html[data-theme="dark"] .publications .periodical em,
+body[data-theme="dark"] .publications .periodical em,
+[data-theme="dark"] .publications .periodical em{
+  color: rgba(131,171,255,.95);
 }
 
-/* Links zone spacing */
-.publications .links{
-  margin-top: 10px;
-}
-
-/* ---------- DOI button: pill, consistent light/dark ---------- */
-/* Your DOI is: <a class="btn btn-sm z-depth-0">DOI</a> */
+/* ===== DOI button — blue pill ===== */
 .publications .links a.btn{
   display: inline-flex !important;
-  align-items: center;
-  justify-content: center;
+  align-items: center !important;
+  justify-content: center !important;
 
   padding: 6px 12px !important;
   border-radius: 999px !important;
 
   font-size: 12px !important;
-  font-weight: 750 !important;
+  font-weight: 600 !important;
   line-height: 1 !important;
-  text-transform: none !important;
-  letter-spacing: 0.2px;
 
   background: rgba(45,108,223,.10) !important;
   border: 1px solid rgba(45,108,223,.28) !important;
   color: rgba(45,108,223,.95) !important;
 
-  box-shadow: none !important;
+  box-shadow: none !important;   /* enlève le style “button bootstrap” */
+  text-transform: none !important;
 }
+
 .publications .links a.btn:hover{
   background: rgba(45,108,223,.14) !important;
   border-color: rgba(45,108,223,.40) !important;
-  transform: translateY(-1px);
 }
 
-/* ---------- Year headings keep subtle ---------- */
-.publications h2.bibliography{
-  opacity: .28;
-  font-weight: 700;
-  letter-spacing: .2px;
-  margin: 18px 0 10px 0;
+/* Dark mode — DOI vraiment différent */
+html[data-theme="dark"] .publications .links a.btn,
+body[data-theme="dark"] .publications .links a.btn{
+  background: rgba(131,171,255,.16) !important;
+  border-color: rgba(131,171,255,.36) !important;
+  color: rgba(231,238,255,.95) !important;
 }
 
 /* =========================================================
-   Dark mode — keep same geometry, better contrast
+   Mobile: stack the chip above content nicely
    ========================================================= */
-html.dark .publications,
-body.dark .publications,
-html[data-theme="dark"] .publications,
-body[data-theme="dark"] .publications,
-[data-theme="dark"] .publications{
-  --card: rgba(255,255,255,.06);
-  --border: rgba(255,255,255,.10);
-  --ink: rgba(255,255,255,.92);
-  --muted: rgba(255,255,255,.70);
-  --shadow: 0 18px 55px rgba(0,0,0,.45);
-}
-
-html.dark .publications #bibsearch,
-body.dark .publications #bibsearch,
-html[data-theme="dark"] .publications #bibsearch,
-body[data-theme="dark"] .publications #bibsearch,
-[data-theme="dark"] .publications #bibsearch{
-  background: rgba(255,255,255,.06);
-  border-color: rgba(255,255,255,.12);
-  color: rgba(255,255,255,.88);
-}
-
-html.dark .publications .col.col-sm-2.abbr abbr.badge,
-body.dark .publications .col.col-sm-2.abbr abbr.badge,
-html[data-theme="dark"] .publications .col.col-sm-2.abbr abbr.badge,
-body[data-theme="dark"] .publications .col.col-sm-2.abbr abbr.badge,
-[data-theme="dark"] .publications .col.col-sm-2.abbr abbr.badge{
-  background: rgba(45,108,223,.14) !important;
-  border-color: rgba(45,108,223,.30) !important;
-  color: rgba(170,205,255,.95) !important;
-}
-
-html.dark .publications .links a.btn,
-body.dark .publications .links a.btn,
-html[data-theme="dark"] .publications .links a.btn,
-body[data-theme="dark"] .publications .links a.btn,
-[data-theme="dark"] .publications .links a.btn{
-  background: rgba(45,108,223,.14) !important;
-  border-color: rgba(45,108,223,.30) !important;
-  color: rgba(170,205,255,.95) !important;
-}
-html.dark .publications .links a.btn:hover,
-body.dark .publications .links a.btn:hover,
-html[data-theme="dark"] .publications .links a.btn:hover,
-body[data-theme="dark"] .publications .links a.btn:hover,
-[data-theme="dark"] .publications .links a.btn:hover{
-  background: rgba(45,108,223,.18) !important;
-  border-color: rgba(45,108,223,.42) !important;
-}
-
-/* ---------- Small screens: slightly tighter ---------- */
-@media (max-width: 520px){
-  .publications ol.bibliography > li{
-    padding: 52px 14px 14px 14px;
+@media (max-width: 576px){
+  .publications ol.bibliography li{
+    padding: 14px 14px;
   }
-  .publications .title{ font-size: 17px; }
+
+  .publications .col.col-sm-2.abbr{
+    width: auto;
+    min-width: 0;
+    max-width: none;
+    height: auto;
+    padding: 8px 10px;
+    margin-right: 0;
+    margin-bottom: 10px;
+    justify-content: flex-start;
+  }
+
+  .publications .col.col-sm-2.abbr abbr.badge{
+    max-width: 100%;
+  }
 }
