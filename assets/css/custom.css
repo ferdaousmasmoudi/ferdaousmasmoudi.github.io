@@ -316,92 +316,27 @@ html[data-theme="dark"] .publications .links a.btn,
   .publications .author{ font-size: 13px !important; }
   .publications .periodical{ font-size: 12.5px !important; }
 }
+
 /* =========================================================
-   Publications — SAFE patch (keeps Bootstrap grid)
-   Goal: tag on top of card + better typography, without breaking layout
-   Paste at END of custom.css
+   Publications – STABLE clean improvement
+   No layout breaking.
    ========================================================= */
 
-/* Card: give room for the top tag */
+/* Card spacing */
 .publications ol.bibliography li{
-  position: relative !important;
-  padding-top: 46px !important;   /* space reserved for the tag */
+  padding: 20px 22px !important;
+  border-radius: 18px !important;
 }
 
-/* IMPORTANT: keep bootstrap row behavior (do NOT override to block) */
-.publications ol.bibliography li .row{
-  display: flex !important;
-  flex-wrap: nowrap !important;
-  align-items: flex-start !important;
-}
-
-/* Make the left column not consume space, but still allow the badge to exist */
-.publications .col.col-sm-2.abbr{
-  flex: 0 0 auto !important;
-  width: 0 !important;          /* key: frees space for content */
-  min-width: 0 !important;
-  max-width: 0 !important;
-  padding: 0 !important;
-  margin: 0 !important;
-  overflow: visible !important; /* let absolute badge show */
-}
-
-/* Journal tag pinned top-left, with auto width (no cut) */
-.publications .col.col-sm-2.abbr abbr.badge{
-  position: absolute !important;
-  top: 14px !important;
-  left: 16px !important;
-  z-index: 3 !important;
-
-  width: auto !important;       /* overrides w-100 */
-  max-width: calc(100% - 32px) !important;
-
-  padding: 7px 14px !important;
-  border-radius: 999px !important;
-
-  font-size: 12px !important;
-  font-weight: 600 !important;
-  line-height: 1 !important;
-
-  white-space: nowrap !important;
-  overflow: hidden !important;
-  text-overflow: ellipsis !important;
-
-  background: rgba(45,108,223,.10) !important;
-  border: 1px solid rgba(45,108,223,.28) !important;
-  color: rgba(45,108,223,.95) !important;
-
-  box-shadow: 0 12px 28px rgba(45,108,223,.10) !important;
-}
-
-/* Dark mode tag */
-html[data-theme="dark"] .publications .col.col-sm-2.abbr abbr.badge,
-body[data-theme="dark"] .publications .col.col-sm-2.abbr abbr.badge,
-[data-theme="dark"] .publications .col.col-sm-2.abbr abbr.badge{
-  background: rgba(131,171,255,.16) !important;
-  border-color: rgba(131,171,255,.34) !important;
-  color: rgba(231,238,255,.95) !important;
-  box-shadow: 0 14px 30px rgba(0,0,0,.28) !important;
-}
-
-/* Content column should occupy full width now */
-.publications .col-sm-8{
-  flex: 1 1 auto !important;
-  max-width: 100% !important;
-  padding-left: 0 !important;
-  padding-right: 0 !important;
-  min-width: 0 !important;
-}
-
-/* Typography: bigger + better use of space */
+/* Improve vertical rhythm */
 .publications .title{
   font-size: 18px !important;
-  line-height: 1.32 !important;
+  line-height: 1.35 !important;
   font-weight: 500 !important;
 }
 
 .publications .author{
-  margin-top: 10px !important;
+  margin-top: 8px !important;
   font-size: 13px !important;
   font-weight: 600 !important;
 }
@@ -411,9 +346,25 @@ body[data-theme="dark"] .publications .col.col-sm-2.abbr abbr.badge,
   font-size: 13px !important;
 }
 
-/* DOI button: keep as pill, slightly larger */
+/* Clean badge (without moving it) */
+.publications .col.col-sm-2.abbr abbr.badge{
+  width: auto !important;        /* override w-100 safely */
+  padding: 6px 12px !important;
+  border-radius: 999px !important;
+
+  font-size: 12px !important;
+  font-weight: 600 !important;
+
+  background: rgba(45,108,223,.10) !important;
+  border: 1px solid rgba(45,108,223,.28) !important;
+  color: rgba(45,108,223,.95) !important;
+
+  box-shadow: none !important;
+}
+
+/* DOI button cleaner */
 .publications .links a.btn{
-  padding: 7px 13px !important;
+  padding: 6px 12px !important;
   border-radius: 999px !important;
   font-size: 12px !important;
   font-weight: 600 !important;
