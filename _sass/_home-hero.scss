@@ -421,7 +421,7 @@ body[data-theme="dark"] .home-hero,
 
 /* MEDIA: placeholder instead of image */
 .core-contrib .cc-media{
-  height: 160px;
+  height: 140px;
   background: rgba(45,108,223,0.08);
   border-bottom: 1px solid rgba(0,0,0,0.06);
   display: flex;
@@ -431,7 +431,7 @@ body[data-theme="dark"] .home-hero,
 
 .core-contrib .cc-media-placeholder{
   font-weight: 700;
-  font-size: 15px;
+  font-size: 19px;
   color: rgba(31,75,153,0.85);
   letter-spacing: 0.2px;
 }
@@ -507,4 +507,13 @@ body.dark .core-contrib .cc-media-placeholder,
 /* Core contribs should align with left column content */
 .home-hero-grid > div:first-child .core-contrib{
   margin-top: 18px;
+}
+.core-contrib h2{
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-bottom: 6px;
+  color: var(--global-text-color);
+  border-left: 4px solid var(--global-theme-color);
+  padding-left: 10px;
 }
