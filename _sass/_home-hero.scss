@@ -482,3 +482,32 @@ body[data-theme="dark"] .home-hero,
 @media (max-width: 980px){
   .core-contrib .cc-card{ grid-column: span 12; }
 }
+.core-contrib .cc-grid{
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr)); /* 2 colonnes */
+  gap: 16px;
+}
+
+@media (max-width: 900px){
+  .core-contrib .cc-grid{
+    grid-template-columns: 1fr; /* 1 colonne sur mobile */
+  }
+}
+
+/* Bouton "View Project" */
+.core-contrib .cc-btn{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 12px;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: 700;
+  border: 1px solid color-mix(in srgb, var(--accent) 25%, var(--border));
+  background: color-mix(in srgb, var(--accent) 10%, transparent);
+  color: color-mix(in srgb, var(--accent) 80%, #000);
+}
+
+.core-contrib .cc-btn:hover{
+  transform: translateY(-1px);
+}
