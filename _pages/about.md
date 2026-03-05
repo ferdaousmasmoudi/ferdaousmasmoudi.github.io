@@ -109,128 +109,80 @@ social: true
     </div>
   </div>
 
- <section class="core-contrib"> 
-    <div class="cc-head">
-      <h2 class="cc-title">Core Research Contributions</h2>
-      <p class="cc-subtitle">
-        Optimization-driven photovoltaic energy system: modeling → tracking → conversion → experimental validation.
-      </p>
-    </div>
-  
-    <div class="cc-grid">
-      <!-- 1) PV Modeling -->
-      <article class="cc-card">
-        <div class="cc-media">
-          <img
-            src="/assets/img/thesis/ch5_pv_model_iv.png"
-            alt="PV equivalent circuit and I–V curves comparison"
-            loading="lazy"
-          />
-        </div>
-        <div class="cc-body">
-          <h3 class="cc-h3">1) PV Modeling & Parameter Identification (Optimization)</h3>
-          <p class="cc-text">
-            Nonlinear PV modeling using equivalent circuits, with parameter estimation formulated as an optimization problem
-            to fit I–V characteristics under varying irradiance and temperature.
-          </p>
-          <ul class="cc-list">
-            <li>Equivalent-circuit PV models (module/cell level)</li>
-            <li>Parameter identification via optimization criteria (error minimization)</li>
-            <li>Validation against experimental or reference I–V curves</li>
-          </ul>
-          <div class="cc-tags">
-            <span class="cc-tag">Nonlinear modeling</span>
-            <span class="cc-tag">Identification</span>
-            <span class="cc-tag">Optimization</span>
-          </div>
-        </div>
-      </article>
-  
-      <!-- 2) Solar Tracking -->
-      <article class="cc-card">
-        <div class="cc-media">
-          <img
-            src="/assets/img/thesis/ch5_tracker_proto.png"
-            alt="Dual-axis solar tracker prototype"
-            loading="lazy"
-          />
-        </div>
-        <div class="cc-body">
-          <h3 class="cc-h3">2) Dual-Axis Solar Tracking (Energy Yield Optimization)</h3>
-          <p class="cc-text">
-            Design and implementation of a dual-axis tracking mechanism driven by solar trajectory estimation to maximize
-            incident irradiance and harvested energy.
-          </p>
-          <ul class="cc-list">
-            <li>Mechanical structure + sensors + embedded control</li>
-            <li>Open-loop trajectory tracking (sun path)</li>
-            <li>Experimental measurements and tracking variables logging</li>
-          </ul>
-          <div class="cc-tags">
-            <span class="cc-tag">Mechatronics</span>
-            <span class="cc-tag">Tracking</span>
-            <span class="cc-tag">Embedded</span>
-          </div>
-        </div>
-      </article>
-  
-      <!-- 3) MPPT + Boost -->
-      <article class="cc-card">
-        <div class="cc-media">
-          <img
-            src="/assets/img/thesis/ch5_boost_mppt.png"
-            alt="Boost converter and MPPT control"
-            loading="lazy"
-          />
-        </div>
-        <div class="cc-body">
-          <h3 class="cc-h3">3) PV Power Conversion & MPPT Control (Efficiency Optimization)</h3>
-          <p class="cc-text">
-            Design of a DC–DC Boost stage and control strategy (MPPT) to operate the PV generator near its maximum power
-            point and transfer energy efficiently to storage/load.
-          </p>
-          <ul class="cc-list">
-            <li>Boost sizing + power stage implementation</li>
-            <li>MPPT strategy integrated in embedded controller</li>
-            <li>Oscilloscope validation: Vgs, Vpv, Vds, Vs</li>
-          </ul>
-          <div class="cc-tags">
-            <span class="cc-tag">Power electronics</span>
-            <span class="cc-tag">MPPT</span>
-            <span class="cc-tag">Efficiency</span>
-          </div>
-        </div>
-      </article>
-  
-      <!-- 4) Experimental Platform + Cloud -->
-      <article class="cc-card">
-        <div class="cc-media">
-          <img
-            src="/assets/img/thesis/ch5_cloud_monitoring.png"
-            alt="Cloud-based monitoring and data acquisition architecture"
-            loading="lazy"
-          />
-        </div>
-        <div class="cc-body">
-          <h3 class="cc-h3">4) Experimental Validation & Remote Monitoring (System Optimization)</h3>
-          <p class="cc-text">
-            Full prototype validation with real outdoor tests, real-time data acquisition, and cloud-based monitoring for
-            analysis, supervision, and dataset building.
-          </p>
-          <ul class="cc-list">
-            <li>Sensor acquisition layer + embedded computing</li>
-            <li>Remote supervision (web service / cloud logging)</li>
-            <li>Experimental dataset used to confirm simulation trends</li>
-          </ul>
-          <div class="cc-tags">
-            <span class="cc-tag">Experimental</span>
-            <span class="cc-tag">Cloud</span>
-            <span class="cc-tag">Data</span>
-          </div>
-        </div>
-      </article>
-    </div>
- </section> 
+<section class="core-contrib">
+
+  <div class="cc-head">
+    <h2 class="cc-title">Core Research Contributions</h2>
+    <p class="cc-subtitle">
+      Optimization-driven photovoltaic energy system: modeling → tracking → conversion → experimental validation.
+    </p>
+  </div>
+
+  <div class="cc-grid">
+
+    <!-- CARD 1 -->
+    <article class="cc-card">
+      <div class="cc-media">
+        <!-- Placeholder (tu mettras l'image après) -->
+        <div class="cc-media-placeholder">PV Modeling</div>
+      </div>
+
+      <div class="cc-body">
+        <h3 class="cc-h3">PV Modeling & Parameter Identification</h3>
+        <p class="cc-text">
+          Nonlinear PV modeling using equivalent circuits, with parameter estimation formulated as an optimization problem.
+        </p>
+        <a class="cc-link" href="{{ '/projects/' | relative_url }}">View Project →</a>
+      </div>
+    </article>
+
+    <!-- CARD 2 -->
+    <article class="cc-card">
+      <div class="cc-media">
+        <div class="cc-media-placeholder">Solar Tracking</div>
+      </div>
+
+      <div class="cc-body">
+        <h3 class="cc-h3">Dual-Axis Solar Tracking</h3>
+        <p class="cc-text">
+          Design and implementation of a dual-axis tracking mechanism driven by solar trajectory estimation to maximize yield.
+        </p>
+        <a class="cc-link" href="{{ '/projects/' | relative_url }}">View Project →</a>
+      </div>
+    </article>
+
+    <!-- CARD 3 -->
+    <article class="cc-card">
+      <div class="cc-media">
+        <div class="cc-media-placeholder">MPPT & Boost</div>
+      </div>
+
+      <div class="cc-body">
+        <h3 class="cc-h3">MPPT Control & Power Conversion</h3>
+        <p class="cc-text">
+          DC–DC boost design and MPPT control strategy to operate the PV generator near its maximum power point.
+        </p>
+        <a class="cc-link" href="{{ '/projects/' | relative_url }}">View Project →</a>
+      </div>
+    </article>
+
+    <!-- CARD 4 -->
+    <article class="cc-card">
+      <div class="cc-media">
+        <div class="cc-media-placeholder">Cloud Monitoring</div>
+      </div>
+
+      <div class="cc-body">
+        <h3 class="cc-h3">Experimental Validation & Remote Monitoring</h3>
+        <p class="cc-text">
+          Outdoor experiments with real-time data acquisition and cloud supervision for analysis and dataset building.
+        </p>
+        <a class="cc-link" href="{{ '/projects/' | relative_url }}">View Project →</a>
+      </div>
+    </article>
+
+  </div>
+</section>
   <!-- =========================
        FULL CONTENT INSIDE CARD
        ========================= -->
