@@ -61,7 +61,7 @@ social: true
            Research Projects
            </a>
       </div>
-    </div>
+    
 
     <section class="core-contrib">
     
@@ -137,7 +137,7 @@ social: true
     
       </div>
     </section>
-
+</div>
     <div>
       <div class="home-photo">
         <img src="{{ '/assets/img/ferdaous.png' | relative_url }}" alt="Ferdaous Masmoudi">
