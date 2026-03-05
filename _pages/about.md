@@ -109,7 +109,7 @@ social: true
     </div>
   </div>
 
-  
+ <section class="core-contrib"> 
     <div class="cc-head">
       <h2 class="cc-title">Core Research Contributions</h2>
       <p class="cc-subtitle">
@@ -230,7 +230,7 @@ social: true
         </div>
       </article>
     </div>
-  
+ </section> 
   <!-- =========================
        FULL CONTENT INSIDE CARD
        ========================= -->
