@@ -93,9 +93,9 @@ social: true
           </p>
       
           <ul class="cc-list">
-            <li>Single-, double-, and multi-diode PV models</li>
-            <li>Parameter identification from I–V measurements</li>
-            <li>Module behavior under shading and mismatch</li>
+            <li>Nonlinear Modeling :Single-double-multi-diode solar cell</li>
+            <li>Optimization: Parameters identification from I–V measurements</li>
+            <li>PV Module: cell's associations and behavior under shading and mismatch</li>
           </ul>
       
           <div class="cc-tags">
@@ -104,7 +104,7 @@ social: true
             <span class="cc-tag">PV Systems</span>
           </div>
       
-          <a class="cc-link" href="{{ '/research-projects/pv-modeling/' | relative_url }}">
+          <a class="cc-link" href="{{ '/projects/pv-modeling/' | relative_url }}">
             Read More →
           </a>
       
