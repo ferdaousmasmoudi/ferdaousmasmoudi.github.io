@@ -107,18 +107,36 @@ social: true
         </div>
         </article>
     
+
         <!-- CARD 2 -->
         <article class="cc-card">
+        
           <div class="cc-media">
-            <div class="cc-media-placeholder">Solar Tracking</div>
+            <img src="assets/img/solar-tracking.jpg"
+                 alt="Solar tracking and energy yield optimization"
+                 class="cc-img">
           </div>
-    
+        
           <div class="cc-body">
-            <h3 class="cc-h3">Dual-Axis Solar Tracking</h3>
+        
+            <h3 class="cc-h3">
+              Solar Tracking & Energy Yield Optimization
+            </h3>
+        
             <p class="cc-text">
-              Design and implementation of a dual-axis tracking mechanism driven by solar trajectory estimation to maximize yield.
+              Development of solar trajectory estimation algorithms and photovoltaic energy yield analysis for fixed and tracking systems. The work integrates solar position computation, irradiance estimation, and the design of a dual-axis solar tracking platform validated through simulation and experimental implementation.
             </p>
-            <a class="cc-link" href="{{ '/projects/' | relative_url }}">View Project →</a>
+        
+            <ul class="cc-list">
+              <li><strong>Solar Trajectory Modeling:</strong> solar position estimation using SPA and SOLPOS algorithms</li>
+              <li><strong>Energy Yield Analysis:</strong> comparison of fixed, single-axis, and dual-axis photovoltaic tracking strategies</li>
+              <li><strong>Dual-Axis Tracker Design:</strong> embedded mechatronic implementation for autonomous solar orientation</li>
+            </ul>
+        
+            <a class="cc-link" href="{{ '/projects/solar-tracking/' | relative_url }}">
+              Read More →
+            </a>
+        
           </div>
         </article>
     
