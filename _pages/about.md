@@ -78,8 +78,9 @@ social: true
         <!-- CARD 1 -->
         <article class="cc-card">
           <div class="cc-media">
-            <!-- Placeholder (tu mettras l'image après) -->
-            <div class="cc-media-placeholder">PV Modeling</div>
+            <img src="assets/img/PV Modeling Parameter Optimization.jpg"
+             alt="PV modeling and parameter optimization"
+             class="cc-img">
           </div>
     
           <div class="cc-body">
