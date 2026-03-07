@@ -68,7 +68,8 @@ social: true
       <div class="cc-head">
         <h2 class="cc-title">Core Research Contributions</h2>
         <p class="cc-subtitle">
-          Optimization-driven photovoltaic energy system: modeling → tracking → conversion → experimental validation.
+          Optimization-driven photovoltaic energy system: 
+          modeling → tracking → power conversion → experimental validation.
         </p>
       </div>
     
