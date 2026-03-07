@@ -427,7 +427,7 @@ body[data-theme="dark"] .home-hero,
   border-bottom: 1px solid rgba(0,0,0,0.06);
   border-radius: 12px 12px 0 0;
   background: linear-gradient(180deg,#f4f7fb,#eef3f9);
-  padding: 10px;
+  padding: 12px;
 }
 
 .core-contrib .cc-media img{
@@ -451,7 +451,7 @@ body[data-theme="dark"] .home-hero,
   content:"";
   position:absolute;
   inset:0;
-  background: rgba(45,108,223,0.10);
+  background: rgba(45,108,223,0.07);
   pointer-events:none;
   
 }
@@ -461,17 +461,17 @@ body[data-theme="dark"] .home-hero,
 }
 
 .core-contrib .cc-h3{
-  margin: 0 0 10px;
-  font-size: 18px;
+  margin: 0 0 8px;
+  font-size: 16px;
   line-height: 1.25;
-  color: rgba(0,0,0,0.86);
+  color: rgba(0,0,0,0.88);
 }
 
 .core-contrib .cc-text{
-  margin: 0 0 14px;
-  font-size: 14px;
-  line-height: 1.55;
-  color: rgba(0,0,0,0.62);
+  margin: 0 0 10px;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: rgba(0,0,0,0.58);
 }
 
 /* Link like "View Project" */
@@ -479,7 +479,8 @@ body[data-theme="dark"] .home-hero,
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  font-weight: 700;
+  font-size: 13px;
+  font-weight: 600;
   text-decoration: none;
   color: #2d6cdf;
 }
@@ -487,7 +488,17 @@ body[data-theme="dark"] .home-hero,
 .core-contrib .cc-link:hover{
   text-decoration: underline;
 }
+.core-contrib .cc-list{
+  margin: 0 0 10px;
+  padding-left: 16px;
+  font-size: 12.5px;
+  line-height: 1.45;
+  color: rgba(0,0,0,0.72);
+}
 
+.core-contrib .cc-list li{
+  margin-bottom: 4px;
+}
 /* DARK MODE */
 html.dark .core-contrib .cc-card,
 body.dark .core-contrib .cc-card,
