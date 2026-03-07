@@ -93,16 +93,11 @@ social: true
           </p>
       
           <ul class="cc-list">
-            <li>Nonlinear Modeling :Single-double-multi-diode solar cell</li>
-            <li>Optimization: Parameters identification from I–V measurements</li>
-            <li>PV Module: cell's associations and behavior under shading and mismatch</li>
+          <li><strong>Nonlinear Modeling:</strong> single-, double- and multi-diode PV cell models</li>
+          <li><strong>Optimization:</strong> parameter identification from experimental I–V curves</li>
+          <li><strong>PV Modules:</strong> cell interconnections and behavior under shading and mismatch</li>
           </ul>
       
-          <div class="cc-tags">
-            <span class="cc-tag">Nonlinear Modeling</span>
-            <span class="cc-tag">Optimization</span>
-            <span class="cc-tag">PV Systems</span>
-          </div>
       
           <a class="cc-link" href="{{ '/projects/pv-modeling/' | relative_url }}">
             Read More →
