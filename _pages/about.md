@@ -83,12 +83,32 @@ social: true
           </div>
     
           <div class="cc-body">
-            <h3 class="cc-h3">PV Modeling & Parameter Identification</h3>
-            <p class="cc-text">
-              Nonlinear PV modeling using equivalent circuits, with parameter estimation formulated as an optimization problem.
-            </p>
-            <a class="cc-link" href="{{ '/projects/' | relative_url }}">View Project →</a>
+      
+          <h3 class="cc-h3">
+            PV Modeling & Parameter Optimization
+          </h3>
+      
+          <p class="cc-text">
+            Development of nonlinear equivalent-circuit models for photovoltaic cells and modules, with parameter identification formulated as an optimization problem to reproduce experimental I–V characteristics under varying irradiance and temperature conditions.
+          </p>
+      
+          <ul class="cc-list">
+            <li>Single-, double-, and multi-diode PV models</li>
+            <li>Parameter identification from I–V measurements</li>
+            <li>Module behavior under shading and mismatch</li>
+          </ul>
+      
+          <div class="cc-tags">
+            <span class="cc-tag">Nonlinear Modeling</span>
+            <span class="cc-tag">Optimization</span>
+            <span class="cc-tag">PV Systems</span>
           </div>
+      
+          <a class="cc-link" href="{{ '/research-projects/pv-modeling/' | relative_url }}">
+            Read More →
+          </a>
+      
+        </div>
         </article>
     
         <!-- CARD 2 -->
