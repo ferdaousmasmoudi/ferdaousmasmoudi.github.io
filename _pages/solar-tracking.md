@@ -1,10 +1,9 @@
 ---
 layout: page
 title: Solar Tracking & Energy Yield Optimization
+permalink: /projects/solar-tracking/
 description: Solar trajectory estimation, PV yield simulation and dual-axis solar tracking system
-img: assets/img/solar-tracking.jpg
-importance: 2
-category: research
+nav: false
 ---
 
 ## Overview
