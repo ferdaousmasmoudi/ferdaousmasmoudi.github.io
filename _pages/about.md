@@ -140,18 +140,36 @@ social: true
           </div>
         </article>
     
+        
         <!-- CARD 3 -->
         <article class="cc-card">
+        
           <div class="cc-media">
-            <div class="cc-media-placeholder">MPPT & Boost</div>
+            <img src="{{ '/assets/img/pv-mppt-converter.jpg' | relative_url }}"
+                 alt="PV energy conversion and MPPT control"
+                 class="cc-img">
           </div>
-    
+        
           <div class="cc-body">
-            <h3 class="cc-h3">MPPT Control & Power Conversion</h3>
+        
+            <h3 class="cc-h3">
+              PV Energy Conversion & MPPT Control
+            </h3>
+        
             <p class="cc-text">
-              DC–DC boost design and MPPT control strategy to operate the PV generator near its maximum power point.
+              Design and modeling of an autonomous photovoltaic energy conversion chain integrating DC–DC boost conversion, battery storage, and maximum power point tracking. The system combines photovoltaic source modeling, converter synthesis, and MPPT control to optimize energy extraction from solar modules.
             </p>
-            <a class="cc-link" href="{{ '/projects/' | relative_url }}">View Project →</a>
+        
+            <ul class="cc-list">
+              <li><strong>Power Electronics Design:</strong> synthesis of a DC–DC boost converter operating in continuous conduction mode</li>
+              <li><strong>Battery Storage Modeling:</strong> parameter identification of lead-acid battery dynamics</li>
+              <li><strong>MPPT Control Strategy:</strong> Perturb-and-Observe algorithm for maximum power extraction</li>
+            </ul>
+        
+            <a class="cc-link" href="{{ '/projects/pv-energy-conversion/' | relative_url }}">
+              Read More →
+            </a>
+        
           </div>
         </article>
     
