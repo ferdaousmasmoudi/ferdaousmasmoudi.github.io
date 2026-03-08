@@ -173,19 +173,38 @@ social: true
           </div>
         </article>
     
+        
         <!-- CARD 4 -->
         <article class="cc-card">
+        
           <div class="cc-media">
-            <div class="cc-media-placeholder">Cloud Monitoring</div>
+            <img src="{{ '/assets/img/pv-iot-monitoring.jpg' | relative_url }}"
+                 alt="Embedded PV monitoring and IoT supervision"
+                 class="cc-img">
           </div>
-    
+        
           <div class="cc-body">
-            <h3 class="cc-h3">Experimental Validation & Remote Monitoring</h3>
+        
+            <h3 class="cc-h3">
+              Cloud Monitoring & IoT Supervision
+            </h3>
+        
             <p class="cc-text">
-              Outdoor experiments with real-time data acquisition and cloud supervision for analysis and dataset building.
+              Development of an embedded monitoring architecture for photovoltaic energy systems integrating multi-sensor acquisition, edge processing, and cloud-based supervision for real-time performance monitoring.
             </p>
-            <a class="cc-link" href="{{ '/projects/' | relative_url }}">View Project →</a>
+        
+            <ul class="cc-list">
+              <li><strong>Embedded Monitoring:</strong> multi-sensor acquisition using Arduino-based controllers</li>
+              <li><strong>Edge Processing:</strong> Raspberry Pi supervision for real-time data aggregation</li>
+              <li><strong>Cloud Supervision:</strong> IoT platform for remote visualization and diagnostics</li>
+            </ul>
+        
+            <a class="cc-link" href="{{ '/projects/pv-iot-monitoring/' | relative_url }}">
+              Read More →
+            </a>
+        
           </div>
+        
         </article>
     
       </div>
