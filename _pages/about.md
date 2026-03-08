@@ -145,7 +145,7 @@ social: true
         <article class="cc-card">
         
           <div class="cc-media">
-            <img src="{{ 'pv-energy-conversion-cover.jpg' | relative_url }}"
+            <img src="{{ 'assets/img/pv-energy-conversion-cover.jpg' | relative_url }}"
                  alt="PV energy conversion and MPPT control"
                  class="cc-img">
           </div>
