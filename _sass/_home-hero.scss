@@ -366,116 +366,116 @@ body[data-theme="dark"] .home-hero,
   }
 }
 /* =========================
-   Core Research Contributions — Cards 2x2
-   (image placeholder for now)
+   Core Research Contributions
    ========================= */
 
-.core-contrib{
+.core-contrib {
   margin: 34px 0 10px;
 }
 
-.core-contrib .cc-head{
+.core-contrib .cc-head {
   margin: 0 0 18px;
 }
 
-.core-contrib .cc-title{
+.core-contrib .cc-title {
   margin: 0 0 6px;
   font-size: 26px;
   letter-spacing: -0.02em;
   color: var(--hero-text);
 }
 
-.core-contrib .cc-subtitle{
+.core-contrib .cc-subtitle {
   margin: 0;
   color: var(--hero-muted);
   line-height: 1.55;
 }
 
-/* GRID = 2x2 */
-.core-contrib .cc-grid{
+/* GRID */
+.core-contrib .cc-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 18px;
 }
 
-@media (max-width: 900px){
-  .core-contrib .cc-grid{
+@media (max-width: 900px) {
+  .core-contrib .cc-grid {
     grid-template-columns: 1fr;
   }
 }
 
 /* CARD */
-.core-contrib .cc-card{
-  background: rgba(255,255,255,0.85);
-  border: 1px solid rgba(0,0,0,0.08);
+.core-contrib .cc-card {
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid rgba(0, 0, 0, 0.08);
   border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 10px 26px rgba(0,0,0,0.08);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.08);
   transition: transform 160ms ease, box-shadow 160ms ease;
 }
 
-.core-contrib .cc-card:hover{
+.core-contrib .cc-card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 18px 40px rgba(0,0,0,0.10);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.10);
 }
 
-/* MEDIA: placeholder instead of image */
-.core-contrib .cc-media{
-  position: relative;
-  height: 170px;
+/* MEDIA */
+.core-contrib .cc-media {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 205px;
+  max-height: 205px;
+  padding: 6px;
   overflow: hidden;
-  border-bottom: 1px solid rgba(0,0,0,0.06);
-  border-radius: 12px 12px 0 0;
-  background: linear-gradient(180deg,#f4f7fb,#eef3f9);
-  padding: 12px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  background:
+    linear-gradient(180deg, rgba(248, 250, 253, 0.98), rgba(242, 246, 251, 0.98));
 }
 
-.core-contrib .cc-media img{
+.core-contrib .cc-media img,
+.core-contrib .cc-img {
+  display: block;
   width: 100%;
   height: 100%;
+  max-width: 100%;
+  max-height: 193px;
   object-fit: contain;
-  object-position: center;
-  display: block;
-  position: relative;
-  z-index: 1;
+  object-position: center center;
+  border-radius: 10px;
 }
 
-.core-contrib .cc-media-placeholder{
-  font-weight: 700;
-  font-size: 19px;
-  color: rgba(31,75,153,0.85);
-  letter-spacing: 0.2px;
-}
-
-.core-contrib .cc-media::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  background: rgba(45,108,223,0.07);
-  pointer-events:none;
-  
-}
 /* BODY */
-.core-contrib .cc-body{
+.core-contrib .cc-body {
   padding: 16px 16px 18px;
 }
 
-.core-contrib .cc-h3{
+.core-contrib .cc-h3 {
   margin: 0 0 8px;
   font-size: 16px;
-  line-height: 1.25;
-  color: rgba(0,0,0,0.88);
+  line-height: 1.28;
+  color: rgba(0, 0, 0, 0.88);
 }
 
-.core-contrib .cc-text{
+.core-contrib .cc-text {
   margin: 0 0 10px;
   font-size: 12.5px;
-  line-height: 1.5;
-  color: rgba(0,0,0,0.58);
+  line-height: 1.52;
+  color: rgba(0, 0, 0, 0.62);
 }
 
-/* Link like "View Project" */
-.core-contrib .cc-link{
+.core-contrib .cc-list {
+  margin: 0 0 10px;
+  padding-left: 16px;
+  font-size: 12.5px;
+  line-height: 1.45;
+  color: rgba(0, 0, 0, 0.74);
+}
+
+.core-contrib .cc-list li {
+  margin-bottom: 4px;
+}
+
+.core-contrib .cc-link {
   display: inline-flex;
   align-items: center;
   gap: 6px;
@@ -485,67 +485,61 @@ body[data-theme="dark"] .home-hero,
   color: #2d6cdf;
 }
 
-.core-contrib .cc-link:hover{
+.core-contrib .cc-link:hover {
   text-decoration: underline;
 }
-.core-contrib .cc-list{
-  margin: 0 0 10px;
-  padding-left: 16px;
-  font-size: 12.5px;
-  line-height: 1.45;
-  color: rgba(0,0,0,0.72);
+
+/* Align with left content */
+.home-hero-grid > div:first-child .core-contrib {
+  margin-top: 18px;
 }
 
-.core-contrib .cc-list li{
-  margin-bottom: 4px;
+.core-contrib h2 {
+  font-size: 25px;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  margin-top: 20px;
+  margin-bottom: 6px;
+  color: var(--global-text-color);
+  border-left: 4px solid #2ecc71;
+  padding-left: 10px;
 }
+
 /* DARK MODE */
 html.dark .core-contrib .cc-card,
 body.dark .core-contrib .cc-card,
 html[data-theme="dark"] .core-contrib .cc-card,
 body[data-theme="dark"] .core-contrib .cc-card,
-[data-theme="dark"] .core-contrib .cc-card{
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.12);
-  box-shadow: 0 14px 40px rgba(0,0,0,0.35);
+[data-theme="dark"] .core-contrib .cc-card {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.35);
 }
 
 html.dark .core-contrib .cc-h3,
 body.dark .core-contrib .cc-h3,
-[data-theme="dark"] .core-contrib .cc-h3{
-  color: rgba(255,255,255,0.92);
+[data-theme="dark"] .core-contrib .cc-h3 {
+  color: rgba(255, 255, 255, 0.92);
 }
 
 html.dark .core-contrib .cc-text,
 body.dark .core-contrib .cc-text,
-[data-theme="dark"] .core-contrib .cc-text{
-  color: rgba(255,255,255,0.72);
+[data-theme="dark"] .core-contrib .cc-text {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+html.dark .core-contrib .cc-list,
+body.dark .core-contrib .cc-list,
+[data-theme="dark"] .core-contrib .cc-list {
+  color: rgba(255, 255, 255, 0.78);
 }
 
 html.dark .core-contrib .cc-media,
 body.dark .core-contrib .cc-media,
-[data-theme="dark"] .core-contrib .cc-media{
-  background: rgba(45,108,223,0.14);
-  border-bottom: 1px solid rgba(255,255,255,0.10);
+[data-theme="dark"] .core-contrib .cc-media {
+  background:
+    linear-gradient(180deg, rgba(29, 35, 46, 0.92), rgba(22, 27, 36, 0.92));
+  border-bottom: 1px solid rgba(255, 255, 255, 0.10);
 }
-
-html.dark .core-contrib .cc-media-placeholder,
-body.dark .core-contrib .cc-media-placeholder,
-[data-theme="dark"] .core-contrib .cc-media-placeholder{
-  color: rgba(255,255,255,0.85);
-}
-/* Core contribs should align with left column content */
-.home-hero-grid > div:first-child .core-contrib{
-  margin-top: 18px;
-}
-.core-contrib h2{
-  font-size: 25px;
-  font-weight: 400;
-  letter-spacing: -0.02em;
-   margin-top: 20px;
-  margin-bottom: 6px;
-  color: var(--global-text-color);
-  border-left: 4px solid #2ecc71; 
-   color: var(--global-text-color);
   padding-left: 10px;
 }
