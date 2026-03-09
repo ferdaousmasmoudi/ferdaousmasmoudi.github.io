@@ -78,7 +78,7 @@ social: true
         <!-- CARD 1 -->
         <article class="cc-card">
           <div class="cc-media">
-            <img src="assets/img/PV Modeling Parameter Optimization.jpg"
+            <img src="{{ '/assets/img/PV Modeling Parameter Optimization.jpg' | relative_url }}"
              alt="PV modeling and parameter optimization"
              class="cc-img">
           </div>
