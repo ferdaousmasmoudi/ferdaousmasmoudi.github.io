@@ -260,30 +260,18 @@ jekyll-archives:
 display_tags: [
   solar-tracker,
   photovoltaics,
-  embedded-systems,
-  control-systems,
-  Arduino,
-  Raspberry-Pi,
-  IoT,
-  robotics,
-  sensor-systems,
+  embedded AI,
+  control,
+  sensors,
   data-acquisition,
-  computer-vision,
-  machine-learning,
-  AgriTech,
-  traceability,
-  blockchain
 ] # these tags will be displayed on the front page of your blog
 display_categories: [
   energy-systems,
-  embedded-systems,
-  control-engineering,
   robotics,
   computer-vision,
   IoT,
   AgriTech,
   blockchain,
-  research-insights
 ] # these categories will be displayed on the front page of your blog
 
 # -----------------------------------------------------------------------------
