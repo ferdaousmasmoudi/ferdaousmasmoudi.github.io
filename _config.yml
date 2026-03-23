@@ -257,22 +257,21 @@ jekyll-archives:
   books:
     enabled: [year, tags, categories] # enables year, tag and category archives (remove if you need to disable one of them).
 
-display_tags: [
-  solar-tracker,
-  photovoltaics,
-  embedded AI,
-  control,
-  sensors,
-  data-acquisition,
-] # these tags will be displayed on the front page of your blog
-display_categories: [
-  energy-systems,
-  robotics,
-  computer-vision,
-  IoT,
-  AgriTech,
-  blockchain,
-] # these categories will be displayed on the front page of your blog
+display_tags: [ ] 
+#  solar-tracker,
+#   photovoltaics,
+# embedded AI,
+#  control,
+#  sensors,
+#   data-acquisition,
+display_categories: [ ] 
+#  energy-systems,
+#  robotics,
+#  computer-vision,
+#   IoT,
+#  AgriTech,
+#   blockchain,
+# these categories will be displayed on the front page of your blog
 
 # -----------------------------------------------------------------------------
 # Jekyll Scholar
