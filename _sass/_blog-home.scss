@@ -23,6 +23,52 @@
   --divider: rgba(0, 0, 0, 0.06);
 }
 
+.post .page-title {
+  margin: 0 0 18px 0;
+  font-size: 28px;
+  line-height: 1.2;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  color: var(--hero-text);
+}
+
+.post .blog-hero {
+  background: var(--hero-bg);
+  border: 1px solid var(--hero-border);
+  border-radius: 18px;
+  padding: 28px;
+  margin: 0 0 28px 0;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+  color: var(--hero-text);
+}
+
+.post .blog-hero-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 18px;
+  align-items: center;
+}
+
+.post .blog-hero-copy h1 {
+  font-size: clamp(28px, 3.2vw, 44px);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin: 0 0 12px 0;
+  color: var(--hero-text);
+  font-weight: 400;
+  max-width: 760px;
+}
+
+.post .blog-lead {
+  color: var(--hero-muted);
+  font-size: 16px;
+  line-height: 1.5;
+  margin: 0;
+  opacity: 0.95;
+  max-width: 760px;
+}
+
+
 /* Small page label like Home */
 .post .page-title {
   margin: 0 0 18px 0;
