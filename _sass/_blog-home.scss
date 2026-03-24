@@ -60,6 +60,13 @@
   }
 }
 
+.post .page-title {
+  margin: 0 0 14px 0;
+  font-size: clamp(24px, 3vw, 34px);
+  font-weight: 400;
+  color: var(--hero-text);
+}
+
 /* Hide top tag/category strip visually if it remains */
 .post .tag-category-list {
   display: none;
