@@ -3,7 +3,7 @@ layout: post
 title: "From Modeling to Experimental Validation: Design of a Dual-Axis Solar Tracking System"
 date: 2026-03-20
 description: "End-to-end design of a dual-axis solar tracking system combining nonlinear modeling, embedded control, and real-time experimental validation."
-featured: true
+featured: false
 thumbnail: /assets/img/solar-tracking.jpg
 categories: [energy-systems]
 tags: [solar-tracker, photovoltaics, embedded-systems, control-systems, data-acquisition]
