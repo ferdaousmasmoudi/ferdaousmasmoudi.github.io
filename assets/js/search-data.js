@@ -37,7 +37,18 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/teaching/";
           },
-        },{id: "books-the-godfather",
+        },{id: "post-from-modeling-to-experimental-validation-design-of-a-dual-axis-solar-tracking-system",
+        
+          title: "From Modeling to Experimental Validation: Design of a Dual-Axis Solar Tracking System",
+        
+        description: "End-to-end design of a dual-axis solar tracking system combining nonlinear modeling, embedded control, and real-time experimental validation.",
+        section: "Posts",
+        handler: () => {
+          
+            window.location.href = "/blog/2026/dual-axis-solar-tracker/";
+          
+        },
+      },{id: "books-the-godfather",
           title: 'The Godfather',
           description: "",
           section: "Books",handler: () => {
