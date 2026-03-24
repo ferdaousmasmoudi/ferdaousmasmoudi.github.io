@@ -12,8 +12,8 @@ pagination:
   sort_field: date
   sort_reverse: true
   trail:
-    before: 1 # The number of links before the current page
-    after: 3 # The number of links after the current page
+    before: 1
+    after: 3
 ---
 
 <div class="post">
@@ -24,9 +24,13 @@ pagination:
   <h1 class="page-title">Blog</h1>
 
   {% if blog_name_size > 0 or blog_description_size > 0 %}
-    <div class="header-bar">
-      <h1>{{ site.blog_name }}</h1>
-      <h2>{{ site.blog_description }}</h2>
+    <div class="blog-hero">
+      <div class="blog-hero-grid">
+        <div class="blog-hero-copy">
+          <h1>{{ site.blog_name }}</h1>
+          <p class="blog-lead">{{ site.blog_description }}</p>
+        </div>
+      </div>
     </div>
   {% endif %}
 
@@ -164,4 +168,3 @@ pagination:
   {% endif %}
 
 </div>
-
