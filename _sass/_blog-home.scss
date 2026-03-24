@@ -15,32 +15,49 @@
 }
 
 /* Hero header */
+/* Blog hero — more aligned with Home */
 .post .header-bar {
   background: var(--hero-bg);
   border: 1px solid var(--hero-border);
   border-radius: 18px;
-  padding: 28px;
-  margin: 0 0 24px 0;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+  padding: 20px 22px;
+  margin: 0 0 22px 0;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
   text-align: left;
 }
 
 .post .header-bar h1 {
-  font-size: clamp(32px, 4.4vw, 54px);
-  letter-spacing: -0.03em;
-  line-height: 1.08;
-  margin: 0 0 10px 0;
+  font-size: clamp(24px, 3.2vw, 38px);
+  letter-spacing: -0.025em;
+  line-height: 1.12;
+  margin: 0 0 8px 0;
   color: var(--hero-text);
   font-weight: 400;
+  max-width: 760px;
 }
 
 .post .header-bar h2 {
-  font-size: clamp(18px, 2vw, 28px);
-  line-height: 1.4;
+  font-size: clamp(14px, 1.5vw, 21px);
+  line-height: 1.45;
   margin: 0;
   color: var(--hero-muted);
   font-weight: 350;
-  max-width: 920px;
+  max-width: 760px;
+}
+
+@media (max-width: 900px) {
+  .post .header-bar {
+    padding: 16px 16px;
+    border-radius: 16px;
+  }
+
+  .post .header-bar h1 {
+    font-size: clamp(22px, 7vw, 32px);
+  }
+
+  .post .header-bar h2 {
+    font-size: clamp(14px, 3.8vw, 18px);
+  }
 }
 
 /* Hide top tag/category strip visually if it remains */
