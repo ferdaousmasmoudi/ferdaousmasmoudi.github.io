@@ -10,13 +10,13 @@ contact_note: >
   Best way to reach me: ferdaous.masmoudi@gmail.com
 description: >
   PhD in Electrical Engineering and Renewable Energy Systems with experience in the end-to-end development of intelligent energy platforms, covering nonlinear mathematical modeling, parameter identification, optimization strategies, embedded implementation, and experimental validation.
-  Research activities include multi-level mathematical modeling of photovoltaic and electrochemical energy systems, data-driven parameter identification (least squares, ARX-based approaches), and optimization-based tuning under real environmental conditions. State estimation techniques, including Extended Kalman Filtering (EKF), were implemented for real-time monitoring and control-oriented system supervision.
+  My Research activities include multi-level mathematical modeling of photovoltaic and electrochemical energy systems, data-driven parameter identification (least squares, ARX-based approaches), and optimization-based tuning under real environmental conditions. State estimation techniques, including Extended Kalman Filtering (EKF), were implemented for real-time monitoring and control-oriented system supervision.
   Strong experience in the integration of sensors, real-time data acquisition chains, signal processing, and control algorithms within embedded architectures, complemented by MATLAB/Simulink-based simulation, power electronics implementation, and cloud-enabled supervision platforms for real-world system deployment.
+
 footer_text: >
-  Powered by <a href="https://jekyllrb.com/" target="_blank">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio">al-folio</a> theme.
+  © 2026 Ferdaous Masmoudi — Engineering intelligent systems across energy, robotics, and AgriTech.
   Hosted by <a href="https://pages.github.com/" target="_blank">GitHub Pages</a>.
-  Photos from <a href="https://unsplash.com" target="_blank">Unsplash</a>.
-keywords: jekyll, jekyll-theme, academic-website, portfolio-website # add your own keywords or leave empty
+keywords: ferdaous masmoudi, solar tracker, photovoltaics, embedded systems, robotics, IoT, AgriTech, blockchain traceability, renewable energy, control systems, EKF, MATLAB Simulink
 lang: en 
 icon: ⚛️ # the emoji used as the favicon (alternatively, provide image name in /assets/img/)
 
