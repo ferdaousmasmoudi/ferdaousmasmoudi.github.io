@@ -1,6 +1,7 @@
 ---
 layout: page
 title: Curriculum Vitae
+nav: false
 permalink: /cv/
 description: Professional CV of Ferdaous Masmoudi
 ---
