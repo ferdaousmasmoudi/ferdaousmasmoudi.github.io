@@ -124,27 +124,7 @@ subtitle: Multidisciplinary Engineering Across Robotics, Energy, AI, IoT, and Em
         </div>
       </div>
 
-      <div class="home-metrics">
-        <h2>Profile Snapshot</h2>
-        <div class="home-metric-grid">
-          <div class="home-metric">
-            <strong>10+ years</strong>
-            <span>R&amp;D and teaching</span>
-          </div>
-          <div class="home-metric">
-            <strong>Multi-domain</strong>
-            <span>robotics to energy</span>
-          </div>
-          <div class="home-metric">
-            <strong>End-to-end</strong>
-            <span>system development</span>
-          </div>
-          <div class="home-metric">
-            <strong>Applied</strong>
-            <span>industry-academic projects</span>
-          </div>
-        </div>
-      </div>
+     
 
       <div class="home-metrics">
         <h2>Technical Breadth</h2>
