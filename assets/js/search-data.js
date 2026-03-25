@@ -30,6 +30,13 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/projects/";
           },
+        },{id: "nav-skills-amp-expertise",
+          title: "Skills &amp; Expertise",
+          description: "",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/skills/";
+          },
         },{id: "nav-teaching",
           title: "teaching",
           description: "Courses, labs, and pedagogical approach in engineering and applied sciences.",
