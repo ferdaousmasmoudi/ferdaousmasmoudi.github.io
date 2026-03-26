@@ -261,12 +261,15 @@ social: true
        FULL CONTENT INSIDE CARD
        ========================= -->
 <div class="home-sections">
-<div class="cc-head">
+<section class="core-contrib">
+  <div class="cc-head">
     <h2 class="cc-title">Welcome</h2>
     <p class="cc-subtitle">
  I am a multidisciplinary researcher with a PhD in Electrical Engineering, specializing in the design and deployment of intelligent embedded and robotic systems in real-world environments.
     </p>
   </div>
+ </section>
+  
   <section class="welcome-story">
     <div class="welcome-head">
       <h2 class="welcome-title">Welcome</h2>
