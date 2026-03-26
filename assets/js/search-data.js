@@ -30,19 +30,19 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/projects/";
           },
-        },{id: "nav-blog",
-          title: "blog",
-          description: "",
-          section: "Navigation",
-          handler: () => {
-            window.location.href = "/blog/";
-          },
         },{id: "nav-teaching",
           title: "teaching",
           description: "Courses, labs, and pedagogical approach in engineering and applied sciences.",
           section: "Navigation",
           handler: () => {
             window.location.href = "/teaching/";
+          },
+        },{id: "nav-blog",
+          title: "blog",
+          description: "",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/blog/";
           },
         },{id: "post-from-modeling-to-experimental-validation-design-of-a-dual-axis-solar-tracking-system",
         
