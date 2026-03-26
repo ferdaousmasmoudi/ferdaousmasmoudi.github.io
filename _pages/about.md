@@ -313,11 +313,11 @@ My work has progressively expanded toward the integration of embedded intelligen
  
 
 
-
-
-    <h2>Research Profile</h2>
-
-    <h3>Expertise Areas</h3>
+<section class="core-contrib">
+  <div class="cc-head">
+    <h2 class="cc-title">Expertise Areas</h2>
+    <p class="cc-subtitle">
+ <h3>Expertise Areas</h3>
     <ul>
       <li>Photovoltaic systems modeling &amp; MPPT control</li>
       <li>Power electronics &amp; DC-DC converter design</li>
@@ -327,7 +327,16 @@ My work has progressively expanded toward the integration of embedded intelligen
       <li>Mobile &amp; web development (Android, REST APIs)</li>
       <li>Computer vision &amp; AI/ML integration</li>
     </ul>
+    </p>
+  </div>
+ </section>
 
+
+   
+<section class="core-contrib">
+  <div class="cc-head">
+    <h2 class="cc-title">Key Competencies</h2>
+    <p class="cc-subtitle">
     <h3>Key Competencies</h3>
     <ul>
       <li>Mathematical Modeling | Control Theory | Optimization</li>
@@ -335,10 +344,17 @@ My work has progressively expanded toward the integration of embedded intelligen
       <li>PCB Design &amp; Firmware Development | IoT &amp; LoRa</li>
       <li>ROS/ROS2 | Linux | Git | Cloud Platforms</li>
     </ul>
+    </p>
+  </div>
+ </section>
 
-    <h2>Professional Background</h2>
 
-    <h3>Industry</h3>
+<section class="core-contrib">
+  <div class="cc-head">
+    <h2 class="cc-title">Professional Background</h2>
+    <p class="cc-subtitle">
+    <h3>Key Competencies</h3>
+     <h3>Industry</h3>
     <p><strong>Co-founder &amp; R&amp;D Lead</strong> at NOVEL-TI (2016–Present)</p>
     <ul>
       <li>End-to-end development of intelligent energy systems</li>
@@ -352,17 +368,15 @@ My work has progressively expanded toward the integration of embedded intelligen
       <li>MSc in Electrical Conversion &amp; Renewable Energy, ENIS Sfax (2012)</li>
       <li>Engineering Degree in Electrical Engineering, ENIS Sfax (2011)</li>
     </ul>
-
-    <h2>Research Contributions</h2>
-    <p>
-      My doctoral research focused on <strong>optimization of standalone photovoltaic systems</strong>, including:
     </p>
-    <ul>
-      <li>Nonlinear PV cell modeling (single, double, multi-diode configurations)</li>
-      <li>Optimization-based control strategies &amp; MPPT algorithms</li>
-      <li>Embedded implementation on microcontroller platforms</li>
-      <li>Real-time multi-sensor acquisition &amp; cloud supervision</li>
-    </ul>
+  </div>
+ </section>
+
+
+
+
+
+ 
 
     <p><strong>3 Scopus-indexed journal publications</strong> &amp; <strong>12+ IEEE conference papers</strong></p>
 
