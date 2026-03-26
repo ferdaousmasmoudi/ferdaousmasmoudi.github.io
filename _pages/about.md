@@ -265,11 +265,13 @@ social: true
   <div class="cc-head">
     <h2 class="cc-title">Welcome</h2>
     <p class="cc-subtitle">
-I am a multidisciplinary researcher with a PhD in Electrical Engineering, focusing on the design, development, and deployment of intelligent embedded and robotic systems in real-world environments.
+I am a <strong>multidisciplinary</strong> researcher with a <strong>PhD in Electrical Engineering</strong>, focusing on the design, development, and deployment of intelligent embedded and robotic systems in real-world environments.
     </p>
+    <h3> </h3>
     <p class="cc-subtitle">
-My work has progressively expanded toward the integration of embedded intelligence, robotics, IoT, and advanced control architectures. I aim to bridge intelligent hardware with complex, dynamic environments, with a strong emphasis on adaptive behavior, real-time decision-making, and human–system interaction.
+My work has progressively expanded toward the integration of <strong>embedded intelligence, robotics, IoT, and advanced control</strong> architectures. I aim to bridge intelligent hardware with complex, dynamic environments, with a strong emphasis on adaptive behavior, real-time decision-making, and human–system interaction.
     </p>
+    <h3> </h3>
     <p class="cc-subtitle">
 I aim to bridge intelligent hardware with complex, dynamic environments, with a strong emphasis on adaptive behavior, real-time decision-making, and human–system interaction.
     </p>
@@ -321,7 +323,7 @@ I aim to bridge intelligent hardware with complex, dynamic environments, with a 
   <div class="cc-head">
     <h2 class="cc-title">Expertise Areas</h2>
     <p class="cc-subtitle">
- <h3>Expertise Areas</h3>
+ 
     <ul>
       <li>Photovoltaic systems modeling &amp; MPPT control</li>
       <li>Power electronics &amp; DC-DC converter design</li>
@@ -341,7 +343,7 @@ I aim to bridge intelligent hardware with complex, dynamic environments, with a 
   <div class="cc-head">
     <h2 class="cc-title">Key Competencies</h2>
     <p class="cc-subtitle">
-    <h3>Key Competencies</h3>
+  
     <ul>
       <li>Mathematical Modeling | Control Theory | Optimization</li>
       <li>MATLAB/Simulink | C++ | Python | Embedded Systems</li>
@@ -357,7 +359,7 @@ I aim to bridge intelligent hardware with complex, dynamic environments, with a 
   <div class="cc-head">
     <h2 class="cc-title">Professional Background</h2>
     <p class="cc-subtitle">
-    <h3>Key Competencies</h3>
+    
      <h3>Industry</h3>
     <p><strong>Co-founder &amp; R&amp;D Lead</strong> at NOVEL-TI (2016–Present)</p>
     <ul>
@@ -365,7 +367,7 @@ I aim to bridge intelligent hardware with complex, dynamic environments, with a 
       <li>AgriTech solutions with blockchain-based traceability</li>
       <li>Multi-disciplinary technical team leadership</li>
     </ul>
-
+<h2 class="cc-title">Academic Qualifications </h2>
     <h3>Education</h3>
     <ul>
       <li>PhD in Electrical Engineering, ENIS Sfax (2016)</li>
