@@ -265,10 +265,15 @@ social: true
 
     <h2>Welcome</h2>
     <p>
-      I am a <strong>PhD in Electrical Engineering</strong> specializing in
-      <strong>Energy Systems Modeling, Control &amp; Optimization</strong>.
-      My research focuses on nonlinear mathematical modeling, parameter identification,
-      optimization strategies, and real-time embedded control for photovoltaic and electrochemical systems.
+      I am a multidisciplinary researcher with a PhD in Electrical Engineering, specializing in the design and deployment of intelligent embedded and robotic systems in real-world environments.
+
+My early work focused on energy systems, where I developed a solar-tracking robotic platform for remote agricultural applications. This work combined mechatronic design, embedded control, and energy optimization, and laid the foundation for my transition toward autonomous systems.
+
+Building on this experience, I have led and contributed to several applied R&D projects involving mobile robotics, sensor fusion, AI-driven task execution, and cloud-connected monitoring systems. These solutions were implemented in real operational contexts, addressing challenges related to autonomy, environmental interaction, and system reliability.
+
+Over time, my research evolved toward the integration of embedded intelligence, robotics, IoT, and advanced control architectures. My work focuses on bridging intelligent hardware with complex environments, with particular attention to adaptive behavior, real-time decision-making, and human-system interaction.
+
+Today, I am particularly interested in contributing to interdisciplinary research at the intersection of robotics, embedded intelligence, and emerging fields such as soft haptics and brain-machine interfaces.
     </p>
 
     <h2>Research Profile</h2>
