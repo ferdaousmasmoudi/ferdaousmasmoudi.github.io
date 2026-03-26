@@ -265,25 +265,23 @@ social: true
   <div class="cc-head">
     <h2 class="cc-title">Welcome</h2>
     <p class="cc-subtitle">
- I am a multidisciplinary researcher with a PhD in Electrical Engineering, specializing in the design and deployment of intelligent embedded and robotic systems in real-world environments.
+I am a multidisciplinary researcher with a PhD in Electrical Engineering, focusing on the design, development, and deployment of intelligent embedded and robotic systems in real-world environments.
+
+My work has progressively expanded toward the integration of embedded intelligence, robotics, IoT, and advanced control architectures. I aim to bridge intelligent hardware with complex, dynamic environments, with a strong emphasis on adaptive behavior, real-time decision-making, and human–system interaction.
     </p>
   </div>
  </section>
   
   <section class="welcome-story">
-    <div class="welcome-head">
-      <h2 class="welcome-title">Welcome</h2>
-      <p class="welcome-intro">
-        I am a multidisciplinary researcher with a PhD in Electrical Engineering, working at the intersection of energy systems, embedded intelligence, robotics, and real-world applied innovation.
-      </p>
-    </div>
+  
 
     <div class="welcome-grid">
       <article class="welcome-card">
         <span class="welcome-step">01</span>
         <h3>Foundation in Energy Systems</h3>
         <p>
-          My early work focused on photovoltaic systems, solar tracking, embedded control, and energy optimization for autonomous field-oriented applications.
+          My early work focused on photovoltaic & energy systems, where I developed a solar-tracking robotic platform for remote agricultural applications. 
+          
         </p>
       </article>
 
@@ -291,7 +289,7 @@ social: true
         <span class="welcome-step">02</span>
         <h3>From Mechatronics to Autonomy</h3>
         <p>
-          This foundation naturally evolved into the design of intelligent mechatronic systems integrating hardware, control logic, sensing, and real-time decision layers.
+         This foundation combined mechatronic design, embedded control, and energy optimization, naturally evolved into the design of intelligent autonomous systems integrating hardware, control logic, sensing, and real-time decision layers.
         </p>
       </article>
 
@@ -299,7 +297,7 @@ social: true
         <span class="welcome-step">03</span>
         <h3>Robotics, AI &amp; Connected Systems</h3>
         <p>
-          I have led and contributed to applied R&amp;D projects involving mobile robotics, sensor fusion, AI-based task execution, and cloud-connected monitoring platforms.
+          I have led and contributed to applied R&amp;D projects involving mobile robotics, sensor fusion, AI-based task execution, and cloud-connected monitoring platforms. These solutions were implemented in real operational contexts, addressing challenges related to autonomy, environmental interaction, and system reliability.
         </p>
       </article>
 
@@ -313,20 +311,9 @@ social: true
     </div>
   </section>
  
-  
 
-    <h2>Welcome</h2>
-    <p>
-      I am a multidisciplinary researcher with a PhD in Electrical Engineering, specializing in the design and deployment of intelligent embedded and robotic systems in real-world environments.
 
-My early work focused on energy systems, where I developed a solar-tracking robotic platform for remote agricultural applications. This work combined mechatronic design, embedded control, and energy optimization, and laid the foundation for my transition toward autonomous systems.
 
-Building on this experience, I have led and contributed to several applied R&D projects involving mobile robotics, sensor fusion, AI-driven task execution, and cloud-connected monitoring systems. These solutions were implemented in real operational contexts, addressing challenges related to autonomy, environmental interaction, and system reliability.
-
-Over time, my research evolved toward the integration of embedded intelligence, robotics, IoT, and advanced control architectures. My work focuses on bridging intelligent hardware with complex environments, with particular attention to adaptive behavior, real-time decision-making, and human-system interaction.
-
-Today, I am particularly interested in contributing to interdisciplinary research at the intersection of robotics, embedded intelligence, and emerging fields such as soft haptics and brain-machine interfaces.
-    </p>
 
     <h2>Research Profile</h2>
 
