@@ -3,7 +3,7 @@ layout: page
 title: Skills & Expertise
 permalink: /skills/
 nav: true
-nav_order: 5
+nav_order: 1
 subtitle: Multidisciplinary Engineering Across Robotics, Energy, AI, IoT, and Embedded Systems
 ---
 
