@@ -260,8 +260,52 @@ social: true
   <!-- =========================
        FULL CONTENT INSIDE CARD
        ========================= -->
+<div class="home-sections">
 
-  <div class="home-sections">
+  <section class="welcome-story">
+    <div class="welcome-head">
+      <h2 class="welcome-title">Welcome</h2>
+      <p class="welcome-intro">
+        I am a multidisciplinary researcher with a PhD in Electrical Engineering, working at the intersection of energy systems, embedded intelligence, robotics, and real-world applied innovation.
+      </p>
+    </div>
+
+    <div class="welcome-grid">
+      <article class="welcome-card">
+        <span class="welcome-step">01</span>
+        <h3>Foundation in Energy Systems</h3>
+        <p>
+          My early work focused on photovoltaic systems, solar tracking, embedded control, and energy optimization for autonomous field-oriented applications.
+        </p>
+      </article>
+
+      <article class="welcome-card">
+        <span class="welcome-step">02</span>
+        <h3>From Mechatronics to Autonomy</h3>
+        <p>
+          This foundation naturally evolved into the design of intelligent mechatronic systems integrating hardware, control logic, sensing, and real-time decision layers.
+        </p>
+      </article>
+
+      <article class="welcome-card">
+        <span class="welcome-step">03</span>
+        <h3>Robotics, AI &amp; Connected Systems</h3>
+        <p>
+          I have led and contributed to applied R&amp;D projects involving mobile robotics, sensor fusion, AI-based task execution, and cloud-connected monitoring platforms.
+        </p>
+      </article>
+
+      <article class="welcome-card">
+        <span class="welcome-step">04</span>
+        <h3>Current Research Direction</h3>
+        <p>
+          Today, I am especially interested in interdisciplinary research combining embedded intelligence, adaptive interaction, robotics, soft actuation, and brain-machine interfaces.
+        </p>
+      </article>
+    </div>
+  </section>
+ 
+  
 
     <h2>Welcome</h2>
     <p>
