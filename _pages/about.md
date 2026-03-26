@@ -266,8 +266,12 @@ social: true
     <h2 class="cc-title">Welcome</h2>
     <p class="cc-subtitle">
 I am a multidisciplinary researcher with a PhD in Electrical Engineering, focusing on the design, development, and deployment of intelligent embedded and robotic systems in real-world environments.
-
+    </p>
+    <p class="cc-subtitle">
 My work has progressively expanded toward the integration of embedded intelligence, robotics, IoT, and advanced control architectures. I aim to bridge intelligent hardware with complex, dynamic environments, with a strong emphasis on adaptive behavior, real-time decision-making, and human–system interaction.
+    </p>
+    <p class="cc-subtitle">
+I aim to bridge intelligent hardware with complex, dynamic environments, with a strong emphasis on adaptive behavior, real-time decision-making, and human–system interaction.
     </p>
   </div>
  </section>
