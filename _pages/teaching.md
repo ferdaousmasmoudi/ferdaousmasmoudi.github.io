@@ -4,7 +4,7 @@ title: teaching
 permalink: /teaching/
 description: Courses, labs, and pedagogical approach in engineering and applied sciences.
 nav: true
-nav_order: 6
+nav_order: 4
 ---
 
 <div class="teaching-page">
