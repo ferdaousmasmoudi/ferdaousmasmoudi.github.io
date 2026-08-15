@@ -47,7 +47,7 @@ social: true
            href="{{ '/thesis/' | relative_url }}"
            target="_blank"
            rel="noopener">
-           Read PhD Thesis
+           Read Thesis
         </a>
 
         <a class="home-btn ghost"
