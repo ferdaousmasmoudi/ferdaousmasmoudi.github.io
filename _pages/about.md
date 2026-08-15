@@ -2,7 +2,7 @@
 layout: page
 title: Home
 permalink: /
-subtitle: PhD in Electrical Engineering | Energy Systems Modeling, Control & Optimization | AgriTech Innovation
+subtitle: PhD in Electrical Engineering | Postdoctoral Researcher | University Lecturer | Co-Founder & R&D Director, QUANTITECK
 
 profile:
   align: right
@@ -24,10 +24,10 @@ social: true
       <h1>Ferdaous Masmoudi, PhD</h1>
       <div class="home-tags">
         <span class="tag-line">
-          Photovoltaic • Renewable Energy • Power Systems • Embedded Systems
+          Electrical Engineering • Mechatronics • Robotics • Embedded Systems & IoT
         </span>
         <span class="tag-line">
-          Robotics • IoT • AI • Blockchain
+          Control & Instrumentation • Power Electronics • Renewable Energy • Intelligent Systems
         </span>
       </div>
 
