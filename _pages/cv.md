@@ -74,4 +74,4 @@ description: Professional CV of Ferdaous Masmoudi
 
 ---
 
-[Download Full CV (PDF)](/assets/pdf/cv.pdf)
+[Download Full CV (PDF)](/assets/pdf/CV_Ferdaous_Masmoudi_General_Electrical_Engineering_2026.pdf)
