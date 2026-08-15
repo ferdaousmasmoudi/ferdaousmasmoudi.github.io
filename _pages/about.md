@@ -37,7 +37,7 @@ social: true
 
       <div class="home-cta">
         <a class="home-btn primary" 
-           href="{{ '/assets/pdf/ModernCVFerdaous2026EN.pdf' | relative_url }}" 
+           href="{{ '/assets/pdf/CV_Ferdaous_Masmoudi_General_Electrical_Engineering_2026.pdf' | relative_url }}" 
            target="_blank"
            rel="noopener">
            Download CV
